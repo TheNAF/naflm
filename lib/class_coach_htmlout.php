@@ -145,7 +145,10 @@ private function _menu($ALLOW_EDIT)
         <li><a href="<?php echo $url.'&amp;subsec=recentmatches';?>"><?php echo $lng->getTrn('common/recentmatches');?></a></li>
         <?php
         if ($ALLOW_EDIT) {
-            ?><li><a href="handler.php?type=teamcreator"><?php echo $lng->getTrn('cc/new_team');?></a></li><?php
+//<li><a href="handler.php?type=teamcreator"><?php echo $lng->getTrn('cc/new_team');?></a></li>
+            ?>
+        <li><a href="<?php echo $url.'&amp;subsec=newteam';?>"><?php echo $lng->getTrn('cc/new_team');?></a></li>
+<?php
         }
         if (Module::isRegistered('SGraph')) {
             echo "<li><a href='handler.php?type=graph&amp;gtype=".SG_T_COACH."&amp;id=$this->coach_id'>Vis. stats</a></li>\n";
