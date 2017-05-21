@@ -164,7 +164,7 @@ class Registration implements ModuleInterface
     public function chk_email() {
 
         #'/^([.0-9a-z_-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' : 
-        #'/^([*+!.&#$¦\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
+        #'/^([*+!.&#$Â¦\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
 
         $status = true;
         $domain = '';
@@ -172,7 +172,7 @@ class Registration implements ModuleInterface
         $atpos = strpos($this->email, '@');
         if ( $atpos ) $domain = substr($this->email, $atpos + 1);
 
-        $emailexp = "/^([.0-9a-z_-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i";
+        $emailexp = "/^([.0-9a-z_\+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})$/i";
 
         if ( !preg_match($emailexp, $this->email) ) $status = false;
 
