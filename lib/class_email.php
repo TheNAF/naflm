@@ -19,14 +19,14 @@
 class Email {
     private static function checkEmail($email) {
         #'/^([.0-9a-z_-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' : 
-        #'/^([*+!.&#$¦\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
+        #'/^([*+!.&#$Â¦\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
 
         $status = true;
         $domain = '';
         if (strpos($email, '@')) 
             list($emailuser,$domain) = split("@",$email);
 
-        $emailexp = "/^([.0-9a-z_-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i";
+        $emailexp = "/^([.0-9a-z_\+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})$/i";
 
         if (!preg_match($emailexp, $email)) 
             $status = false;
