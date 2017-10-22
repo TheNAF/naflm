@@ -124,7 +124,8 @@ private function _head($team)
     title($p->name);
     $players = $team->getPlayers();
     $i = $next = $prev = 0;
-    $end = end(array_keys($players));
+    $keys = array_keys($players);
+    $end = end($keys);
     foreach ($players as $player) {
         if ($player->player_id == $p->player_id) {
             if ($i == 0) {
