@@ -314,11 +314,14 @@ function sec_main() {
         else if (isset($box['field']))  {$box['dispType'] = 'leaders';}
         else if (isset($box['content'])){$box['dispType'] = 'events';}
         else                            {$box['dispType'] = 'latestgames';}
-        switch ($box['type']) {
-            case 'league':     $_type = T_NODE_LEAGUE; break;
-            case 'division':   $_type = T_NODE_DIVISION; break;
-            case 'tournament': $_type = T_NODE_TOURNAMENT; break;
-            default: $_type = T_NODE_LEAGUE;
+
+        if( isset( $box['type'] ) ) {
+            switch ($box['type']) {
+                case 'league':     $_type = T_NODE_LEAGUE; break;
+                case 'division':   $_type = T_NODE_DIVISION; break;
+                case 'tournament': $_type = T_NODE_TOURNAMENT; break;
+                default: $_type = T_NODE_LEAGUE;
+            }
         }
         $box['type'] = $_type;
         $boxes[] = $box;
