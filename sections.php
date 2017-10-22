@@ -292,7 +292,21 @@ function sec_main() {
     
     echo "<div class='main_rightColumn'>\n";
     $boxes_all = array_merge($settings['fp_standings'], $settings['fp_leaders'], $settings['fp_events'], $settings['fp_latestgames']);
-    usort($boxes_all, create_function('$a,$b', 'return (($a["box_ID"] > $b["box_ID"]) ? 1 : (($a["box_ID"] < $b["box_ID"]) ? -1 : 0) );')); 
+    usort($boxes_all, create_function('$a, $b', 
+        'if( isset( $a["box_ID"] ) && isset( $b["box_ID"] ) ) {'.
+            'return ('.
+                '( $a["box_ID"] > $b["box_ID"] )'.
+                '? 1'.
+                ': ('.
+                    '( $a["box_ID"] < $b["box_ID"] )'.
+                    '? -1'.
+                    ': 0'.
+                ')'.
+            ');'.
+        '} else {'.
+            'return 0;'.
+        '}'
+    )); 
     $boxes = array();
     foreach ($boxes_all as $box) {
         # These fields distinguishes the box types.
