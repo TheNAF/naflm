@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<en-GB>
+
+<name>Team Creator</name>
+<menu-tc>Team Creator</menu-tc>
+<notallowed>Sorry, you do not have permissions to create a team</notallowed>
+
+<created>Team Created. Redirecting please wait.</created>
+<tooExpensive>Your team costs more than the available funds</tooExpensive>
+<tooFewPlayers>You must have at least 11 players</tooFewPlayers>
+<tooManyPlayers>Too many players</tooManyPlayers>
+<tooManyRR>Too many rerolls</tooManyRR>
+<tooManyFF>Too many fans</tooManyFF>
+<tooManyAc>Too many coaches</tooManyAc>
+<tooManyCl>Too many cheerleaders</tooManyCl>
+<noInduce>You may not create teams with inducements</noInduce>
+<noTeamName>You must enter a team name</noTeamName>
+
+<race>Race</race>
+<raceDefaultOption>-select-</raceDefaultOption>
+<teamName>Team Name</teamName>
+<noRaceSelected>No race selected</noRaceSelected>
+<createBtn>Create</createBtn>
+<inducementsCheck>Inducements</inducementsCheck>
+<playerCount># Players</playerCount>
+<total>Total (k)</total>
+<normal>Norm</normal>
+<double>Doub</double>
+<quantity>Qty</quantity>
+<dollar>$</dollar>
+<subtotal>Tot.</subtotal>
+
+</en-GB>

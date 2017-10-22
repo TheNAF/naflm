@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="botocsreport" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:choice minOccurs="2" maxOccurs="2">
+        <xs:element name="winner">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="concession" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="2" maxOccurs="2" name="team">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="transferedGold" type="t_transferedGold" />
+              <xs:element name="leftGold" type="t_leftGold" />
+              <xs:element name="fans" type="t_fans" />
+              <xs:element name="fame" type="t_fame" />
+              <xs:element name="score" type="t_int0_24" />
+              <xs:element name="fanfactor" type="t_fanfactor" />
+              <xs:element name="winnings" type="t_winnings" />
+              <xs:element name="players">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="17" name="player">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="completion" type="t_int0_24" />
+                          <xs:element name="interception" type="t_int0_24" />
+                          <xs:element name="casualties" type="t_int0_24" />
+                          <xs:element name="touchdown" type="t_int0_24" />
+                          <xs:element name="injuries">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="2" name="injury">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string" />
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="mvp" type="t_mvp" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" />
+                        <xs:attribute name="number" type="t_number" />
+                        <xs:attribute name="starPlayer" type="xs:string" />
+                        <xs:attribute name="mercenary" type="xs:string" />
+                        <xs:attribute name="journeyman" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="home" type="xs:boolean" />
+            <xs:attribute name="name" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="t_transferedGold">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1000000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_leftGold">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1000000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fans">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="2000" />
+      <xs:maxInclusive value="40000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fame">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_int0_24">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="24" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fanfactor">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="-1" />
+      <xs:maxInclusive value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_winnings">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="200000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_mvp">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_number">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1" />
+      <xs:maxInclusive value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

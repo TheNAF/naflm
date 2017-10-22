@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+<en-GB>
+
+<name>League Tables</name>
+<help>Please select the tournament to show the League table for</help>
+<no-conf>No Conference Assigned</no-conf>
+<menu-label>League Tables</menu-label>
+<tours>Select a tournament</tours>
+
+<table-pos>#</table-pos>
+<table-coach>Coach</table-coach>
+<table-name>Team</table-name>
+<table-race>Race</table-race>
+<table-tv>TV</table-tv>
+<table-played>Pld</table-played>
+<table-won>W</table-won>
+<table-draw>D</table-draw>
+<table-loss>L</table-loss>
+<table-td>TD</table-td>
+<table-cas>Cas</table-cas>
+<table-points>Pts</table-points>
+
+</en-GB>
+
+<es-ES>
+
+<name>Clasificacion en liga</name>
+<help>Por favor, elige el torneo para el que quieras ver la clasificación</help>
+<no-conf>Sin conferencia asignada</no-conf>
+<menu-label>Clasificaciones</menu-label>
+<tours>Elige un torneo</tours>
+
+<table-pos>#</table-pos>
+<table-coach>Entrenador</table-coach>
+<table-name>Equipo</table-name>
+<table-race>Raza</table-race>
+<table-tv>VE</table-tv>
+<table-played>Jug</table-played>
+<table-won>G</table-won>
+<table-draw>E</table-draw>
+<table-loss>P</table-loss>
+<table-td>TD</table-td>
+<table-cas>Her</table-cas>
+<table-points>Pts</table-points>
+
+</es-ES>
+</translations>

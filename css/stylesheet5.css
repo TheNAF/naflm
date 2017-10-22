@@ -1,0 +1,225 @@
+/**************************
+ * CHOP! Blood Bowl Theme
+ **************************/
+ 
+/*************************
+ * General
+ *************************/
+
+html {
+    height: 98%;
+} 
+
+@font-face {
+    font-family: 'aurora';
+    src: url('fonts/aurora-bdcn-bt-bold-webfont.eot');
+    src: url('fonts/aurora-bdcn-bt-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.woff2') format('woff2'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.woff') format('woff'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.ttf') format('truetype'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.svg#aurora_bdcn_btbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BureauGrot-Medium';
+    src: url('fonts//BureauGrot-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts//BureauGrot-Medium.otf')  format('opentype'),
+        url('fonts//BureauGrot-Medium.woff') format('woff'), 
+        url('fonts//BureauGrot-Medium.ttf')  format('truetype'), 
+        url('fonts//BureauGrot-Medium.svg#BureauGrot-Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+a { 
+    color: #8585AD; 
+}
+a:link, a:visited {}
+a:hover { 
+    color:#A3AFC7;
+    text-decoration: underline;
+}
+
+div.everything a {
+    color: #0000EE;
+}
+
+body {
+    min-height: 100%;
+    background: #A03431; /* Old browsers */
+    background: -moz-linear-gradient(top, #601719 0%, #903719 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #601719 0%,#903719 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #601719 0%,#903719 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#903719', endColorstr='#903719',GradientType=0 ); /* IE6-9 */
+
+    background-attachment: fixed;
+    font: 11px bold Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+f1 {
+	/* Forum name */
+	line-height: 0.5;
+	font-family: BureauGrot-Medium, Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #FCFF61;
+	font-weight: normal;
+	font-size: 40px;
+	text-shadow: 2px 2px black;
+	padding-left: 120px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+f2 {
+	/* Forum header titles */
+	line-height:6;
+	font-family: Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: black;
+	font-size: 1em;
+	margin: 0 0 0 120px;
+}
+
+/* Top level container */
+div.everything {
+    width: 1200px; 
+    margin: auto; 
+    background-color: #bbb;
+    
+    border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+
+	-moz-box-shadow: 3px 4px 10px black;
+	-webkit-box-shadow: 3px 4px 10px black;
+	box-shadow: 3px 4px 10px black;
+} 
+
+/*
+ *   The following three containers are the subsequent main containers within "div.everything".
+ */
+
+/* Banner */
+div.banner {
+    height: 135px;
+    width: auto;
+    margin-left:0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+        
+    background: url(../images/chop-logo.png) 20px bottom no-repeat, url(../images/abstract.jpg) bottom no-repeat;
+    
+	border: 1px solid black;
+	color: black;
+    padding-left: 20px;
+    
+    border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+}
+
+/* Menu */
+div.menu {
+    width: 99.9%;
+}
+
+/* Section code container */
+div.section {
+    margin: 0 10px 5px 10px; 
+    color: #222;
+	padding-bottom: 40px; 
+}
+
+/*
+ *   Box (inner) stylings.
+ */
+div.boxCommon,div.boxWide,div.boxCoachPage,div.boxTeamPage,div.boxPlayerPageInfo {
+    margin: 16px; 
+	color: black;
+    border: 1px solid black;
+
+	border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+
+	-moz-box-shadow: 3px 4px 10px #666;
+	-webkit-box-shadow: 3px 4px 10px #666;
+	box-shadow: 3px 4px 10px #666;
+}
+div.boxWide             {clear:both; background-color: #D9D8D0;}
+
+/* .boxTitle1: Used for: Team/player/coach info & team news */
+/* .boxTitle2: Used for: Management/actions/more box for ordinary coaches */
+/* .boxTitle4: Used for: Statistics (standings, player leaders, ES) */
+/* .boxTitle5: Used for: Match summaries & recent games */
+.boxTitle1,.boxTitle2,.boxTitle3,.boxTitle4,.boxTitle5 {
+    color:black;
+    font-family: aurora;
+    background-color: #D9D8D0;
+    padding: 6px;
+    font-size: 20px; 
+    font-weight: normal;
+    
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+}
+.boxTitle3 {background-color: #AAA; } /* Used for: Management/actions/more box for ordinary admins */
+
+.boxBody   { border-top: 2px solid black; background-color: #FAFAFA; font-weight: normal; padding: 10px;}
+table.boxTable {color:black; border-spacing: 5px; width: 100%;}
+
+
+/* 
+ *   Tables, TRs and TDs 
+ */
+
+tr.commonhead {color: black; background-color: #CCCCCC;}
+table.common  {background-color: transparent;}
+
+
+/*********************
+ CSS Menu
+ *********************/
+ ul.css3menu1 a{
+    background: rgb(253,246,205); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(253,246,205,1) 0%, rgba(240,209,36,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(253,246,205,1) 0%,rgba(240,209,36,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(253,246,205,1) 0%,rgba(240,209,36,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdf6cd', endColorstr='#f0d124',GradientType=0 ); /* IE6-9 */
+    color:#000000;
+}
+
+ul.css3menu1 li:hover>a,ul.css3menu1 li > a.pressed{
+    color: black;
+    
+    background: rgb(247,232,95); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(247,232,95,1) 0%, rgba(193,172,13,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(247,232,95,1) 0%,rgba(193,172,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(247,232,95,1) 0%,rgba(193,172,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7e85f', endColorstr='#c1ac0d',GradientType=0 ); /* IE6-9 */
+}
+
+ul.css3menu1 ul li:hover>a,ul.css3menu1 ul li > a.pressed{
+    color:#bb0000;
+}
+
+/*********************
+ Mobile
+ *********************/
+@media only screen and (max-device-width: 600px){
+    div.everything {
+        width: 100%;
+        padding-top: 5px;
+    }
+        
+    div.section {
+        margin: 5px;
+    }
+    
+    div.main_leftColumn, div.main_rightColumn {
+        width: 50%;
+    }
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+
+<en-GB>
+
+<name>Wanted</name>
+
+<player>Player</player>
+<sort_hint>Hint: clicking on the dropdown and pressing any letter on the keyboard scrolls the dropdown down to the first team name beginning with that letter.</sort_hint>
+<submit>Submit</submit>
+<new>New entry</new>
+<posted>Posted</posted>
+<edit>Edit</edit>
+<del>Delete</del>
+
+<g_title>Bounty</g_title>
+<g_about>Wanted for</g_about>
+<killed>HAS BEEN KILLED!</killed>
+<wanted>Wanted</wanted>
+
+<desc><![CDATA[Welcome to the wall of wanted players.<br>Watch out for these player, a bounty is out for each of their heads!]]></desc>
+<title><![CDATA[What is the bounty for this player's head? This could be anything from raw gold to a free bonus skill for one of the players on the killing team.]]></title>
+<about>Why is the player wanted?</about>
+
+<note>Please note: Once the player has been killed it is up to a leagues commissioner (admin) to give the appropriate award.</note>
+</en-GB>
+
+<es-ES>
+
+<name>Se busca</name>
+
+<player>Jugador</player>
+<sort_hint>Consejo: haciendo click en el desplegable y pulsando cualquier letra en el teclado te llevará al primer equipo cuyo nombre comience por dicha letra.</sort_hint>
+<submit>Enviar</submit>
+<new>Nueva entrada</new>
+<posted>Enviado</posted>
+<edit>Editar</edit>
+<del>Borrar</del>
+
+<g_title>Recompensa</g_title>
+<g_about>Buscado por</g_about>
+<killed>¡HA SIDO MATADO!</killed>
+<wanted>Buscado</wanted>
+
+<desc><![CDATA[Bienvenido al muro de jugadores buscados.<br>Cuidado con estos jugadores, una recompensa pesa sobre sus cabezas!]]></desc>
+<title><![CDATA[¿Cuál es la recompensa por la cabeza de este jugador? Podría ser cualquier cosa, desde oro hasta una habilidad extra para un jugador del equipo que lo mate.]]></title>
+<about>¿Por qué se busca al jugador?</about>
+
+<note>Nota: Una vez que el jugador haya sido matado es el deber de los responsables de la liga (admin) el otorgar la recompensa adecuada.</note>
+
+</es-ES>
+
+
+<fr-FR>
+
+<name>Primes</name>
+
+<player>Joueur</player>
+<sort_hint>Astuce : clicking on the dropdown and pressing any letter on the keyboard scrolls the dropdown down to the first team name beginning with that letter.</sort_hint>
+<submit>Valider</submit>
+<new>Nouvelle prime</new>
+<posted>Post&amp;eacute;e</posted>
+<edit>&amp;Eacute;diter</edit>
+<del>Supprimer</del>
+
+<g_title>Primes</g_title>
+<g_about>Recherch&amp;eacute; pour </g_about>
+<killed>A &amp;eacute;t&amp;eacute; tu&amp;acute; !</killed>
+<wanted>Recherch&amp;eacute;</wanted>
+
+<desc><![CDATA[Bienvenue sur le mur des joueurs recherch&eacute;s.<br>Surveillez ces joueurs, une prime sera donn&eacute;e en &eacute;change de leur t&ecirc;te !]]></desc>
+<title><![CDATA[Quelle est la prime ? Cela peut aller d'une somme d'or &agrave; une comp&eacute;tence suppl&eacute;mentaire pour un des joueurs de l'&eacute;quipe ayant tu&eacute; le joueur recherch&eacute;.]]></title>
+<about>Pourquoi ce joueur est recherch&amp;eacute; ?</about>
+
+<note>Note : Il appartient aux commissaires, une fois que le joueur a &amp;eacute;t&amp;eacute; tu&amp;eacute;, de donner la r&amp;eacute;compense appropri&amp;eacute;e.</note>
+
+</fr-FR>
+</translations>

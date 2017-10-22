@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+<en-GB>
+
+<name>Prizes</name>
+
+<team>Team</team>
+<tour>Tournament</tour>
+<submit>Submit</submit>
+<new>New entry</new>
+
+<kind>Kind of prize</kind>
+<g_title>Title</g_title>
+<g_about>Description</g_about>
+<desc><![CDATA[Welcome to the prizes section.<br>Here you may find teams who have won prizes in tournaments for being 1st, 2nd and 3rd place and for being most lethal or fair.]]></desc>
+<title><![CDATA[Short introduction to the prize or the winning team.]]></title>
+<about>Details about the prize. Did the winning team/coach get something in real life?</about>
+</en-GB>
+
+<es-ES>
+
+<name>Premios</name>
+
+<team>Equipo</team>
+<tour>Torneo</tour>
+<submit>Enviar</submit>
+<new>Nueva entrada</new>
+
+<kind>Tipo de premio</kind>
+<g_title>Título</g_title>
+<g_about>Descripción</g_about>
+<desc><![CDATA[Bienvenido a la sección de premios.<br>Aquí encontrarás equipos que han ganado premios en torneos por ser 1º, 2º o 3º o por ser los más letales o limpios.]]></desc>
+<title><![CDATA[Breve introducción al premio o al equipo ganador.]]></title>
+<about>Detalles sobre el premio. ¿Consiguió el equipo/entrenador ganador algo en la vida real?</about>
+
+</es-ES>
+
+
+<fr-FR>
+
+<name>Troph&amp;eacute;es</name>
+
+<team>&amp;Eacute;quipe</team>
+<tour>Tournoi</tour>
+<submit>Valider</submit>
+<new>Nouveau troph&amp;eacute;e</new>
+
+<kind>Type de troph&amp;eacute;e</kind>
+<g_title>Titre</g_title>
+<g_about>Description</g_about>
+<desc><![CDATA[Bienvenue dans la section des troph&eacute;es.<br>Vous pourrez trouver les &eacute;quipes qui ont gagn&eacute; des troph&eacute;es.]]></desc>
+<title><![CDATA[Introduction sur le troph&eacute;e ou l'&eacute;quipe r&eacute;compenc&eacute;e.]]></title>
+<about>D&amp;eacute;tails sur le troph&amp;eacute;e. L'&amp;eacute;quipe ou le coach r&amp;eacute;compens&amp;eacute;s a-t-il re&amp;ccedil;u un troph&amp;eacute;e r&amp;eacute;el ?</about>
+
+</fr-FR>
+</translations>

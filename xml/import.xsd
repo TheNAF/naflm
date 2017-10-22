@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema id="xmlteamimport" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="teams">
+<xs:complexType>
+<xs:sequence>
+    <xs:element name="team" maxOccurs="unbounded">
+    <xs:complexType>
+    <xs:sequence>
+    
+        <xs:element name="name" type="xs:string" />
+        <xs:element name="coach_id" type="xs:nonNegativeInteger" />
+        <xs:element name="race_id" type="xs:nonNegativeInteger" />
+        <xs:element name="league_id" type="xs:nonNegativeInteger" />
+        <xs:element name="division_id" type="xs:nonNegativeInteger" />
+
+        <xs:element name="treasury" type="xs:nonNegativeInteger" />
+        <xs:element name="apothecary" type="xs:boolean" />
+        <xs:element name="rr" type="xs:nonNegativeInteger" />
+        <xs:element name="ff" type="xs:nonNegativeInteger" />
+        <xs:element name="ass_coaches" type="xs:nonNegativeInteger" />
+        <xs:element name="cheerleaders" type="xs:nonNegativeInteger" />
+
+        <xs:element name="won" type="xs:nonNegativeInteger" />
+        <xs:element name="lost" type="xs:nonNegativeInteger" />
+        <xs:element name="draw" type="xs:nonNegativeInteger" />
+        <xs:element name="wt" type="xs:nonNegativeInteger" />
+        <xs:element name="gf" type="xs:nonNegativeInteger" />
+        <xs:element name="ga" type="xs:nonNegativeInteger" />
+
+        <xs:element name="players">
+        <xs:complexType>
+        <xs:sequence>
+            <xs:element name="player" maxOccurs="unbounded">
+            <xs:complexType>
+            <xs:sequence>
+            
+                <xs:element name="name" type="xs:string" />
+                <xs:element name="nr" type="xs:nonNegativeInteger" />
+                <xs:element name="pos_id" type="xs:nonNegativeInteger" />
+                <xs:element name="status">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="none"/>
+                            <xs:enumeration value="mng"/>
+                            <xs:enumeration value="dead"/>
+                            <!-- <xs:enumeration value="sold"/> -->
+                        </xs:restriction>
+                    </xs:simpleType>  
+                </xs:element>
+                <!-- Achievements -->
+                <xs:element name="cp" type="xs:nonNegativeInteger" />
+                <xs:element name="td" type="xs:nonNegativeInteger" />
+                <xs:element name="intcpt" type="xs:nonNegativeInteger" />
+                <xs:element name="bh" type="xs:nonNegativeInteger" />
+                <xs:element name="ki" type="xs:nonNegativeInteger" />
+                <xs:element name="si" type="xs:nonNegativeInteger" />
+                <xs:element name="mvp" type="xs:nonNegativeInteger" />
+                <!-- Injuries -->
+                <xs:element name="ma" type="xs:nonNegativeInteger" />
+                <xs:element name="st" type="xs:nonNegativeInteger" />
+                <xs:element name="ag" type="xs:nonNegativeInteger" />
+                <xs:element name="av" type="xs:nonNegativeInteger" />
+                <xs:element name="ni" type="xs:nonNegativeInteger" />
+                
+            </xs:sequence>
+            </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+        
+    </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+</xs:schema>
+

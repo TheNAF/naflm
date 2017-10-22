@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+
+<en-GB>
+
+<name>Conferences Administration</name>
+<tours>Select a Tournament</tours>
+<menu-conf>Conference Admin</menu-conf>
+<not-admin>Sorry, this feature is only available to division or global administrators</not-admin>
+
+<addConf>Add Conference</addConf>
+<findTeam>Add Team</findTeam>
+
+<failedAddTeam>Error adding team</failedAddTeam>
+<addedTeam>Team Added</addedTeam>
+
+<failedRemoveTeam>Error removing team</failedRemoveTeam>
+<removedTeam>Team removed</removedTeam>
+
+<failedRemoveConf>Error removing conference</failedRemoveConf>
+<removedConf>Conference removed</removedConf>
+
+<failedAddConf>Error adding conference</failedAddConf>
+<addedConf>Conference added</addedConf>
+</en-GB>
+
+<en-ES>
+<name>Administración de conferencias</name>
+<tours>Elige un torneo</tours>
+<menu-conf>Administrar conferencia</menu-conf>
+<not-admin>Disculpe, esta característica sólo está disponible para administradores de conferencia o globales</not-admin>
+
+<addConf>Añadir conferencia</addConf>
+<findTeam>Añadir equipo</findTeam>
+
+<failedAddTeam>Error añadiendo equipo</failedAddTeam>
+<addedTeam>Equipo añadido</addedTeam>
+
+<failedRemoveTeam>Error eliminando equipo</failedRemoveTeam>
+<removedTeam>Equipo eliminado</removedTeam>
+
+<failedRemoveConf>Error eliminando conferencia</failedRemoveConf>
+<removedConf>Conferencia eliminada</removedConf>
+
+<failedAddConf>Error añadiendo conferencia</failedAddConf>
+<addedConf>Conferencia añadida</addedConf>
+</en-ES>
+
+
+<fr-FR>
+
+<name>Administration de conf&amp;eacute;rences</name>
+<tours>S&amp;eacute;lectionner un tournoi</tours>
+<menu-conf>Administration de conf&amp;eacute;rences</menu-conf>
+<not-admin>D&amp;eacute;sol&amp;eacute;, cette fonctionnalit&amp;eacute; est dipsonible pour les administrateurs de division ou les administrateurs globaux</not-admin>
+
+<addConf>Ajouter une conf&amp;eacute;rence</addConf>
+<findTeam>Ajouter une &amp;eacute;quipe</findTeam>
+
+<failedAddTeam>Erreur lors de l'ajout d'une &amp;eacute;quipe</failedAddTeam>
+<addedTeam>&amp;Eacute;quipe ajout&amp;eacute;e</addedTeam>
+
+<failedRemoveTeam>Erreur lors de la suppression d'une &amp;eacute;quipe</failedRemoveTeam>
+<removedTeam>&amp;Eacute;quipe enlev&amp;eacute;e</removedTeam>
+
+<failedRemoveConf>Erreur lors de la suppression d'une conf&amp;eacute;rence</failedRemoveConf>
+<removedConf>Confi&amp;eacute;rence supprim&amp;eacute;e</removedConf>
+
+<failedAddConf>Erreur lors de l'ajout d'une conf&amp;eacute;rence</failedAddConf>
+<addedConf>Conf&amp;eacute;rence ajout&amp;eacute;e</addedConf>
+
+</fr-FR>
+</translations>

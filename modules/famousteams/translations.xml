@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+<en-GB>
+
+<name>Famous Teams</name>
+
+<team>Team</team>
+<sort_hint>Hint: clicking on the dropdown and pressing any letter on the keyboard scrolls the dropdown down to the first team name beginning with that letter.</sort_hint>
+<submit>Submit</submit>
+<new>New entry</new>
+<edit>Edit</edit>
+<del>Delete</del>
+<from>from</from>
+<posted>Posted</posted>
+<isfamous>Is famous</isfamous>
+
+<g_title>Title</g_title>
+<g_about>General description</g_about>
+
+<desc><![CDATA[Welcome to the famous teams list.<br>Here league commissioners may highlight teams which have become famous for whatever reason.]]></desc>
+<title><![CDATA[A short description of what the team has achieved, why its famous etc..]]></title>
+<about><![CDATA[About the team's achievement in detail. Where there any prizes involved? When did this happen and how?]]></about>
+
+</en-GB>
+
+<es-ES>
+
+<name>Equipos famosos</name>
+
+<team>Equipo</team>
+<sort_hint>Consejo: haciendo click en el desplegable y pulsando cualquier letra en el teclado te llevará al primer equipo cuyo nombre comience por dicha letra.</sort_hint>
+<submit>Enviar</submit>
+<new>Nueva entrada</new>
+<edit>Editar</edit>
+<del>Borrar</del>
+<from>de</from>
+<posted>Enviado</posted>
+<isfamous>Es famoso</isfamous>
+
+<g_title>Título</g_title>
+<g_about>Descripción general</g_about>
+
+<desc><![CDATA[Bienvenido a la lista de quipos famosos.<br>Aquí los responsables de la liga pueden destacar equipos que se hayan hecho famosos por cualquier motivo.]]></desc>
+<title><![CDATA[Una descripción corta de los logros del equipo, por qué es famoso, etc..]]></title>
+<about><![CDATA[Los logros del equipo en detalle. ¿Se llevó algún premio? ¿Cúando ocurrió y cómo?]]></about>
+
+</es-ES>
+</translations>

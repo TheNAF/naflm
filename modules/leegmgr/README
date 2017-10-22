@@ -1,0 +1,37 @@
+LEEGMGR
+
+Configuration
+
+The settings.php file is the only configurable file for LEEGMGR.  The settings are straight forward and look like this:
+
+    $settings['leegmgr_enabled']  = true;   // Enables upload of BOTOCS LRB5 application match reports.
+    $settings['leegmgr_schedule'] = true;   // Uploads report to a scheduled match.  The options are [false|true|"strict"]
+                                            // false does not check for scheduled matches
+                                            // true checks for scheduled matches and will create a match if not found
+                                            // "strict" will allow only scheduled matches to be used
+    $settings['leegmgr_extrastats'] = true; // Enables the reporting of extra stats and the use of the alternate XSD file.
+    
+The leegmgr_extrastats settings requires that the BOTOCS install is using the template_eps.xml file.
+The easiest way to set this up is to:
+1. Delete <BOTOCS>\template\default.xml.
+2. Copy template_eps.xml to <BOTOCS>\template.
+3. Rename <BOTOCS>\template\template_eps.xml to default.xml.
+    
+Using LEEGMGR
+
+After the coaches play a match in BOTOCS, the result file is created as <BOTOCS>\results\OrcsWood.zip.
+The team names are shortened to 4 characters each.
+
+Upload the results zip file:
+1. Click Plugins.
+2. Click BOTOCS match report upload.
+3. Click Browse.
+4. Browse to the results zip file and click open.
+5. Choose the "Free for All" match from the drop down menu that the report should go to.
+6. Click Send File.
+
+You can now view the match report as a normal OBBLM match.  The replay file for the match is available on that page.
+
+LRB6 for BOTOCS
+To configure BOTOCS for LRB6 copy rules-LRB5-Experimental.xml to the <BOTOCS>\rules folder, overwriting the existing file.
+Using the same name is the easiest way as the path to the default rules is hard coded.

@@ -1,0 +1,186 @@
+/**************************
+ * AUSBowl Blood Bowl Theme
+ **************************/
+
+/*************************
+ * General
+ *************************/
+
+html {overflow-y: scroll;} /* Keep page alignment uniform. */
+
+@font-face {
+    font-family: 'auroracondensed';
+    src: url('fonts/aurora_condensed-webfont.eot');
+    src: url('fonts/aurora_condensed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aurora_condensed-webfont.woff2') format('woff2'),
+         url('fonts/aurora_condensed-webfont.woff') format('woff'),
+         url('fonts/aurora_condensed-webfont.ttf') format('truetype'),
+         url('fonts/aurora_condensed-webfont.svg#auroracondensed') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'aurora';
+    src: url('fonts/aurora-bdcn-bt-bold-webfont.eot');
+    src: url('fonts/aurora-bdcn-bt-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.woff2') format('woff2'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.woff') format('woff'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.ttf') format('truetype'),
+         url('fonts/aurora-bdcn-bt-bold-webfont.svg#aurora_bdcn_btbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+color: ;
+}
+a:link, a:visited {}
+
+a:hover { color:#A3AFC7;
+text-decoration: underline;
+}
+
+body 
+{
+  
+    background: url(../images/ausfade.png) left top 35px repeat-x, linear-gradient(#004A81,#939496);
+	
+    font: 11px bold Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+f1 {
+	/* Forum name */
+	line-height: 0.5;
+	font-family: auroracondensed, Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin-right: 10px;
+	color: white;
+	padding-bottom: 200px;
+	font-weight: normal;
+	font-size: 40px;
+	text-shadow: 2px 2px black;
+	padding-left: 160px;
+}
+
+f2 {
+	/* Forum header titles */
+	line-height:3;
+	font-family: Verdana, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: whitesmoke;
+	font-size: 1em;
+	margin: 0px 0px 0px 160px;
+}
+
+
+h3 {margin:0} /* Reset browser default margin */
+
+/* MAIN container */
+div.everything {
+    width: 99%; 
+    margin: 5px;
+    background-color: inherit;
+	border-left: 1px;
+	border-top:0px;
+	border-right:1px;
+	border-bottom: 0px;
+	border-style: solid;
+	border-color: black;
+} /* Top level container */
+
+/*
+ *   The following three containers are the subsequent main containers within "div.everything".
+ */
+
+/* Banner */
+div.banner {
+    width: 100%;
+    height: 115px;
+    margin-left:0px;
+    margin-bottom: 0px;
+    margin-top: 22px;
+    background: url(../images/auslogo.png) left 15px top 9px no-repeat, url(../images/auslogo.png) right 18px center no-repeat, url(../images/ausfade.png) left top repeat-x;
+	border: 0px solid black;
+	color: black;
+}
+
+/* Menu */
+div.menu {
+    width: 99.9%;
+    float: left; 
+    border: px solid black;
+}
+
+/* Section code container */
+div.section {
+    margin: 5px; 
+    color: #335289;
+	padding: 20px;
+	padding-top:50px; 
+    background-color: #EEEEEE;
+}
+
+/*
+ *   Box (inner) stylings.
+ */
+div.boxCommon,div.boxWide,div.boxCoachPage,div.boxTeamPage,div.boxPlayerPageInfo {
+    margin: 0 0 18px 0; 
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+.boxTitle1,.boxTitle2,.boxTitle3,.boxTitle4,.boxTitle5 {
+	-moz-border-top-left-radius: 8px;
+	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius: 8px;
+	
+	-moz-border-top-right-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius: 8px;
+	
+	margin-top: 0px;
+	background-image: url(../images/bg_list.gif);
+    background-repeat: repeat-x;
+    background-color: #0582c2; 
+    padding: 7px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;}
+    
+.boxBody   { background-color: #ebf6fc; padding: 5px;
+
+    background-image: url(../images/gradient.gif);
+    background-repeat: repeat-x;
+
+    -moz-border-bottom-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	
+	-moz-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	
+	border-style: solid;
+	border-left-width: 6px;
+	border-top-width: 0px;
+	border-right-width: 6px;
+	border-bottom-width: 6px;
+	border-color: #0b8ccd;
+
+}
+
+/* 
+ *   Section specific 
+ */
+
+/* Main page */
+div.main_head       {clear: both; padding-left: 10px; padding-top: 0px; padding-bottom: 5px; font-size: 18px; background-color: inherit;}
+div.main_rightColumn {float: right; width: 49%; background-color: inherit;}
+div.main_leftColumn {float: left; width: 49%; background-color: inherit;}
+    div.main_leftColumn_head     {clear: both; text-align: right; padding-right: 10px; background-color: inherit;} /* Padding should be the same as lcolBox padding. */
+        div.main_leftColumn_welcome  {clear: both; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: inherit; text-align: left;}
+        div.main_leftColumn_left  {padding-left: 10px; padding-top: 10px; padding-bottom: 15px; background-color: inherit; text-align: left; float:left;}
+        div.main_leftColumn_right {padding-left: 20px; padding-top: 3px;  padding-bottom: 0px;  background-color: inherit; text-align: right; float:right;}

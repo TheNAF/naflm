@@ -1,0 +1,492 @@
+/*************************
+ * General
+ *************************/
+
+html {overflow-y: scroll;} /* Keep page alignment uniform. */
+
+body 
+{
+    background: #0a1e2e url(../images/bg.png) repeat-x;
+
+    font: 12px Tahoma;
+}
+
+h3 {margin:0} /* Reset browser default margin */
+
+/* Title for sections */
+h2
+{
+    clear: both;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    margin:0 auto;
+}
+
+/* Container for rows */
+div.row {width: inherit; clear: both; background-color: inherit;}
+
+/* MAIN container */
+div.everything {
+    width: 1200px; 
+    margin: auto; 
+    background-color: #eeeeee;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+} /* Top level container */
+
+/*
+ *   The following three containers are the subsequent main containers within "div.everything".
+ */
+
+/* Banner */
+div.banner {
+    width: 1200px;
+    height: 150px;
+    background-image: url(../images/banner.png); /* 150x1000px */
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+/* Menu */
+div.menu {
+    width: 100%;
+    float: left;
+}
+
+/* Section code container */
+div.section {
+    margin: 5px; 
+    padding-bottom: 40px; 
+    background-color: inherit;
+}
+
+/*
+ *   Box (inner) stylings.
+ */
+div.boxCommon,div.boxWide,div.boxCoachPage,div.boxTeamPage,div.boxPlayerPageInfo {
+    margin: 20px; 
+    border: 1px solid #545454;
+
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+    -moz-box-shadow: 3px 4px 10px #999;
+    -webkit-box-shadow: 3px 4px 10px #999;
+    box-shadow: 3px 4px 10px #999;
+}
+div.boxWide             {clear:both;}
+div.boxCommon           {float:left;}
+div.boxCoachPage        {float: left; width: 270px; margin: 15px; margin-bottom: 0px;}
+div.boxTeamPage         {float: left; width: 270px; margin: 15px; margin-bottom: 0px;}
+div.boxPlayerPageInfo   {float: left; width: 325px; margin-left: 30px;}
+
+.boxTitle1,.boxTitle2,.boxTitle3,.boxTitle4,.boxTitle5 {
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.boxTitle1 {background-color: #679EC9; padding: 6px; font-size: 13px; font-weight: bold;} /* Used for: Team/player/coach info & team news */
+.boxTitle2 {background-color: #A37B45; padding: 6px; font-size: 13px; font-weight: bold;} /* Used for: Management/actions/more box for ordinary coaches */
+.boxTitle3 {background-color: #BCDD11; padding: 6px; font-size: 13px; font-weight: bold;} /* Used for: Management/actions/more box for ordinary admins */
+.boxTitle4 {background-color: #F1921A; padding: 6px; font-size: 13px; font-weight: bold;} /* Used for: Statistics (standings, player leaders, ES) */
+.boxTitle5 {background-color: #669900; padding: 6px; font-size: 13px; font-weight: bold;} /* Used for: Match summaries & recent games */
+.boxBody   {border-top: 1px solid #545454; padding: 10px;}
+table.boxTable {border-spacing: 5px; width: 100%;}
+
+.boxTitleConf {
+    background-color: #679EC9;
+    padding: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+/* Other types of boxes. */
+.helpBox {
+    color: #FFFFFF;
+    border: 2px solid #CC6633;
+    background-color: #4C6260;
+    padding:10px;
+    line-height:1.4em;
+}
+
+/* Other types of boxes. */
+.errorBox {
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    background-color: #800000;
+    padding:10px;
+    line-height:1.4em;
+}
+
+/* 
+ *   Tables, TRs and TDs 
+ */
+
+/* Used almost everywhere */
+table.common  {border: none; width: 100%; background-color: inherit;}
+tr.commonhead {background-color: #CCCCCC;}
+
+/* For the tours list */
+table.tours {
+    border: none; 
+    width: 100%; 
+    background-color: inherit; 
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* tour lists: titel boxes */
+.leagues     {background-color: #659EC7;}
+.divisions   {background-color: #8BB381;}
+.tours       {background-color: #BBBBBB;}
+td.round     {background-color: #CCCCCC;}
+td.match     {background-color: #DDDDDD;}
+td.seperator {height:15px;}
+
+/* tour lists: node containers */
+div.leaguesNCont     {margin-top:15px; margin-left:10px;}
+div.divisionsNCont   {margin-top:5px;  margin-left:25px;}
+div.toursNCont       {margin-top:0px;  margin-left:10px;}
+
+/* 
+ *   Section specific 
+ */
+
+/* Main page */
+div.main_head       {clear: both; padding-left: 20px; padding-top: 20px; padding-bottom: 5px; font-size: 18px; background-color: inherit;}
+div.main_foot       {clear: both; font-size: 11px; padding: 30px; padding-top: 20px; background-color: inherit;}
+div.main_rightColumn {float: right; width: 600px; background-color: inherit;}
+div.main_leftColumn {float: left; width: 540px; background-color: inherit;}
+    div.main_leftColumn_head     {clear: both; text-align: right; padding-right: 20px; background-color: inherit;} /* Padding should be the same as lcolBox padding. */
+        div.main_leftColumn_welcome  {clear: both; padding-left: 20px; padding-top: 3px; padding-bottom: 3px; background-color: inherit; text-align: left;}
+        div.main_leftColumn_left  {padding-left: 20px; padding-top: 10px; padding-bottom: 10px; background-color: inherit; text-align: left; float:left;}
+        div.main_leftColumn_right {padding-left: 20px; padding-top: 3px;  padding-bottom: 3px;  background-color: inherit; text-align: right; float:right;}
+
+/* 
+ *  Other
+ */
+ 
+input.number {
+    width: 4em;
+}
+
+/* Status bar */
+div.messageContainer    {width:100%;padding:6px 0px 6px 0px;color:#fff;font-weight:bold;}
+div.lightgreen          {clear:both;background-color:#3D0;border:1px solid #298000;}
+div.green               {clear:both;background-color:#390;border:1px solid #298000;}
+div.red                 {clear:both;background-color:#F20000;border:1px solid #c00;}
+
+/* Game result icon*/
+.match_icon {background:transparent url(../images/result_icon.gif) no-repeat 0 0;width:12px;height:12px}
+.won        {background-position:-14px 0}
+.draw       {background-position:-28px 0}
+.lost       {background-position:-42px 0}
+
+
+.team-management-title {
+    font-size: 18px;
+}
+
+ul.topmenu > li > a { /* Top menu bar sizing */
+    height: 20px;
+    line-height: 20px !important; /* Seems to get overridden by something in the CSSmenu code */
+}
+
+div.quote {
+    padding-left: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+form#RequestLeagueForm div.input-item label {
+    display: inline-block;
+    width: 170px;
+    text-align: right;
+    padding-right: 1em;
+}
+
+form#RequestLeagueForm input[type="submit"] {
+    margin-left: 13.6em;
+}
+
+/*********************
+ CSS Menu
+ *********************/
+._css3m{display:none}
+ 
+ul.css3menu1,ul.css3menu1 ul{
+    margin:0;list-style:none;padding:0;background-color:#dedede;border-width:1px;border-style:solid;border-color:#5f5f5f;-moz-border-radius:0px;-webkit-border-radius:0px;border-radius:0px;}
+ul.css3menu1 ul{
+    display:none;position:absolute;left:0;top:100%;-moz-box-shadow:3.5px 3.5px 5px #000000;-webkit-box-shadow:3.5px 3.5px 5px #000000;box-shadow:3.5px 3.5px 5px #000000;background-color:#FFFFFF;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-color:#d4d4d4;padding:0 10px 10px;}
+ul.css3menu1 li:hover>*{
+    display:block;}
+ul.css3menu1 li{
+    position:relative;display:block;white-space:nowrap;font-size:0;float:right;}
+ul.css3menu1 li:hover{
+    z-index:1;}
+ul.css3menu1 ul ul{
+    position:absolute;left:100%;top:0;}
+ul.css3menu1{
+    font-size:0;width:100%;z-index:999;position:relative;display:inline-block;zoom:1;padding:0 0%;margin:0 0%;
+    *display:inline;*padding-right:1.75%;}
+* html ul.css3menu1 li a{
+    display:inline-block;}
+ul.css3menu1>li{
+    margin:0;display:table-cell; table-layout:fixed; width:12.5%;}
+ul.css3menu1 li.toplast{
+    width:16%;}
+body:first-of-type ul.css3menu1{
+    display:inline-table;border-spacing:0px 0;}
+body:first-of-type ul.css3menu1>li{
+    display:table-cell;float:none;}
+ul.css3menu1 a:active, ul.css3menu1 a:focus{
+    outline-style:none;}
+ul.css3menu1 a{
+    display:block;vertical-align:middle;text-align:left;text-decoration:none;font:bold 12px Arial,Helvetica,sans-serif;color:#000000;text-shadow:#FFF 0 0 1px;cursor:pointer;padding:4px 10px 4px 10px;background-color:#c1c1c1;background-image:url("../images/mainbk.png");background-repeat:repeat;background-position:0 0;border-width:0 0 0 1px;border-style:solid;border-color:#C0C0C0;}
+ul.css3menu1 ul li{
+    float:none;margin:7px 0 0;}
+ul.css3menu1 ul a{
+    text-align:left;padding:4px;background-color:#FFFFFF;background-image:none;border-width:0;border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;font:bold 12px Arial,Helvetica,sans-serif;color:#000;text-decoration:none;}
+ul.css3menu1 li:hover>a,ul.css3menu1 li a.pressed{
+    background-color:#eb0000;border-color:#C0C0C0;border-style:solid;color:#ffffff;text-shadow:#FFF 0 0 1px;background-image:url("../images/mainbk.png");background-position:0 100px;}
+ul.css3menu1 span{
+    display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
+ul.css3menu1 ul span{
+    background-image:url("../images/arrowsub.png");padding-right:12px;}
+ul.css3menu1 > li.switch{
+    display:none;cursor:pointer;width:25px;height:20px;padding:4px 10px 4px 10px;}
+ul.css3menu1 > li.switch:before{
+    content:"";position:absolute;display:block;height:4px;width:25px;border-radius:4px;background:#000000;-moz-box-shadow:0 8px #000000, 0 16px #000000;-webkit-box-shadow:0 8px #000000, 0 16px #000000;box-shadow:0 8px #000000, 0 16px #000000;}
+ul.css3menu1 > li.switch:hover:before{
+    background:#ffffff;-moz-box-shadow:0 8px #ffffff, 0 16px #ffffff;-webkit-box-shadow:0 8px #ffffff, 0 16px #ffffff;box-shadow:0 8px #ffffff, 0 16px #ffffff;}
+.c3m-switch-input{
+    display:none;}
+ul.css3menu1 li:hover>a,ul.css3menu1 li > a.pressed{
+    background-color:#eb0000;background-image:url("../images/mainbk.png");background-position:0 100px;border-style:solid;border-color:#C0C0C0;color:#ffffff;text-decoration:none;text-shadow:#FFF 0 0 1px;}
+ul.css3menu1 ul li:hover>a,ul.css3menu1 ul li > a.pressed{
+    background-color:#ffffff;background-image:none;color:#eb0000;text-decoration:none;}
+ul.css3menu1 li.topfirst>a{
+    border-radius:0px 0 0 0px;-moz-border-radius:0px 0 0 0px;-webkit-border-radius:0px;-webkit-border-top-right-radius:0;-webkit-border-bottom-right-radius:0;}
+ul.css3menu1 li.toplast>a{
+    border-radius:0 0px 0px 0;-moz-border-radius:0 0px 0px 0;-webkit-border-radius:0;-webkit-border-top-right-radius:0px;-webkit-border-bottom-right-radius:0px;}
+
+@-moz-document url-prefix(){body:first-of-type ul.css3menu1{display:inline-block} body:first-of-type ul.css3menu1>li{display:block;float:left !important;}}
+@media only screen and (max-width:399px),only screen and (max-device-width:399px){
+ul.css3menu1>li:nth-of-type(1){width:25%}ul.css3menu1>li:nth-of-type(2){width:25%}ul.css3menu1>li:nth-of-type(3){width:25%}ul.css3menu1>li:nth-of-type(4){width:25%}ul.css3menu1>li:nth-of-type(5){width:33%}ul.css3menu1>li:nth-of-type(6){width:33%}ul.css3menu1>li:nth-of-type(7){width:34%}body:first-of-type ul.css3menu1{display:inline-block} body:first-of-type ul.css3menu1>li{display:block;float:left !important;}}
+@media screen and (max-width: 768px) {
+    ul.css3menu1 > li {
+        position: initial;}
+    ul.css3menu1 ul .submenu,ul.css3menu1 li > ul {
+        left: 0; right:auto; top: 100%;}
+    ul.css3menu1 .submenu,ul.css3menu1 ul,ul.css3menu1 .column {
+        -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;padding-right: 0;width: 100% !important;}
+}
+@media screen and (max-width: 228px) {
+    ul.css3menu1 {
+        width: 100%;}
+    ul.css3menu1 > li {
+        display: none;      position: relative;     width: 100% !important;}
+    ul.css3menu1 > li.switch,.c3m-switch-input:checked + ul.css3menu1 > li + li {
+        display: block;}
+    ul.css3menu1 > li.switch > label {      position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;}}
+    
+    
+    
+/*********************
+ Autocomplete
+ *********************/
+.autocomplete-w1 { background:url(shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; }
+.autocomplete strong { font-weight:bold; color:#C11B17; }
+
+
+/*********************
+ Mobile
+ *********************/
+ @media only screen and (max-device-width: 600px){
+    table tbody {
+        font-weight: normal;
+        font-size: 11px;
+    }
+    
+    table tbody a{
+        font-size: 12px;
+    }
+    
+    table td.date {
+        width: 65px;
+    }
+    
+    div.row {
+        margin-bottom: 2px;
+    }
+    
+    div.row input[type="radio"] {
+        vertical-align: middle;
+        margin-top: -1px;
+    }
+
+    div.boxCommon {
+        width: 70%;
+        margin: auto;
+        float: none;
+    }
+    
+    div.main {
+        padding: 5px;
+    }
+    
+    div.boxTeamPage {
+        float: none;
+        margin: auto;
+    }
+    
+    #tabs {
+        margin-top: 5px;
+    }
+    
+    .button-panel {
+        float: right;
+    }
+    
+    #Players, #GamesTable {
+        margin-bottom: 10px;
+    }
+    
+    #Players td {
+        text-align: center;
+    }
+    
+    #PlayerDialog, #MatchDialog {
+        display: none;
+    }
+    
+    .ui-dialog-content .label {
+        display: inline-block;
+        width: 9em;
+        font-weight: normal;
+    }
+    
+    .ui-dialog-content .data {
+        font-weight: bold;
+    }
+
+    .ui-tabs .ui-tabs-panel {
+        padding: 1em 0.5em;
+    }
+    
+    .ui-widget {
+        font: 1.1em Arial, Helvetica, sans-serif;
+    }
+    
+    #MatchDialog #SelectedPlayer {
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+    
+    #MatchDialog input[type="number"] {
+        width: 2.5em;
+    }
+    
+    #MatchDialog #TreasuryChange {
+        width: 4em;
+    }
+            
+    .may-buy-new-skill {
+        background-color: rgba(0,255,0,0.25);
+    }
+    
+    /* Must be after "may-buy-new-skill" so players are red if they MNG and have a new skill. */
+    .miss-next-game {
+        background-color: rgba(255,0,0,0.25);
+    }
+    
+    .injury {
+        background-color: rgba(255,255,0,0.5);
+    }
+    
+    #usersched {
+        text-align: center;
+    }
+    
+    #usersched #trid, #usersched #round, #usersched #own_team {
+        width: 100%;
+    }
+    
+    #usersched #opposing_team_autoselect {
+        width: 98%;
+    }
+    
+    .icon {
+        width: 1.6em;
+        height: 1.6em;
+    }
+    
+    #menu {
+        position: absolute;
+        width: 8em;
+        z-index: 1;
+        right: 1.6em;
+        list-style-type: none;
+        box-shadow: 0.2em 0.2em 0.1em #666;
+        
+        /* override Chrome defaults */
+        -webkit-padding-start: 1em;
+        -webkit-margin-before: 0;
+    }
+    
+    #menu li {
+        padding: 0.6em;
+    }
+}
+
+/*************************
+*
+* Icon Fonts
+*
+*************************/
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?vbxqtd');
+    src:    url('fonts/icomoon.eot?vbxqtd#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?vbxqtd') format('truetype'),
+        url('fonts/icomoon.woff?vbxqtd') format('woff'),
+        url('fonts/icomoon.svg?vbxqtd#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a.icon-link {
+    text-decoration: none;
+    color: default;
+    padding-left: 3px;
+}
+
+.icon-info:before {
+    content: "\e900";
+}

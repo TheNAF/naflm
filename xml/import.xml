@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    OBBLM team import XML schema 
+    DO NOT delete or change order of any XML tags!
+-->
+
+<teams>
+    <!-- To add more teams simply create another "team" block within the "teams" block -->
+    <team>
+        <!-- General team fields -->
+        <name>Team name</name>
+        <coach_id>1</coach_id> <!-- ID of team's coach -->
+        <race_id>0</race_id>
+        <league_id>0</league_id>
+        <division_id>0</division_id> <!-- Leave this as 0 (zero) if the team's league does not require teams to be tied to specific division -->
+        
+        <treasury>0</treasury>
+        <apothecary>0</apothecary>
+        <rr>0</rr>
+        <ff>0</ff> <!-- Use your current TOTAL FF count -->
+        <ass_coaches>0</ass_coaches>
+        <cheerleaders>0</cheerleaders>
+        
+        <!-- Statistics -->
+        <won>0</won>   <!-- Won matches -->
+        <lost>0</lost> <!-- Lost matches -->
+        <draw>0</draw> <!-- Draw matches -->
+        <wt>0</wt>     <!-- Won tournaments -->
+        <gf>0</gf>     <!-- Goals by team -->
+        <ga>0</ga>     <!-- Goals against team -->
+
+        <!-- Players -->
+        <players>
+            <!-- To add more players simply create another "player" block within the "players" block -->
+            <player>
+                <name>Player #1 name</name>
+                <nr>99</nr>
+                <pos_id>1</pos_id> <!-- Positional ID of player -->
+                <!-- Status may be one of the following: "none" (ready), "mng" or "dead" -->
+                <status>none</status>
+                <!-- Achievements -->
+                <cp>0</cp>
+                <td>0</td>
+                <intcpt>0</intcpt>
+                <bh>0</bh>
+                <ki>0</ki>
+                <si>0</si>
+                <mvp>0</mvp>
+                <!-- Injuries -->                
+                <ma>0</ma>
+                <st>0</st>
+                <ag>0</ag>
+                <av>0</av>
+                <ni>0</ni>
+            </player>
+        </players>
+    </team>
+</teams>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+
+<en-GB>
+
+<name>Find coach or team</name>
+
+<search_tname>Search for team</search_tname>
+<search_cname>Search for coach</search_cname>
+
+</en-GB>
+<es-ES>
+
+<name>Encontrar entrenador o equipo</name>
+
+<search_tname>Buscar equipo</search_tname>
+<search_cname>Buscar entrenador</search_cname>
+
+</es-ES>
+
+
+<fr-FR>
+
+<name>Chercher un coach ou une &amp;eacute;quipe</name>
+
+<search_tname>Chercher une &amp;eacute;quipe</search_tname>
+<search_cname>Chercher un coach</search_cname>
+
+</fr-FR>
+
+</translations>

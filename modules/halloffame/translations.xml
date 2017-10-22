@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+
+<en-GB>
+
+<name>Hall of fame</name>
+
+<player>Player</player>
+<sort_hint>Hint: clicking on the dropdown and pressing any letter on the keyboard scrolls the dropdown down to the first team name beginning with that letter.</sort_hint>
+<submit>Submit</submit>
+<new>New entry</new>
+<edit>Edit</edit>
+<del>Delete</del>
+<from>from</from>
+<posted>Posted</posted>
+
+<g_title>Title</g_title>
+<g_about>General description</g_about>
+
+<desc><![CDATA[Welcome to the hall of fame.<br>Here league commissioners may exercise their power by giving publicity to players of noteworthy achievements.]]></desc>
+<title><![CDATA[A short description of what the player has achieved, for example in which area the achievement has been made in.]]></title>
+<about><![CDATA[About the player's achievement in detail. If the player has received an bonus (extra) skill, you could also write about that.]]></about>
+</en-GB>
+
+<es-ES>
+
+<name>Salón de la fama</name>
+
+<player>Jugador</player>
+<sort_hint>Consejo: haciendo click en el desplegable y pulsando cualquier letra en el teclado te llevará al primer equipo cuyo nombre comience por dicha letra.</sort_hint>
+<submit>Enviar</submit>
+<new>Nueva entrada</new>
+<edit>Editar</edit>
+<del>Borrar</del>
+<from>de</from>
+<posted>Enviado</posted>
+
+<g_title>Título</g_title>
+<g_about>Descripción general</g_about>
+
+<desc><![CDATA[Bienvenido al salón de la fama.<br>Aquí los responsasbles de la liga pueden dar publicidad a jugadores con logros notorios.]]></desc>
+<title><![CDATA[Una descripción corta de los logros del jugador. Por ejemplo, en que área se realizó el logro.]]></title>
+<about><![CDATA[Detalle del logro del jugador. Si el jugador ha recibido una habilidad (extra), también puedes escribir sobre ello.]]></about>
+
+</es-ES>
+
+
+<fr-FR>
+
+<name>Panth&amp;eacute;on</name>
+
+<player>Joueur</player>
+<sort_hint>Astuce : Cliquer dans la liste de choix et presser une lettre, provoque la s&amp;eacute;lection de la premi&amp;egrave;re &amp;eacute;quipe commen&amp;ccedil;ant par cette lettre.</sort_hint>
+<submit>Valider</submit>
+<new>Nouvelle entr&amp;eacute;e</new>
+<edit>&amp;Eacute;diter</edit>
+<del>Supprimer</del>
+<from>par</from>
+<posted>Post&amp;eacute;</posted>
+
+<g_title>Titre</g_title>
+<g_about>Description g&amp;eacute;n&amp;eacute;rale</g_about>
+
+<desc><![CDATA[Bienvenue dans le panth&eacute;on.<br>Ici les commissaires de ligue peuvent promouvoir des joueurs ayant accomplis des exploits.]]></desc>
+<title><![CDATA[Une br&egrave;ve description de ce que le joueur a accompli, par exemple le domaine de son exploit.]]></title>
+<about><![CDATA[Une description d&eacute;taill&eacute;e de l'exploit du joueur. Si le joueur a re&ccedil;u une comp&eacute;tence suppl&eacute;mentaire, cela sera inscrit ici.]]></about>
+
+</fr-FR>
+</translations>

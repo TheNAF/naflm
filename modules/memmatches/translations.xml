@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+<en-GB>
+
+<name>Memorable matches</name>
+
+<record>Record</record>
+<desc>Which matches are worth remembering in terms of most TDs, killed and so on?</desc>
+<filled>More than X matches have the same record or no record exists at all.</filled>
+
+<!-- Most of... -->
+<td>Most touchdowns</td>
+<cp>Most completions</cp>
+<intcpt>Most interceptions</intcpt>
+<ki>Most killed</ki>
+<cas>Most casualties</cas>
+<svic>Largest score-difference</svic>
+<inc>Largest team income</inc>
+<gate>Largest gate</gate>
+<mfans>Most RL fans/spectators</mfans>
+<tvdiff>Largest TV difference in which underdog won</tvdiff>
+</en-GB>
+
+<es-ES>
+
+<name>Partidos memorables</name>
+
+<record>Récord</record>
+<desc>Qué partidos son dignos de recordar en terminos de más TDs, muertes y demás</desc>
+<filled>Más de X partidos tienen el mísmo récord o no existe ningún récord.</filled>
+
+<!-- Most of... -->
+<td>Más touchdowns</td>
+<cp>Más pases completos</cp>
+<intcpt>Más intercepciones</intcpt>
+<ki>Más muertos</ki>
+<cas>Más lesiones</cas>
+<svic>Resultado más abultado</svic>
+<inc>Mayor ganancia</inc>
+<gate>Mayor entrada</gate>
+<mfans>Más fans de VR/espectadores</mfans>
+<tvdiff>Mayor diferencia de VE, ganando el de menor VE</tvdiff>
+
+</es-ES>
+
+
+<fr-FR>
+
+<name>Matchs m&amp;eacute;morables</name>
+
+<record>Record</record>
+<desc>Quelles sont les matchs les plus m&amp;eacute;morables pour le nombre de touchdowns, les sorties, etc. ?</desc>
+<filled>More than X matches have the same record or no record exists at all.</filled>
+
+<!-- Most of... -->
+<td>Le plus touchdowns</td>
+<cp>Le plus de passes</cp>
+<intcpt>Le plus d'interceptions</intcpt>
+<ki>Le plus de morts</ki>
+<cas>Le plus de sorties</cas>
+<svic>La plus large diff&amp;eacute;rence de touchdowns</svic>
+<inc>Le plus gros gains d'&amp;eacute;quipe</inc>
+<gate>La plus grosse affluence</gate>
+<mfans>Most RL fans/spectators</mfans>
+<tvdiff>Le plus large &amp;eacute;cart de valeur dans laquelle le favori a perdu</tvdiff>
+
+</fr-FR>
+</translations>

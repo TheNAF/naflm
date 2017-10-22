@@ -1,0 +1,271 @@
+/*************************
+ * General - THIS is the easysocial sheet
+ *************************/
+
+html {overflow-y: null;} /* Keep page alignment uniform. */
+
+a {
+color: #5379A1;
+}
+a:link, a:visited {text-decoration: none;}
+
+a:hover { color:#5379A1;
+text-decoration: underline;
+}
+
+body 
+{
+   
+    background-color: white;
+    font: 12px Helvetica, Arial, sans-serif;
+}
+
+f1 {
+	/* Forum name */
+	font-family: Helvetica, sans-serif;
+	margin-right: 200px;
+	color: white;
+	margin-top: 15px;
+	font-weight: bold;
+	font-size: 0em;
+	padding-top: 0px;
+	padding-left: 100px;
+}
+
+f2 {
+	/* Forum header titles */
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: white;
+	font-size: 0em;
+	margin: 0.8em 0 0.2em 0;
+	padding-left: 102px;
+}
+
+f0 {
+	/* Forum header: wait */
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: black;
+	font-size: 0em;
+	margin: 0em 0 0em 0;
+	padding-left: 100px;
+}
+
+h3 {margin:0} /* Reset browser default margin */
+
+/* Title for sections */
+h2
+{
+    clear: both;
+    text-align: center;
+    padding-top: 0%;
+    padding-bottom: 20px;
+    width: inherit;
+    font-size: 0px;
+    font-weight: bold;
+	margin:0 auto;
+}
+
+/* Container for rows */
+div.row {width: inherit; clear: both; background-color: inherit;}
+
+/* MAIN container */
+div.everything {
+    width: 98%; 
+    margin: 0px; 
+    background-color: inherit;
+    
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+
+
+} /* Top level container */
+
+/*
+ *   The following three containers are the subsequent main containers within "div.everything".
+ */
+
+/* Banner */
+div.banner {
+    width: 0%;
+    height: 0px;
+    margin-left:0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background: url(../images/logo.png) left 0px center no-repeat, url(../images/bg_header.gif) left top repeat-x;
+    -moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	background-color: #1192d3;
+	color: black;
+	border-radius: 0px;
+	font-size: 0px;
+}
+
+/* Menu */
+div.menu {
+    width: 100%;
+    height: auto;
+    margin-left: 0px;
+}
+/* Section code container */
+div.section {
+    padding-top: 10px;
+    padding-left:10px;
+    margin: px;
+    padding-bottom: 0px; 
+    background-color: inherit;
+    color: #284c80;
+
+}
+
+/*
+ *   Box (inner) stylings.
+ */
+div.boxCommon,div.boxWide,div.boxCoachPage,div.boxTeamPage,div.boxPlayerPageInfo {
+    margin: 10px 0px 0px 0px; 
+	border-radius: 4px;
+	border-color: lightgrey;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+
+	-moz-box-shadow: 0px 0px 0px #999;
+    -webkit-box-shadow: 0px 0px 0px #999;
+    box-shadow: 0px 0px 0px #999;
+
+}
+div.boxWide             {clear:both;}
+div.boxCoachPage        {float: left; width: 32%; margin-left: 5px; margin-bottom: 0px;}
+div.boxTeamPage         {float: left; width: 32%; margin-left: 5px; margin-bottom: 0px;}
+div.boxPlayerPageInfo   {float: left; width: 32%; margin-left: 5px; }
+
+.boxTitle1,.boxTitle2,.boxTitle3,.boxTitle4,.boxTitle5 {
+	-moz-border-top-left-radius: 2px;
+	-webkit-border-top-left-radius: 2px;
+	border-top-left-radius: 2px;
+	
+	-moz-border-top-right-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius: 8px;
+	
+	margin-top: 0px;
+	background-image: url(../images/null.gif);
+    background-repeat: repeat-x;
+    background-color: white; 
+    padding: 10px;
+    color: #5379A1;
+    text-transform: none;
+    font-size: 12px;
+    font-weight: ;}
+.boxBody   { background-color: white; padding: 10px;
+
+    background-image: url(../images/null.gif);
+    background-repeat: repeat-x;
+
+    -moz-border-bottom-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	
+	-moz-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	border-bottom-right-radius: 0px;
+	margin-bottom: 0px;
+	
+	border-style: solid;
+	border-left-width: 1px;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-color: white;
+	color:black;
+
+}
+table.boxTable {border-spacing: 5px; width: 100%;}
+
+/* Other types of boxes. */
+.helpBox {
+        color: #FFFFFF;
+        border: 2px solid #CC6633;
+        background-color: #4C6260;
+        padding:10px;
+        line-height:1.4em;
+}
+
+/* Other types of boxes. */
+.errorBox {
+        color: #FFFFFF;
+        border: 2px solid #000000;
+        background-color: #800000;
+        padding:10px;
+        line-height:1.4em;
+}
+
+/*
+.assistantBox {
+        color: #000000;
+        border: 2px solid #3D3D3D;
+        background-color: #FFCCFF;
+        padding:10px;
+        line-height:1.4em;
+}
+*/
+
+/* 
+ *   Tables, TRs and TDs 
+ */
+
+/* Used almost everywhere */
+table.common  {border: none; width: 100%; background-color: inherit;}
+tr.commonhead {background-color: #CCCCCC;}
+
+/* For the tours list */
+table.tours {
+    border: none; 
+    width: 100%; 
+    background-color: inherit; 
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* tour lists: titel boxes */
+.leagues     {background-color: black; color:white;}
+.divisions   {background-color: black; color:white;}
+.tours       {background-color: lightgray; color:black;}
+td.round     {background-color: #CCCCCC;}
+td.match     {background-color: #DDDDDD;}
+td.seperator {height:15px;}
+
+/* tour lists: node containers */
+div.leaguesNCont     {margin-top:15px; margin-left:10px;}
+div.divisionsNCont   {margin-top:5px;  margin-left:25px;}
+div.toursNCont       {margin-top:0px;  margin-left:10px;}
+
+/* 
+ *   Section specific 
+ */
+
+/* Main page */
+div.main_head       {clear: both; padding-left: 0px; padding-top: 0px; padding-bottom: 0px; font-size: 0px; background-color: inherit;}
+div.main_foot       {clear: both; font-size: 11px; padding: 30px; padding-top: 20px; background-color: inherit;}
+div.main_leftColumn {float: left; width: 44%; background-color: inherit;}
+div.main_rightColumn {float: right; width: 54%; background-color: inherit;}
+
+    div.main_leftColumn_head     {clear: both; text-align: right; padding-right: 20px; background-color: inherit;} /* Padding should be the same as lcolBox padding. */
+        div.main_leftColumn_left  {padding-left: 20px; padding-top: 10px; padding-bottom: 10px; background-color: inherit; text-align: left; float:left;}
+        div.main_leftColumn_right {padding-left: 20px; padding-top: 10px;  padding-bottom: 10px;  background-color: inherit; text-align: right; float:right;}
+
+/* 
+ *  Other
+ */
+
+/* Status bar */
+div.messageContainer    {width:100%;padding:6px 6px 6px 6px;color:#fff;font-weight:bold;}
+div.green               {clear:both;background-color:#390;border:1px solid #298000;}
+div.red                 {clear:both;background-color:#F20000;border:1px solid #c00;}
+
+/* Game result icon*/
+.match_icon     {background:transparent url(../images/result_icon.gif) no-repeat 0 0;width:12px;height:12px}
+.won            {background-position:-14px 0}
+.draw           {background-position:-28px 0}
+.lost           {background-position:-42px 0}

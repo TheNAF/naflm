@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<translations>
+<en-GB>
+
+<name>Scheduler</name>
+<menu-label>Scheduler</menu-label>
+<tours>Select a tournament</tours>
+
+<scheduler_info>Scheduler league/division/team overview</scheduler_info>
+<select>Select this tournament for scheduling</select>
+<teampool>Teampool</teampool>
+<teampool_desc_step1_league><![CDATA[Teams in this pool are <strong>not tied to divisions</strong> and therefore all teams in this league can be assigned in tournaments. ]]></teampool_desc_step1_league>
+<teampool_desc_step1_division><![CDATA[Teams in this pool are <strong>tied to divisions</strong> and therefore only teams in this division can be assigned to tournaments. ]]></teampool_desc_step1_division>
+<teampool_desc>Select the teams that should be included in the scheduling. If enough teams are selected or a predefined schedule is found for the number of selected teams, a schadule button will appear.</teampool_desc>
+<error_teams_tied>Teams are tied to divisions!</error_teams_tied>
+<create_schedule>Create schedule for tournament</create_schedule>
+<draw>Draw</draw>
+<schedule>Schedule</schedule>
+<log>Log</log>
+<roundselection>Select round</roundselection>
+<schedule_successfull>Game scheduled successfully</schedule_successfull>
+<all_play_all_auto><![CDATA[All play All (Immediate!! automatic draw & scheduling)]]></all_play_all_auto>
+<all_play_all_manual><![CDATA[All play All (Manual draw & automatic scheduling)]]></all_play_all_manual>
+<custom_schedule><![CDATA[Custom schedule (Select round & teams]]></custom_schedule>
+<available_schedulers>Available schedulers</available_schedulers>
+</en-GB>
+
+<es-ES>
+
+<name>Planificador</name>
+<menu-label>Planificador</menu-label>
+<tours>Elige un torneo</tours>
+
+<scheduler_info>Vista general del planificador de liga/división/equipo</scheduler_info>
+<select>Elige este torneo para planificarlo</select>
+<teampool>Equipos disponibles</teampool>
+<teampool_desc_step1_league><![CDATA[Los equipos de este grupo <strong>no están vinculados a divisiones</strong> y, por tanto, todos los equipos de esta liga pueden asignarse a torneos. ]]></teampool_desc_step1_league>
+<teampool_desc_step1_division><![CDATA[Los equipos de este grupo <strong>están vinculados a divisiones</strong> y, por tanto, sólo los equipos en esta división pueden asignarse a torneos. ]]></teampool_desc_step1_division>
+<teampool_desc>Elige los equipos que se incluirán en la planificación. Si eliges suficientes equipos o se encuentra una planificación predeterminada, aparecerá un botón de planificar.</teampool_desc>
+<error_teams_tied>¡Los equipos están vinculados a divisiones!</error_teams_tied>
+<create_schedule>Crear planificación para torneo</create_schedule>
+<draw>Sorteo</draw>
+<schedule>Planificar</schedule>
+<log>Registro</log>
+<roundselection>Elige ronda</roundselection>
+<schedule_successfull>Partidos planificados con éxito</schedule_successfull>
+<all_play_all_auto><![CDATA[Todos contra Todos (¡Inmediato! sorteo y planificación automáticos)]]></all_play_all_auto>
+<all_play_all_manual><![CDATA[Todos contra Todos (Sorteo manual y planificación automática)]]></all_play_all_manual>
+<custom_schedule><![CDATA[Planificación a medida (Elige ronda y equipos]]></custom_schedule>
+<available_schedulers>Planificadores disponibles</available_schedulers>
+</es-ES>
+</translations>

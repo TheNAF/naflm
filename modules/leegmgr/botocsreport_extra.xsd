@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="botocsreport" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:choice minOccurs="3" maxOccurs="3">
+        <xs:element name="winner">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="concession" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="weatherChanges">
+        <xs:complexType>
+        <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="20" name="weather">
+            <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string" />
+            </xs:simpleContent>
+            </xs:complexType>
+        </xs:element>
+        </xs:sequence>
+        </xs:complexType>
+        </xs:element>
+        
+        <xs:element minOccurs="2" maxOccurs="2" name="team">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="transferedGold" type="t_transferedGold" />
+              <xs:element name="leftGold" type="t_leftGold" />
+              <xs:element name="fans" type="t_fans" />
+              <xs:element name="fame" type="t_fame" />
+              <xs:element name="score" type="t_int0_24" />
+              <xs:element name="fanfactor" type="t_fanfactor" />
+              <xs:element name="winnings" type="t_winnings" />
+              
+              <xs:element name="inducements">
+              <xs:complexType>
+                <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="20" name="inducement">
+                    <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string" />
+                    </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+              </xs:element>
+            
+              <xs:element name="players">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="17" name="player">
+                      <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pass_attempts" type="t_int0_24" />
+                            <xs:element name="completion" type="t_int0_24" />
+                            <xs:element name="interceptions_thrown" type="t_int0_24" />
+                            <xs:element name="safe_throws" type="t_int0_24" />
+                            <xs:element name="pass_distance" type="t_progression" />
+                            <xs:element name="dumpoff_attempts" type="t_int0_24" />
+                            <xs:element name="dumpoff_completions" type="t_int0_24" />
+                            <xs:element name="catch_attempts" type="t_int0_24" />
+                            <xs:element name="catches" type="t_int0_24" />
+                            <xs:element name="handoffs" type="t_int0_24" />
+                            <xs:element name="handoffs_received" type="t_int0_24" />
+                            <xs:element name="handoff_catches" type="t_int0_24" />
+                            <xs:element name="pickup_attempts" type="t_int0_24" />   
+                            <xs:element name="pickups" type="t_int0_24" />
+                            <xs:element name="rushing_distance_leap" type="t_progression" />
+                            <xs:element name="rushing_distance_push" type="t_progression" />
+                            <xs:element name="rushing_distance_move" type="t_progression" />
+                            <xs:element name="rushing_distance_block" type="t_progression" />
+                            <xs:element name="rushing_distance_shadowing" type="t_progression" />
+                            <xs:element name="leap_attempts" type="t_int0_24" />
+                            <xs:element name="leaps" type="t_int0_24" />
+                            <xs:element name="dodge_attempts" type="t_number0_100" />
+                            <xs:element name="dodges" type="t_number0_100" />
+                            <xs:element name="blitz_actions" type="t_int0_24" />
+                            <xs:element name="gfi_attempts" type="t_number0_100" />
+                            <xs:element name="gfis" type="t_number0_100" />
+                            <xs:element name="inflicted_blocks" type="t_int0_24" />
+                            <xs:element name="inflicted_defender_downs" type="t_int0_24" />
+                            <xs:element name="inflicted_defender_stumbles" type="t_int0_24" />
+                            <xs:element name="inflicted_pushes" type="t_int0_24" />
+                            <xs:element name="inflicted_both_downs" type="t_int0_24" />
+                            <xs:element name="inflicted_attacker_downs" type="t_int0_24" />
+                            <xs:element name="inflicted_knock_downs" type="t_int0_24" />
+                            <xs:element name="inflicted_strip_balls" type="t_int0_24" />
+                            <xs:element name="inflicted_sacks" type="t_int0_24" />
+                            <xs:element name="inflicted_crowd_surfs" type="t_int0_24" />
+                            <xs:element name="inflicted_stuns" type="t_int0_24" />
+                            <xs:element name="inflicted_kos" type="t_int0_24" /> 
+                            <xs:element name="inflicted_bhs" type="t_int0_24" />
+                            <xs:element name="inflicted_sis" type="t_int0_24" />
+                            <xs:element name="inflicted_kills" type="t_int0_24" />
+                            <xs:element name="inflicted_bh_spp_casualties" type="t_int0_24" />
+                            <xs:element name="inflicted_si_spp_casualties" type="t_int0_24" />
+                            <xs:element name="inflicted_kill_spp_casualties" type="t_int0_24" />
+                            <xs:element name="sustained_blocks" type="t_int0_24" />
+                            <xs:element name="sustained_knocked_downs" type="t_int0_24" />
+                            <xs:element name="sustained_sacks" type="t_int0_24" />
+                            <xs:element name="sustained_crowd_surfs" type="t_int0_24" />
+                            <xs:element name="sustained_stuns" type="t_int0_24" />
+                            <xs:element name="sustained_kos" type="t_int0_24" />
+                            <xs:element name="sustained_bhs" type="t_int0_24" />
+                            <xs:element name="sustained_sis" type="t_int0_24" />
+                            <xs:element name="sustained_kill" type="t_int0_24" />
+                            <xs:element name="inflicted_fouls" type="t_int0_24" />
+                            <xs:element name="inflicted_foul_stuns" type="t_int0_24" />
+                            <xs:element name="inflicted_foul_kos" type="t_int0_24" />
+                            <xs:element name="inflicted_foul_bhs" type="t_int0_24" />
+                            <xs:element name="inflicted_foul_sis" type="t_int0_24" />
+                            <xs:element name="inflicted_foul_kills" type="t_int0_24" />
+                            <xs:element name="sustained_fouls" type="t_int0_24" />
+                            <xs:element name="sustained_ejections" type="t_int0_24" />
+                            <xs:element name="apothecary_used" type="t_int0_24" />
+                            <xs:element name="ko_recovery_attempts" type="t_int0_24" />
+                            <xs:element name="ko_recoveries" type="t_int0_24" />
+                            <xs:element name="thickskull_used" type="t_int0_24" />
+                            <xs:element name="regeneration_attempts" type="t_int0_24" />
+                            <xs:element name="regenerations" type="t_int0_24" />
+                            <xs:element name="kickoffs" type="t_int0_24" />
+                            <xs:element name="kick_distance" type="t_number0_100" />
+                            <xs:element name="dice_rolls" type="t_number0_500" />
+                            <xs:element name="dice_natural_ones" type="t_int0_24" />
+                            <xs:element name="dice_natural_sixes" type="t_int0_24" />
+                            <xs:element name="dice_target_sum" type="t_number0_500" />
+                            <xs:element name="dice_roll_sum" type="t_number0_500" />
+                            <xs:element name="interception" type="t_int0_24" />
+                            <xs:element name="casualties" type="t_int0_24" />
+                            <xs:element name="touchdown" type="t_int0_24" />
+                            <xs:element name="big_guy_stupidity_attempts" type="t_int0_24" />
+                            <xs:element name="big_guy_stupidity_successes" type="t_int0_24" />
+                            <xs:element name="big_guy_stupidity_blitz_attempts" type="t_int0_24" />
+                            <xs:element name="big_guy_stupidity_blitz_successes" type="t_int0_24" />   
+                            <xs:element name="throw_team_mate_attempts" type="t_int0_24" />
+                            <xs:element name="throw_team_mate_successes" type="t_int0_24" />
+                            <xs:element name="throw_team_mate_distance" type="t_progression" />
+                            <xs:element name="throw_team_mate_to_safe_landing" type="t_int0_24" />
+                            <xs:element name="times_thrown" type="t_int0_24" />
+                            <xs:element name="landing_attempts" type="t_int0_24" />
+                            <xs:element name="landings" type="t_int0_24" />
+                            <xs:element name="distance_thrown" type="t_progression" />
+                            <xs:element name="rushing_distance_thrown" type="t_progression" />
+                            <xs:element name="bloodlust_rolls" type="t_int0_24" />
+                            <xs:element name="bloodlust_successes" type="t_int0_24" />
+                            <xs:element name="bloodfeeds" type="t_int0_24" />
+                            <xs:element name="hypnoze_rolls" type="t_int0_24" />
+                            <xs:element name="hypnoze_successes" type="t_int0_24" />
+
+                            <!-- Til fixed
+                            <xs:element name="inflicted_bloodfeed_stuns" type="t_int0_24" />
+                            <xs:element name="inflicted_bloodfeed_kos" type="t_int0_24" />
+                            <xs:element name="inflicted_bloodfeed_bhs" type="t_int0_24" />
+                            -->
+                            
+                            <xs:element name="fed_on" type="t_int0_24" />
+                            <xs:element name="tentacles_rolls" type="t_int0_24" />
+                            <xs:element name="tentacles_successes" type="t_int0_24" />
+                            <xs:element name="foul_appearance_rolls" type="t_int0_24" />
+                            <xs:element name="foul_appearance_successes" type="t_int0_24" />
+                            <xs:element name="dauntless_rolls" type="t_int0_24" />
+                            <xs:element name="dauntless_successes" type="t_int0_24" />
+                            <xs:element name="shadowing_rolls" type="t_int0_24" />
+                            <xs:element name="shadowing_successes" type="t_int0_24" />
+                            <xs:element name="bombs_throw_attempts" type="t_int0_24" />
+                            <xs:element name="bombs_thrown" type="t_int0_24" />
+                            <xs:element name="sustained_bomb_effect" type="t_number0_100" />
+                            <xs:element name="sustained_bomb_stun" type="t_number0_100" />
+                            <xs:element name="sustained_bomb_ko" type="t_number0_100" />
+                            <xs:element name="sustained_bomb_bh" type="t_number0_100" />
+                            <xs:element name="sustained_bomb_si" type="t_number0_100" />
+                            <xs:element name="sustained_bomb_kill" type="t_number0_100" />
+                            
+                            
+                            <!-- 
+                               Skill used counts, only some of these actually show up so 
+                               commenting out for now
+                               Ones like block/dodge work but guard does not
+                            -->
+                            <!--
+                            <xs:element name="accurate_used" type="t_int0_24" />
+                            <xs:element name="big_hand_used" type="t_int0_24" />
+                            <xs:element name="block_used" type="t_number0_100" />
+                            <xs:element name="break_tackle_used" type="t_int0_24" />
+                            <xs:element name="claws_used" type="t_int0_24" />
+                            <xs:element name="disturbing_presense_used" type="t_number0_100"/>
+                            <xs:element name="catch_used" type="t_int0_24" />
+                            <xs:element name="dirty_player_used" type="t_int0_24" />
+                            <xs:element name="diving_catch_used" type="t_int0_24" />
+                            <xs:element name="diving_tackle_used" type="t_int0_24" />
+                            <xs:element name="dodge_used" type="t_number0_100" />
+                            <xs:element name="extra_arms_used" type="t_int0_24" />
+                            <xs:element name="fend_used" type="t_int0_24" />
+                            <xs:element name="frenzy_used" type="t_int0_24" />
+                            <xs:element name="grab_used" type="t_int0_24" />
+                            <xs:element name="guard_used" type="t_number0_100" />
+                            <xs:element name="hail_mary_pass_used" type="t_int0_24" />
+                            <xs:element name="horns_used" type="t_int0_24" />
+                            <xs:element name="juggernaut_used" type="t_int0_24" />
+                            <xs:element name="jump_up_used" type="t_int0_24" />
+                            <xs:element name="mighty_blow_used" type="t_int0_24" />
+                            <xs:element name="multiple_block_used" type="t_int0_24" />
+                            <xs:element name="nerves_of_steel_used" type="t_int0_24" />
+                            <xs:element name="nurgles_rot_used" type="t_int0_24" />
+                            <xs:element name="loner_used" type="t_int0_24" />
+                            <xs:element name="leader_used" type="t_int0_24" />
+                            <xs:element name="pass_used" type="t_int0_24" />
+                            <xs:element name="pass_block_used" type="t_int0_24" />
+                            <xs:element name="piling_on_used" type="t_int0_24" />
+                            <xs:element name="prehensile_tail_used" type="t_number0_100" />
+                            <xs:element name="pro_used" type="t_int0_24" />
+                            <xs:element name="safe_throw_used" type="t_int0_24" />
+                            <xs:element name="side_step_used" type="t_int0_24" />
+                            <xs:element name="sneaky_git_used" type="t_int0_24" />
+                            <xs:element name="sprint_used" type="t_int0_24" />
+                            <xs:element name="stand_firm_used" type="t_int0_24" />
+                            <xs:element name="strong_arm_used" type="t_int0_24" />
+                            <xs:element name="stab_used" type="t_int0_24" />
+                            <xs:element name="sure_feet_used" type="t_int0_24" />
+                            <xs:element name="sure_hands_used" type="t_int0_24" />
+                            <xs:element name="tackle_used" type="t_int0_24" />
+                            <xs:element name="two_heads_used" type="t_int0_24" />
+                            <xs:element name="very_long_legs_used" type="t_int0_24" />
+                            <xs:element name="wrestle_used" type="t_int0_24" />
+                            -->
+                            
+                            <xs:element name="injuries">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="2" name="injury">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string" />
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="mvp" type="t_mvp" />
+
+
+                            <xs:element name="improvement_roll1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="7" name="roll1">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="t_d6" />
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+
+                            <xs:element name="improvement_roll2">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="7" name="roll2">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="t_d6" />
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <!--
+                          <xs:element minOccurs="0" name="improvement_roll1" type="t_d6" />
+                          <xs:element minOccurs="0" name="improvement_roll2" type="t_d6" />
+                          -->
+
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" />
+                        <xs:attribute name="number" type="t_number" />
+                        <xs:attribute name="position" type="xs:string" />
+                        <xs:attribute name="starPlayer" type="xs:string" />
+                        <xs:attribute name="mercenary" type="xs:string" />
+                        <xs:attribute name="journeyman" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="home" type="xs:boolean" />
+            <xs:attribute name="name" type="xs:string" />
+            <xs:attribute name="race" type="xs:string" />
+            <xs:attribute name="coach" type="xs:string" />
+            <xs:attribute name="rerolls" type="t_reroll" />
+            <xs:attribute name="rotters" type="t_int0_16" />
+            <xs:attribute name="teamValue" type="t_teamValue" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="t_transferedGold">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1000000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_leftGold">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1000000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_teamValue">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="10000000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fans">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="2000" />
+      <xs:maxInclusive value="40000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fame">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_reroll">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="8" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_int0_24">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="24" />
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="t_int0_16">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="24" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_d6">
+      <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0" />
+          <xs:maxInclusive value="6" />
+      </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_fanfactor">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="-1" />
+      <xs:maxInclusive value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_winnings">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="200000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_mvp">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_number">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1" />
+      <xs:maxInclusive value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_progression">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="-100" />
+      <xs:maxInclusive value="200" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_number0_100">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="t_number0_500">
+      <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0" />
+          <xs:maxInclusive value="500" />
+      </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
