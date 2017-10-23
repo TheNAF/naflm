@@ -894,8 +894,12 @@ public static function frame_begin($menu = true)
         <script>tinymce.init({ 
             selector:'.html_edit',
             menubar: false,
-            width: 860,
-            height: 150
+            width: 860, 
+            plugins: "link lists advlist",
+            toolbar: "undo redo | styleselect | bold italic | "
+                    +"justifyleft justifycenter justifyright justifyfull | "
+                    +"bullist numlist link | outdent indent",
+            height: 150, file_browser_callback_types: 'file image media'
         });</script>
         
         <script type="text/javascript" src="js/app/ViewModel/Common/RegistrationViewModel.js"></script>
