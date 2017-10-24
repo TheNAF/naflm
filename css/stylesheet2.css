@@ -152,9 +152,6 @@ div.boxCommon,div.boxWide,div.boxCoachPage,div.boxTeamPage,div.boxPlayerPageInfo
     
 .boxBody   { background-color: #ebf6fc; padding: 5px;
 
-    background-image: url(../images/gradient.gif);
-    background-repeat: repeat-x;
-
     -moz-border-bottom-left-radius: 8px;
 	-webkit-border-bottom-left-radius: 8px;
 	border-bottom-left-radius: 8px;

@@ -49,11 +49,11 @@ public static function recentGames($obj, $obj_id, $node, $node_id, $opp_obj, $op
         $N = array();
     }
     else {
-        $N = isset($_GET["page"]) 
+        $N = isset($_GET["page"])
             ? array((int) $_GET["page"],$opts['n'])
             : array(1,$opts['n']);
     }
-    
+
     $FOR_OBJ = $obj;
     if ($obj && $obj_id)
         list($matches, $pages) = Stats::getMatches($obj, $obj_id, $node, $node_id, $opp_obj, $opp_obj_id, $N, true, false);
@@ -121,7 +121,7 @@ public static function upcomingGames($obj, $obj_id, $node, $node_id, $opp_obj, $
         $N = array();
     }
     else {
-        $N = isset($_GET["page"]) 
+        $N = isset($_GET["page"])
             ? array((int) $_GET["page"],$opts['n'])
             : array(1,$opts['n']);
     }
@@ -312,7 +312,7 @@ public static function standings($obj, $node, $node_id, array $opts)
     $fields_before = $fields_after = array(); // To be merged with $fields.
     if (!array_key_exists('GET_SS', $opts)) {$opts['GET_SS'] = '';}
     else {$extra['GETsuffix'] = $opts['GET_SS'];} # GET Sorting Suffix
-    $PAGE = isset($_GET["page"]) 
+    $PAGE = isset($_GET["page"])
             ? (int) $_GET["page"]
             : 1;
     $PAGELENGTH = 0; # Infinite, is overrided in below switch/case..
@@ -491,16 +491,16 @@ public static function updateNodeSelectorLeagueVars()
 
 public static function getSelectedNodeLidOrDefault() {
     global $leagues, $coach, $settings;
-    
+
     if(!isset($leagues))
         return 1;
-    
+
     $lids = array_keys($leagues); # Used multiple times below to determine selected FP league.
     $sel_lid = (is_object($coach) && isset($coach->settings['home_lid']) && in_array($coach->settings['home_lid'], $lids)) ? $coach->settings['home_lid'] : $settings['default_visitor_league'];
-    
+
     if ($_lid = self::getSelectedNodeLid())
         $sel_lid = $_lid;
-    
+
     return $sel_lid;
 }
 
@@ -511,7 +511,7 @@ public static function simpleLeagueSelector()
     global $lng;
 
     $sel_lid = self::getSelectedNodeLidOrDefault();
-    
+
     # Save league view.
     $_SESSION[self::T_NSStr__node]    = T_NODE_LEAGUE;
     $_SESSION[self::T_NSStr__node_id] = (int) $sel_lid;
@@ -587,7 +587,7 @@ public static function nodeSelector(array $opts)
 #    $leagues = Coach::allowedNodeAccess(Coach::NODE_STRUCT__TREE, is_object($coach) ? $coach->coach_id : false);
     ?>
     <form method="POST">
-    <?php 
+    <?php
     echo $lng->getTrn('common/displayfrom');
     ?>
     <select <?php if ($hideNodes) {echo "style='display:none;'";}?> name="node" onChange="
@@ -871,7 +871,7 @@ public static function nodeList($node, $nameid, $filter = array(), $disCond = ar
 public static function frame_begin($menu = true)
 {
     global $settings;
-    
+
     Module::runTriggers(T_TRIGGER_BEFORE_PAGE_RENDER);
     ?>
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -891,21 +891,22 @@ public static function frame_begin($menu = true)
         <script type="text/javascript" src="lib/jquery.autocomplete-min.js"></script>
         <script type="text/javascript" src="lib/jquery.expander.js"></script>
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-        <script>tinymce.init({ 
+        <script>tinymce.init({
             selector:'.html_edit',
             menubar: false,
-            width: 860, 
+            width: 860,
+            height: 150,
             plugins: "link lists advlist",
             toolbar: "undo redo | styleselect | bold italic | "
                     +"justifyleft justifycenter justifyright justifyfull | "
                     +"bullist numlist link | outdent indent",
-            height: 150, file_browser_callback_types: 'file image media'
+
         });</script>
-        
+
         <script type="text/javascript" src="js/app/ViewModel/Common/RegistrationViewModel.js"></script>
         <script type="text/javascript" src="js/app/ViewModel/Common/PageViewModel.js"></script>
         <script type="text/javascript" src="js/app/CustomBinders/EditableCustomBinder.js"></script>
-        
+
         <script type="text/javascript">
             $(document).ready(function() {
                 var leaguesJson = <?php echo json_encode(League::getLeaguesWithLocation()); ?>;
@@ -924,11 +925,11 @@ public static function frame_begin($menu = true)
             </div> <!-- Menu div end -->
             <div class="section"> <!-- This container holds the section specific content -->
     <?php
-    
+
 }public static function mobile_frame_begin($menu = true)
 {
     global $settings;
-    
+
     Module::runTriggers(T_TRIGGER_BEFORE_PAGE_RENDER);
     ?>
     <!DOCTYPE HTML>
@@ -956,7 +957,7 @@ public static function frame_begin($menu = true)
         <script type="text/javascript" src="js/app/ViewModel/Mobile/MatchDialogViewModel.js"></script>
         <script type="text/javascript" src="js/app/ViewModel/Mobile/SelectedPlayerViewModel.js"></script>
         <script type="text/javascript" src="js/app/ViewModel/Common/RegistrationViewModel.js"></script>
-        
+
     </head>
     <body>
         <div class="everything">
@@ -983,20 +984,20 @@ private static function make_menu()
     <ul class="css3menu1 topmenu">
         <li class="topfirst"><a href="index.php?section=main"><?php echo $lng->getTrn('menu/home');?></a>
 		 <ul>
-            <?php 
-            if(Settings::getValueOrDefault('show-regional-menu', false)) { 
+            <?php
+            if(Settings::getValueOrDefault('show-regional-menu', false)) {
                 foreach(League::getLeaguesByLocation() as $locationName => $leagues) {
                     echo '<li><a href="#">' . $locationName . ' ></a><ul>';
-                    
+
                     foreach($leagues as $league) {
                         echo '<li><a href="index.php?SLS_lid=' . $league->lid . '">' . $league->name . '</a></li>';
                     }
-                    
+
                     echo '</ul></li>';
                 }
                 if (isset($_SESSION['logged_in'])) {
                     echo '<li><a href="index.php?section=requestleague">Request a League</a></li>';
-                } 
+                }
                 echo '<li><a href="http://www.thenaf.net/leagues/leagues-locator/" >TheNAF.net League Locator</a></li>';
                 echo '<li><a href="index.php?SLS_lid=1" >League Hosting Home</a></li>';
             } ?>
@@ -1016,8 +1017,8 @@ private static function make_menu()
             <li><a rel="nofollow" href="<?php echo urlcompile(T_URL_PROFILE,T_OBJ_COACH,$coach->coach_id,false,false).'&amp;subsec=stats';?>"><?php echo $lng->getTrn('common/stats');?></a></li>
            <li><a rel="nofollow" href="<?php echo urlcompile(T_URL_PROFILE,T_OBJ_COACH,$coach->coach_id,false,false).'&amp;subsec=recentmatches';?>"><?php echo $lng->getTrn('common/recentmatches');?></a></li>
             <li><a rel="nofollow"href="index.php?logout=1"><?php echo $lng->getTrn('menu/logout');?></a></li>
-            </ul><?php 
-}        else      { 
+            </ul><?php
+}        else      {
 ?><li class="topfirst"><a rel="nofollow" href="index.php?section=login" style="height:20px;line-height:20px;"><?php echo $lng->getTrn('menu/login');?></a></li><?php }
 ?>
 
@@ -1028,10 +1029,10 @@ private static function make_menu()
             <li class="subfirst">
                 <a href="handler.php?type=leaguepref"><?php echo $lng->getTrn('name', 'LeaguePref');?></a>
             </li>
-            <?php 
+            <?php
                 if (Module::isRegistered('Conference'))
                     echo '<li><a href="handler.php?type=conference">' . $lng->getTrn('name', 'Conference') . '</a></li>';
-                
+
                 if (Module::isRegistered('Scheduler'))
                     echo '<li><a href="handler.php?type=scheduler">' . $lng->getTrn('menu/admin_menu/schedule') . '</a></li>';
 
@@ -1039,7 +1040,7 @@ private static function make_menu()
                     if (!is_array($desc)) {
                         echo "<li><a href='index.php?section=admin&amp;subsec=$lnk'>$desc</a></li>\n";
                     }
-                    else { 
+                    else {
                         echo '<li><a href="#">' . $desc['title'] . '<ul>';
                         foreach ($desc['sub'] as $sub) {
                             echo "<li><a href='index.php?section=admin&amp;subsec=$lnk&amp;$sub[href]'>$sub[title]</a></li>\n";
@@ -1050,7 +1051,7 @@ private static function make_menu()
             ?>
         </ul>
     </li>
-<?php } ?>        
+<?php } ?>
 
 <li class="topmenu">
     <a href="#">League Menu</a>
@@ -1065,15 +1066,15 @@ private static function make_menu()
             if (!empty($settings['league_url'])) {
                 $leagueUrl = $settings['league_url'];
                 $leagueUrl = !strpos($leagueUrl, 'http') ? 'http://' . $leagueUrl : $leagueUrl;
-                
+
                 ?>  <li><a href="<?php echo $leagueUrl;?>"><?php echo $settings['league_url_name'];?></a></li><?php
             }
         ?>
     </ul>
 </li>
-        
+
 <li class="topmenu"><a rel="nofollow" href="index.php?section=rules">League History</a>
-    <ul>   
+    <ul>
         <?php if (Module::isRegistered('Gallery'))        { ?><li><a href="handler.php?type=gallery"><?php echo $lng->getTrn('name', 'Gallery');?></a></li><?php } ?>
         <?php if (Module::isRegistered('Wanted'))        { ?><li><a href="handler.php?type=wanted"><?php echo $lng->getTrn('name', 'Wanted');?></a></li><?php } ?>
         <?php if (Module::isRegistered('Prize'))        { ?><li><a href="handler.php?type=prize"><?php echo $lng->getTrn('name', 'Prize');?></a></li><?php } ?>
@@ -1083,7 +1084,7 @@ private static function make_menu()
         <li><a href="index.php?section=matches&amp;type=tours"><?php echo $lng->getTrn('menu/matches_menu/tours');?></a></li>
     </ul>
 </li>
-        
+
 <li class="topmenu"><a rel="nofollow" href="#">Statistics</a>
     <ul>
         <li class="subfirst"><a rel="nofollow" href="<?php echo urlcompile(T_URL_STANDINGS,T_OBJ_TEAM,false,false,false);?>"><?php echo $lng->getTrn('menu/statistics_menu/team_stn');?></a></li>
@@ -1093,9 +1094,9 @@ private static function make_menu()
         <li><a rel="nofollow" href="<?php echo urlcompile(T_URL_STANDINGS,T_OBJ_STAR,false,false,false);?>"><?php echo $lng->getTrn('menu/statistics_menu/star_stn');?></a></li>
     </ul>
 </li>
-        
+
 <li class="topmenu"><a rel="nofollow" href="#">Game Rules</a>
-    <ul> 
+    <ul>
         <li class="subfirst"><a rel="nofollow" href="#">CRP Rosters ></a>
             <ul><li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=0" style="height:10px;line-height:10px;">Amazon</a></li>
             <li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=1" style="height:10px;line-height:10px;">Chaos</a></li>
@@ -1130,12 +1131,12 @@ private static function make_menu()
             <li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=26" style="height:10px;line-height:10px;">Simyin</a></li>
         </ul></li>
         <li><a href="http://www.thenaf.net/wp-content/uploads/2013/06/CRP1.pdf">The CRP (Full Blood Bowl Rules)</a></li>
-        <li><a href="http://the-outcast.com/bloodbowl/blood%20bowl%20crp%20lite.pdf">A5 Rules Summary</a></li>  
+        <li><a href="http://the-outcast.com/bloodbowl/blood%20bowl%20crp%20lite.pdf">A5 Rules Summary</a></li>
     </ul>
-</li>  
+</li>
 
 <?php if (Module::isRegistered('Search'))            { ?><li><a href="handler.php?type=search"><?php echo $lng->getTrn('name', 'Search');?></a></li><?php } ?>
-    
+
     <?php
 }
 // Prints an advanced sort table.
@@ -1160,7 +1161,7 @@ public static function sort_table($title, $lnk, array $objs, array $fields, arra
             anchor => string. Will create table sorting links, that include this identifier as an anchor.
             noHelp => true/false. Will enable/disable help link [?].
             noSRdisp => true/false. Will force not to show the table sort rule used/parsed.
-            
+
             page => current page being viewed
             pages => total number of pages
     */
@@ -1254,7 +1255,7 @@ public static function sort_table($title, $lnk, array $objs, array $fields, arra
                         $cpy = "<font color='$a[color]'>".$cpy."</font>";
                     if (array_key_exists('href', $a) && $a['href']) {
                         $href = (isset($o->href)) ? $o->href : $a['href'];
-                        $cpy  = "<a " 
+                        $cpy  = "<a "
                             . "href='$href[link]" . ((isset($href['field'])) ? "&amp;$href[field]=".$o->{$href['value']} : '') . "'"
                             . "class='" . ((array_key_exists('icon', $a) && $a['icon']) ? "icon-link" : "") . "'"
                             . ">"
@@ -1274,7 +1275,7 @@ public static function sort_table($title, $lnk, array $objs, array $fields, arra
                             }
                             if(!isset($a['editableClass']))
                                 $a['editableClass'] = '';
-                            
+
                             $cpy = '<div data-bind="editable: {update: ' . $a['editable'] . ', args: [' . $args . '], cssClass: \'' . $a['editableClass'] . '\'}">'
                                 . $cpy
                                 . '</div>';
@@ -1305,7 +1306,7 @@ public static function sort_table($title, $lnk, array $objs, array $fields, arra
             <?php
             if ($PAGES) {
             ?>
-            <div style='float:left;'><?php 
+            <div style='float:left;'><?php
                 echo $lng->getTrn('common/page')."&nbsp;";
                 $primary_sort = isset($_GET["sort$GETSUFX"])
                     ? "&amp;sort$GETSUFX=".$_GET["sort$GETSUFX"]."&amp;dir$GETSUFX=".$_GET["dir$GETSUFX"]
@@ -1383,3 +1384,4 @@ public static function dnt()
 }
 }
 ?>
+
