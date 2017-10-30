@@ -55,14 +55,14 @@ public static function upcomingMatches() {
 public static function matchActions($IS_LOCAL_ADMIN) {
     // Admin actions made?
     if (isset($_GET['action']) && $IS_LOCAL_ADMIN) {
-		$match = new Match((int) $_GET['mid']);
-		switch ($_GET['action'])
-		{
-			case 'lock':   status($match->setLocked(true)); break;
-			case 'unlock': status($match->setLocked(false)); break;
-			case 'delete': status($match->delete()); break;
-			case 'reset':  status($match->reset()); break;
-		}
+        $match = new Match((int) $_GET['mid']);
+        switch ($_GET['action'])
+        {
+            case 'lock':   status($match->setLocked(true)); break;
+            case 'unlock': status($match->setLocked(false)); break;
+            case 'delete': status($match->delete()); break;
+            case 'reset':  status($match->reset()); break;
+        }
     }
     else if (isset($_GET['action'])) {
         status(false, 'Sorry, you do not have permission to do that.');
@@ -79,7 +79,7 @@ public static function tourMatches()
         fatal('Invalid tournament ID.');
     }
     $IS_LOCAL_ADMIN = (is_object($coach) && $coach->isNodeCommish(T_NODE_TOURNAMENT, (int) $trid));
-	self::matchActions($IS_LOCAL_ADMIN);
+    self::matchActions($IS_LOCAL_ADMIN);
 
     $query = "SELECT COUNT(*) FROM matches WHERE f_tour_id = $trid";
     $result = mysql_query($query);
@@ -122,7 +122,7 @@ public static function tourMatches()
         <tr>
             <td><?php echo !empty($m->date_played) ? textdate($m->date_played, true) : ''; ?></td>
             <td class="match" style="text-align: right;">
-                <?php 
+                <?php
                 echo "<a href='".urlcompile(T_URL_PROFILE,T_OBJ_TEAM,$m->t1_id,false,false)."'>$m->t1_name</a>&nbsp;<i>(<a href='".urlcompile(T_URL_PROFILE,T_OBJ_COACH,$m->c1_id,false,false)."'>$m->c1_name</a>)</i>";
                 ?>
             </td>
@@ -130,7 +130,7 @@ public static function tourMatches()
             <td class="match" style="text-align: center;">-</td>
             <td class="match" style="text-align: center;"><?php echo !empty($m->date_played) ? $m->team2_score : '';?></td>
             <td class="match" style="text-align: left;">
-                <?php 
+                <?php
                 echo "<a href='".urlcompile(T_URL_PROFILE,T_OBJ_TEAM,$m->t2_id,false,false)."'>$m->t2_name</a>&nbsp;<i>(<a href='".urlcompile(T_URL_PROFILE,T_OBJ_COACH,$m->c2_id,false,false)."'>$m->c2_name</a>)</i>";
                 ?>
             </td>
@@ -142,16 +142,16 @@ public static function tourMatches()
             <?php
             echo "&nbsp;<a href='index.php?section=matches&amp;type=report&amp;mid=$m->match_id'>".$lng->getTrn('common/view')."</a>&nbsp;\n";
             if ($IS_LOCAL_ADMIN) {
-				?>
-				<script language="JavaScript" type="text/javascript">
-					function match_delete() {
-						return confirm('<?php echo $lng->getTrn('matches/tourmatches/matchdelete'); ?>');
-					}
-					function match_reset() {
-						return confirm('<?php echo $lng->getTrn('matches/tourmatches/reset_notice'); ?>');
-					}
-				</script>
-				<?php
+                ?>
+                <script language="JavaScript" type="text/javascript">
+                    function match_delete() {
+                        return confirm('<?php echo $lng->getTrn('matches/tourmatches/matchdelete'); ?>');
+                    }
+                    function match_reset() {
+                        return confirm('<?php echo $lng->getTrn('matches/tourmatches/reset_notice'); ?>');
+                    }
+                </script>
+                <?php
                 echo "<a onclick=\"return match_reset();\" href='$matchURL&amp;action=reset'>".$lng->getTrn('common/reset')."</a>&nbsp;\n";
                 echo "<a onclick=\"return match_delete();\" href='$matchURL&amp;action=delete' style='color:".(!empty($m->date_played) ? 'Red' : 'Blue').";'>".$lng->getTrn('common/delete')."</a>&nbsp;\n";
                 echo "<a href='$matchURL&amp;action=".(($m->locked) ? 'unlock' : 'lock')."'>" . ($m->locked ? $lng->getTrn('common/unlock') : $lng->getTrn('common/lock')) . "</a>&nbsp;\n";
@@ -267,9 +267,15 @@ public static function report() {
     global $leagues,$divisions,$tours;
     $T_ROUNDS = Match::getRounds();
 
-	// Perform actions (delete, lock/unlock and reset). Needs the
+
+    global $color_counter;
+    $color_counter=1;
+    global $player_row_counter;
+    $player_row_counter=1;
+
+    // Perform actions (delete, lock/unlock and reset). Needs the
     $IS_LOCAL_ADMIN = (is_object($coach) && $coach->isNodeCommish(T_NODE_TOURNAMENT, get_alt_col('matches', 'match_id', $match_id, 'f_tour_id')));
-	self::matchActions($IS_LOCAL_ADMIN);
+    self::matchActions($IS_LOCAL_ADMIN);
 
     // Create objects
     $m = new Match($match_id);
@@ -281,6 +287,7 @@ public static function report() {
     $ALLOW_EDIT = (!$m->locked && is_object($coach) && ($coach->ring == Coach::T_RING_GLOBAL_ADMIN || $leagues[$lid]['ring'] == Coach::T_RING_LOCAL_ADMIN || $coach->isInMatch($m->match_id)));
     $DIS = ($ALLOW_EDIT) ? '' : 'DISABLED';
 
+
     // Lock page for other reasons? (Used journeys etc)
     $USED_JOURNEYMAN_PRESENT = false;
     foreach (array(1 => $team1, 2 => $team2) as $id => $t) {
@@ -290,6 +297,7 @@ public static function report() {
         }
     }
     if ($USED_JOURNEYMAN_PRESENT) {$DIS = 'DISABLED';}
+
 
     // Relay to ES report page?
     if (isset($_GET['es_report'])) { # Don't care what value the GET field has!
@@ -535,6 +543,7 @@ public static function report() {
         $team2 = new Team($m->team2_id);
     }
 
+
     // Change round form submitted?
     if ($IS_LOCAL_ADMIN && isset($_POST['round'])) {
         status($m->chRound((int) $_POST['round']));
@@ -579,36 +588,52 @@ public static function report() {
     if (Module::isRegistered('UPLOAD_BOTOCS')) {
         echo "<tr><td><b>Replay</b>:</td><td colspan='3'><a href='handler.php?type=leegmgr&amp;replay=$m->match_id'>View replay</a></td></tr>";
     }
-	if ($IS_LOCAL_ADMIN) {
-		?>
-		<script language="JavaScript" type="text/javascript">
-			function match_delete() {
-				return confirm('<?php echo $lng->getTrn('matches/tourmatches/matchdelete'); ?>');
-			}
-			function match_reset() {
-				return confirm('<?php echo $lng->getTrn('matches/tourmatches/reset_notice'); ?>');
-			}
-		</script>
-	    <?php
-		$matchURL = "index.php?section=matches&type=report&amp;mid=$m->match_id";
-		$deleteURL = "index.php?section=matches&amp;type=tourmatches&amp;trid=$m->f_tour_id&amp;mid=$m->match_id";
 
-		echo "<tr><td><b>Admin:</b></td><td colspan='3'><b>";
-		echo "<a onclick=\"return match_reset();\" href='$matchURL&amp;action=reset'>".$lng->getTrn('common/reset')."</a>&nbsp;\n";
-		echo "<a onclick=\"return match_delete();\" href='$deleteURL&amp;action=delete' style='color:".(!empty($m->date_played) ? 'Red' : 'Blue').";'>".$lng->getTrn('common/delete')."</a>&nbsp;\n";
-		echo "<a href='$matchURL&amp;action=".(($m->locked) ? 'unlock' : 'lock')."'>" . ($m->locked ? $lng->getTrn('common/unlock') : $lng->getTrn('common/lock')) . "</a>&nbsp;\n";
-		echo "<br><a href='javascript:void(0);' onClick='slideToggleFast(\"chRound\");'>".$lng->getTrn('matches/report/chround')."</a><div id='chRound' style='display:none;'>
-		<form method='POST'>
-		<select name='round'>";
-		foreach ($T_ROUNDS as $id => $desc ) {
-		    echo "<option value='$id'>".$desc."</option>\n";
-	    }
-		echo "</select>
-		<input type='submit' value='".$lng->getTrn('matches/report/chround')."'>
-		</form>
-		</div>";
-		echo "</b></td></tr>";
-	}
+    echo "    <tr>
+                <td>
+                    <b>Opciones:</b></td><td colspan='3'>
+                    <b>
+                        <br><a href='javascript:void(0);' onClick='hideEmptyPlayers();'>Resumen de Partida</a>
+                        <br><a href='javascript:void(0);' onClick='showEmptyPlayers();'>Mostrar toda la Partida</a>
+                        <br><br>
+                    </b>
+                </td>
+            </tr>";
+
+    if ($IS_LOCAL_ADMIN) {
+        ?>
+        <script language="JavaScript" type="text/javascript">
+            function match_delete() {
+                return confirm('<?php echo $lng->getTrn('matches/tourmatches/matchdelete'); ?>');
+            }
+            function match_reset() {
+                return confirm('<?php echo $lng->getTrn('matches/tourmatches/reset_notice'); ?>');
+            }
+        </script>
+        <?php
+        $matchURL = "index.php?section=matches&type=report&amp;mid=$m->match_id";
+        $deleteURL = "index.php?section=matches&amp;type=tourmatches&amp;trid=$m->f_tour_id&amp;mid=$m->match_id";
+
+        echo "<tr><td><b>Admin:</b></td><td colspan='3'><b>";
+        echo "<a onclick=\"return match_reset();\" href='$matchURL&amp;action=reset'>".$lng->getTrn('common/reset')."</a>&nbsp;\n";
+        echo "<a onclick=\"return match_delete();\" href='$deleteURL&amp;action=delete' style='color:".(!empty($m->date_played) ? 'Red' : 'Blue').";'>".$lng->getTrn('common/delete')."</a>&nbsp;\n";
+        echo "<a href='$matchURL&amp;action=".(($m->locked) ? 'unlock' : 'lock')."'>" . ($m->locked ? $lng->getTrn('common/unlock') : $lng->getTrn('common/lock')) . "</a>&nbsp;\n";
+        echo "<br><a href='javascript:void(0);' onClick='generateRandomRoll();'>Generar Tiradas</a>";
+        echo "<br><a href='javascript:void(0);' onClick='disabledToEnabled(true);'>Desbloquear Tiradas</a>";
+        echo "<br><a href='javascript:void(0);' onClick='generateFanFactor(2,".$team2->rg_ff.");generateFanFactor(1,".$team1->rg_ff.");'>Generar FanFactor</a>";
+
+        echo "<br><a href='javascript:void(0);' onClick='slideToggleFast(\"chRound\");'>".$lng->getTrn('matches/report/chround')."</a><div id='chRound' style='display:none;'>
+        <form method='POST'>
+        <select name='round'>";
+        foreach ($T_ROUNDS as $id => $desc ) {
+            echo "<option value='$id'>".$desc."</option>\n";
+        }
+        echo "</select>
+        <input type='submit' value='".$lng->getTrn('matches/report/chround')."'>
+        </form>
+        </div>";
+        echo "</b></td></tr>";
+    }
 ?>
     </table>
     <br>
@@ -659,14 +684,17 @@ public static function report() {
 
             <tr><td class='seperator' colspan='<?php echo $CP;?>'></td></tr>
             <?php
+            $team_score_counter=1;
             foreach (array(1,2) as $N) {
                 echo "<tr>\n";
                 echo "<td>".${"teamUrl$N"}."</td>\n";
-                echo "<td><input type='text' onChange='numError(this);' name='result$N' value='".((int) $m->{"team${N}_score"})."' size='1' maxlength='2' $DIS></td>\n";
+                echo "<td><input type='text' id='score$team_score_counter' onChange='numError(this);' name='result$N' value='".((int) $m->{"team${N}_score"})."' size='1' maxlength='2' $DIS></td>\n";
+                $team_score_counter++;
                 echo "<td><input type='text' onChange='numErrorAllowNegative(this);' name='inc$N' value='".(((int) $m->{"income$N"})/1000)."' size='4' maxlength='4' $DIS>k</td>\n";
-                echo "<td>";
+                echo "<td id='radio_1'>";
                 foreach (array('1' => 'green', '0' => 'blue', '-1' => 'red') as $Nff => $color) {
-                    echo "<input $DIS type='radio' name='ff$N' value='$Nff' ".(($m->{"ffactor$N"} == (int) $Nff) ? 'CHECKED' : '')."><font color='$color'><b>$Nff</b></font>";
+                    echo "<input $DIS id='ff_$color_counter' type='radio' name='ff$N' value='$Nff' ".(($m->{"ffactor$N"} == (int) $Nff) ? 'CHECKED' : '')." DISABLED><font color='$color'><b>$Nff</b></font>";
+                    $color_counter++;
                 }
                 echo "</td>\n";
                 echo "<td><input type='text' onChange='numError(this);' name='smp$N' value='".($m->{"smp$N"})."' size='1' maxlength='2' $DIS>".$lng->getTrn('matches/report/pts')."</td>\n";
@@ -679,8 +707,181 @@ public static function report() {
         </table>
 
         <?php
-        $playerFields = array_merge($T_MOUT_REL, $T_MOUT_ACH, $T_MOUT_IR, $T_MOUT_INJ);
+        $playerFields = array_merge($T_MOUT_REL, $T_MOUT_ACH,$T_MOUT_IR, $T_MOUT_INJ);
         $CPP = count($playerFields);
+
+        $local_team_list = array();
+        foreach ($team1->getPlayers() as $p) {
+            $local_team_list[] = $p->player_id;
+        }
+
+        $visitor_team_list = array();
+        foreach ($team2->getPlayers() as $p) {
+            $visitor_team_list[] = $p->player_id;
+        }
+
+        echo "
+<script type='text/javascript'>
+    var local_players = new Array(". implode(',', $local_team_list) . ");
+    var visitor_players = new Array(". implode(',', $visitor_team_list) . ");
+    function generateRandomRoll() {
+        for(var i=0; i<visitor_players.length;i++) {
+            if(document.getElementById('ir1_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir1_d1_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir1_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir1_d2_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir2_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir2_d1_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir2_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir2_d2_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir3_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir3_d1_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir3_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir3_d2_'+visitor_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+        }
+
+        for(var i=0; i<local_players.length;i++) {
+            if(document.getElementById('ir1_d1_'+local_players[i]) != null)
+                document.getElementById('ir1_d1_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir1_d2_'+local_players[i]) != null)
+                document.getElementById('ir1_d2_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir2_d1_'+local_players[i]) != null)
+                document.getElementById('ir2_d1_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir2_d2_'+local_players[i]) != null)
+                document.getElementById('ir2_d2_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir3_d1_'+local_players[i]) != null)
+                document.getElementById('ir3_d1_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+
+            if(document.getElementById('ir3_d2_'+local_players[i]) != null)
+                document.getElementById('ir3_d2_'+local_players[i]).selectedIndex = Math.floor((Math.random() * 6) + 1);
+        }
+
+        alert('Partida Generada');
+    }
+
+    function disabledToEnabled(allowSave=false) {
+        for(var i=0; i<visitor_players.length;i++) {
+            if(document.getElementById('ir1_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir1_d1_'+visitor_players[i]).disabled = false;
+
+            if(document.getElementById('ir1_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir1_d2_'+visitor_players[i]).disabled = false;
+
+            if(document.getElementById('ir2_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir2_d1_'+visitor_players[i]).disabled = false;
+
+            if(document.getElementById('ir2_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir2_d2_'+visitor_players[i]).disabled = false;
+
+            if(document.getElementById('ir3_d1_'+visitor_players[i]) != null)
+                document.getElementById('ir3_d1_'+visitor_players[i]).disabled = false;
+
+            if(document.getElementById('ir3_d2_'+visitor_players[i]) != null)
+                document.getElementById('ir3_d2_'+visitor_players[i]).disabled = false;
+        }
+
+        for(var i=0; i<local_players.length;i++) {
+            if(document.getElementById('ir1_d1_'+local_players[i]) != null)
+                document.getElementById('ir1_d1_'+local_players[i]).disabled = false;
+
+            if(document.getElementById('ir1_d2_'+local_players[i]) != null)
+                document.getElementById('ir1_d2_'+local_players[i]).disabled = false;
+
+            if(document.getElementById('ir2_d1_'+local_players[i]) != null)
+                document.getElementById('ir2_d1_'+local_players[i]).disabled = false;
+
+            if(document.getElementById('ir2_d2_'+local_players[i]) != null)
+                document.getElementById('ir2_d2_'+local_players[i]).disabled = false;
+
+            if(document.getElementById('ir3_d1_'+local_players[i]) != null)
+                document.getElementById('ir3_d1_'+local_players[i]).disabled = false;
+
+            if(document.getElementById('ir3_d2_'+local_players[i]) != null)
+                document.getElementById('ir3_d2_'+local_players[i]).disabled = false;
+        }
+
+        for(var i=1; i<7;i++) {
+            if(document.getElementById('ff_'+i) != null) {
+                document.getElementById('ff_'+i).disabled = false;
+            }
+        }
+
+        document.getElementById('btnSave').style.display = (allowSave === true) ? '' : 'none';
+    }
+
+    function hideEmptyPlayers() {
+        for(var i=1; i<(17*2);i++) {
+            if(document.getElementById('hide_player_'+i) != null) {
+                document.getElementById('hide_player_'+i).style.display = 'none';
+            }
+        }
+    }
+
+    function showEmptyPlayers() {
+        for(var i=1; i<17;i++) {
+            if(document.getElementById('hide_player_'+i) != null) {
+                document.getElementById('hide_player_'+i).style.display = '';
+            }
+            break;
+        }
+    }
+
+    function generateFanFactor(team_index, fan_factor) {
+        var local_team_score   = document.getElementById('score2').value;
+        var visitor_team_score = document.getElementById('score1').value;
+        var random;
+
+        if(team_index == 1) {
+            local_team_score   = document.getElementById('score1').value;
+            visitor_team_score = document.getElementById('score2').value;
+        }
+
+        if(local_team_score > visitor_team_score) {
+            random = Math.floor((Math.random() * 6) + 1) + Math.floor((Math.random() * 6) + 1) + Math.floor((Math.random() * 6) + 1);
+        }
+        else {
+            random = Math.floor((Math.random() * 6) + 1) + Math.floor((Math.random() * 6) + 1);
+        }
+
+        if(local_team_score > visitor_team_score) {
+            if(random > fan_factor) {
+                document.getElementById('ff_'+(1+((team_index - 1)*3))).checked = true;
+            }
+            else {
+                document.getElementById('ff_'+(2+((team_index - 1)*3))).checked = true;
+            }
+        }
+        else if(local_team_score < visitor_team_score) {
+            if(random < fan_factor) {
+                document.getElementById('ff_'+(3+((team_index - 1)*3))).checked = true;
+            }
+            else {
+                document.getElementById('ff_'+(2+((team_index - 1)*3))).checked = true;
+            }
+        }
+        else {
+            if(random > fan_factor) {
+                document.getElementById('ff_'+(1+((team_index - 1)*3))).checked = true;
+            }
+            else if(random < fan_factor) {
+                document.getElementById('ff_'+(3+((team_index - 1)*3))).checked = true;
+            }
+            else {
+                document.getElementById('ff_'+(2+((team_index - 1)*3))).checked = true;
+            }
+        }
+    }
+</script>";
+
         foreach (array(1 => $team1, 2 => $team2) as $id => $t) {
             ?>
             <table class='common'>
@@ -717,6 +918,7 @@ public static function report() {
             echo "</tr>\n";
 
             $NORMSTAT = true; // only normal player statuses
+
             foreach ($t->getPlayers() as $p) {
 
                 if (!self::player_validation($p, $m))
@@ -732,6 +934,8 @@ public static function report() {
                 elseif ($status == MNG)                         {$bgcolor = COLOR_HTML_MNG;             $NORMSTAT = false;}
                 elseif ($p->mayHaveNewSkill())                  {$bgcolor = COLOR_HTML_NEWSKILL;        $NORMSTAT = false;}
                 else {$bgcolor = false;}
+
+
                 self::_print_player_row($p->player_id, '<a href="index.php?section=objhandler&type=1&obj=1&obj_id='.$p->player_id.'">'.$p->name.'</a>', $p->nr, $lng->getTrn('position/'.strtolower($lng->FilterPosition($p->position))).(($status == MNG) ? '&nbsp;[MNG]' : ''),$bgcolor, $mdat, $DIS || ($status == MNG));
             }
             echo "</table>\n";
@@ -807,7 +1011,7 @@ public static function report() {
         </table>
         <br>
         <center>
-            <input type="submit" name='button' value="<?php echo $lng->getTrn('common/save');?>" <?php echo $DIS; ?>>
+            <input type="submit" name='button' id="btnSave"  onclick='disabledToEnabled(false);' value="<?php echo $lng->getTrn('common/save');?>" <?php echo $DIS; ?>>
             <?php if ($USED_JOURNEYMAN_PRESENT) {echo "<br><br><b>".$lng->getTrn('matches/report/usedjourney')."</b>";} ?>
         </center>
     </form>
@@ -845,40 +1049,68 @@ public static function report() {
     }
 }
 
+var $color_counter;
+var $player_row_counter;
 
-protected static function _print_player_row($FS, $name, $nr, $pos, $bgcolor, $mdat, $DISABLE) {
 
-    global $T_MOUT_REL, $T_MOUT_ACH, $T_MOUT_IR, $T_MOUT_INJ;
+protected static function _print_player_row($FS, $name, $nr, $pos, $bgcolor, $mdat, $DISABLE, $disablet) {
+
+    global $T_MOUT_REL, $T_MOUT_ACH, $T_MOUT_IR, $T_MOUT_INJ, $player_row_counter;
 
     $DIS = ($DISABLE) ? 'DISABLED' : '';
-    echo "<tr".(($bgcolor) ? " style='background-color: $bgcolor;'" : '').">\n";
-    echo "<td>$nr</td>\n";
-    echo "<td>$name</td>\n";
-    echo "<td>$pos</td>\n";
-    // MVP
-    echo "<td><select $DIS name='mvp_$FS'>";
-    foreach (range(0,2) as $n) {echo "<option value='$n' ".((isset($mdat['mvp']) && $mdat['mvp'] == $n) ? 'SELECTED' : '').">$n</option>";}
+
+    $empty_counter = 0;
+    $txtmeter = "";
+    foreach (range(0,2) as $n) {
+        if("0" == $n && $mdat['mvp'] == $n) {
+            $empty_counter++;
+        }
+
+        $txtmeter = $txtmeter."<option value='$n' ".((isset($mdat['mvp']) && $mdat['mvp'] == $n) ? 'SELECTED' : '').">$n</option>";
+    }
     echo "</select>\n";
     // Rest of ACH.
     foreach (array_diff(array_keys($T_MOUT_ACH), array('mvp')) as $f) {
-        echo "<td><input $DIS type='text' onChange='numError(this);' size='1' maxlength='2' name='${f}_$FS' value='".(isset($mdat[$f]) ? $mdat[$f] : 0)."'></td>\n";
-    }
-    foreach (array_keys($T_MOUT_IR) as $irl) {
-        echo "<td><select name='${irl}_$FS' $DIS>";
-        foreach (range(0,6) as $N) {
-            echo "<option value='$N' ".((isset($mdat[$irl]) && $mdat[$irl] == $N) ? 'SELECTED' : '').">$N</option>";
+        if("0" == $mdat[$f]) {
+            $empty_counter++;
         }
-        echo "</select></td>\n";
+       $txtmeter = $txtmeter."<td><input $DIS type='text' onChange='numError(this);' size='1' maxlength='2' name='${f}_$FS' value='".(isset($mdat[$f]) ? $mdat[$f] : 0)."'></td>\n";
     }
+
+    $txtmeter ="<td><select $DIS name='mvp_$FS'>".$txtmeter;
+    $txtmeter ="<td>$pos</td>\n".$txtmeter;
+    $txtmeter ="<td>$name</td>\n".$txtmeter;
+    $txtmeter ="<td>$nr</td>\n".$txtmeter;
+
+    foreach (array_keys($T_MOUT_IR) as $irl) {
+        $txtmeter = $txtmeter."<td><select name='${irl}_$FS' $DIS id='${irl}_$FS' DISABLED >";
+        foreach (range(0,6) as $N) {
+            $txtmeter = $txtmeter."<option value='$N' ".((isset($mdat[$irl]) && $mdat[$irl] == $N) ? 'SELECTED' : '').">$N</option>";
+        }
+        $txtmeter = $txtmeter."</select></td>\n";
+    }
+
     global $T_INJS;
     $T_INJS_AGN = array_diff_key($T_INJS, array(MNG => null, DEAD => null));
     foreach (array_combine(array_keys($T_MOUT_INJ), array($T_INJS, $T_INJS_AGN, $T_INJS_AGN)) as $f => $opts) {
-        echo "<td><select name='${f}_$FS' $DIS>";
+        $txtmeter = $txtmeter."<td><select name='${f}_$FS' $DIS>";
+
         foreach ($opts as $status => $name) {
-            echo "<option value='$status' ".((isset($mdat[$f]) && $mdat[$f] == $status) ? 'SELECTED' : '').">$name</option>";
+            if("1" == $status &&(isset($mdat[$f]) && $mdat[$f] == $status)) {
+                $empty_counter++;
+            }
+            $txtmeter = $txtmeter."<option value='$status' ".((isset($mdat[$f]) && $mdat[$f] == $status) ? 'SELECTED' : '').">$name</option>";
         }
-        echo "</select></td>\n";
+        $txtmeter = $txtmeter."</select></td>\n";
     }
+
+    $tr_id = "";
+    if($empty_counter == 10) {
+        $tr_id = "id='hide_player_$player_row_counter'";
+        $player_row_counter++;
+    }
+    echo "<tr".(($bgcolor) ? " style='background-color: $bgcolor;'" : '')." $tr_id>\n";
+    echo "$txtmeter";
     echo "</tr>\n";
 }
 
@@ -984,7 +1216,7 @@ public static function userSched() {
         $own_team = (int) $_POST['own_team'];
         $errmsg = '';
         // Logged in coach has access to the tour?
-        if (!in_array($trid, array_keys($tours))) { 
+        if (!in_array($trid, array_keys($tours))) {
             $errmsg = 'You do not have access to the tournament '.$tours[$trid]['tname'];
         }
         // Is the team is really owned by the logged in coach?
@@ -999,15 +1231,15 @@ public static function userSched() {
                 'round'     => $round,
                 'f_tour_id' => $trid,
             ));
-            
-            $backFromMatchLink = 
-                Mobile::isMobile() 
+
+            $backFromMatchLink =
+                Mobile::isMobile()
                     ? "index.php?mobile=1"
                     : "index.php?section=matches&amp;type=report&amp;mid=$mid";
-            
-            status(!$exitStatus, 
-                $exitStatus 
-                    ? Match::$T_CREATE_ERROR_MSGS[$exitStatus] 
+
+            status(!$exitStatus,
+                $exitStatus
+                    ? Match::$T_CREATE_ERROR_MSGS[$exitStatus]
                     : "<a href='$backFromMatchLink'>Click here</a> to open the match report");
             if (!$exitStatus) {
                 echo "<br>";
@@ -1022,7 +1254,7 @@ public static function userSched() {
     $lname = $lid ? get_parent_name(T_NODE_TOURNAMENT, $trid, T_NODE_LEAGUE) : '- N/A -';
     $did   = ($trid && get_alt_col('leagues', 'lid', $lid, 'tie_teams') == 1) ? get_parent_id(T_NODE_TOURNAMENT, $trid, T_NODE_DIVISION) : false;
     $dname = $did ? get_parent_name(T_NODE_TOURNAMENT, $trid, T_NODE_DIVISION) : false;
-    
+
     $_DISABLED = (!$trid) ? 'DISABLED' : '';
     #print_r(array($trid, $lid, $lname, $did));
 
@@ -1033,8 +1265,8 @@ public static function userSched() {
         <h3 class='boxTitle<?php echo T_HTMLBOX_MATCH;?>'><?php echo $lng->getTrn('menu/matches_menu/usersched');?></h3>
         <div class='boxBody'>
             <form method="POST" id="usersched">
-                <?php 
-                echo "In tournament "; 
+                <?php
+                echo "In tournament ";
                 echo HTMLOUT::nodeList(T_NODE_TOURNAMENT,'trid',array(T_NODE_TOURNAMENT => array('locked' => 0, 'type' => TT_FFA, 'allow_sched' => 1)), array(), array('sel_id' => $trid, 'extra_tags' => array('onChange="document.location.href = \'' . getFormAction('?section=matches&type=usersched') . '&trid=\' + $(this).val();"' ), 'init_option' => '<option value="0">- '.$lng->getTrn('matches/usersched/selecttour')." -</option>\n"));
                 echo ' as ';
                 echo '<select name="round" id="round" '.$_DISABLED.'>';
@@ -1081,7 +1313,7 @@ public static function userSched() {
                 </script>
                 <br><br><br>
                 <input type="submit" name="creategame" value="<?php echo $lng->getTrn('menu/matches_menu/usersched');?>" <?php if (empty($teams) || $_DISABLED) echo 'DISABLED';?>>
-                
+
                 <?php if(Mobile::isMobile()) {
                     echo '<a href="' . getFormAction('') . '">' . $lng->getTrn('common/back') . '</a>';
                 } ?>
