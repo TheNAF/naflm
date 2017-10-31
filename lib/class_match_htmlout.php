@@ -403,7 +403,7 @@ public static function report() {
             'fame2'         => (int) $_POST['fame2'],
             'tv1'           => (int) $_POST['tv1']*1000,
             'tv2'           => (int) $_POST['tv2']*1000,
-        )), 'Saving match report');
+        )), $lng->getTrn('matches/report/actions/saving'));
         if (!empty($_POST['summary'])) {
             $m->saveText($_POST['summary']); # Save summery.
         }
@@ -459,7 +459,7 @@ public static function report() {
                     'agn2'    => $_POST["agn2_$pid"],
                 ));
             }
-            MTS('Saved all REGULAR player entries in match_data for team '.$id);
+            MTS($lng->getTrn('matches/report/savedregularentries').' '.$id);
 
             /*
                 Save stars entries.
@@ -496,7 +496,7 @@ public static function report() {
                     $s->rmMatchEntry($m->match_id, $t->team_id);
                 }
             }
-            MTS('Saved all STAR player entries in match_data for team '.$id);
+            MTS($lng->getTrn('matches/report/savedstarentries').' '.$id);
 
             /*
                 Save mercenary entries.
@@ -531,7 +531,7 @@ public static function report() {
                     ));
                 }
             }
-            MTS('Saved all MERC player entries in match_data for team '.$id);
+            MTS($lng->getTrn('matches/report/savedmercentries').' '.$id);
         }
 
         $m->finalizeMatchSubmit(); # Required!
@@ -582,7 +582,7 @@ public static function report() {
     <tr><td><b><?php echo $lng->getTrn('common/dateplayed');?></b>:</td><td colspan="3"><?php   echo ($m->is_played) ? textdate($m->date_played) : '<i>'.$lng->getTrn('matches/report/notplayed').'</i>';?></td></tr>
     <?php
     if (Module::isRegistered('PDFMatchReport')) {
-        $str = '<a href="handler.php?type=pdfmatchreport&amp;tid1='.$team1->team_id.'&amp;tid2='.$team2->team_id.'&amp;mid='.$m->match_id.'" TARGET="_blank">Download PDF report</a>';
+        $str = '<a href="handler.php?type=pdfmatchreport&amp;tid1='.$team1->team_id.'&amp;tid2='.$team2->team_id.'&amp;mid='.$m->match_id.'" TARGET="_blank">'.$lng->getTrn('matches/report/actions/download').'</a>';
         echo "<tr><td><b>Match report</b>:</td><td>$str</td></tr>";
     }
     if (Module::isRegistered('UPLOAD_BOTOCS')) {
@@ -591,10 +591,10 @@ public static function report() {
 
     echo "    <tr>
                 <td>
-                    <b>Opciones:</b></td><td colspan='3'>
+                    <b>".$lng->getTrn('common/options').":</b></td><td colspan='3'>
                     <b>
-                        <br><a href='javascript:void(0);' onClick='hideEmptyPlayers();'>Resumen de Partida</a>
-                        <br><a href='javascript:void(0);' onClick='showEmptyPlayers();'>Mostrar toda la Partida</a>
+                        <br><a href='javascript:void(0);' onClick='hideEmptyPlayers();'>".$lng->getTrn('matches/report/summary')."</a>
+                        <br><a href='javascript:void(0);' onClick='showEmptyPlayers();'>".$lng->getTrn('matches/report/full')."</a>
                         <br><br>
                     </b>
                 </td>
@@ -614,13 +614,13 @@ public static function report() {
         $matchURL = "index.php?section=matches&type=report&amp;mid=$m->match_id";
         $deleteURL = "index.php?section=matches&amp;type=tourmatches&amp;trid=$m->f_tour_id&amp;mid=$m->match_id";
 
-        echo "<tr><td><b>Admin:</b></td><td colspan='3'><b>";
+        echo "<tr><td><b>".$lng->getTrn('common/actions').":</b></td><td colspan='3'><b>";
         echo "<a onclick=\"return match_reset();\" href='$matchURL&amp;action=reset'>".$lng->getTrn('common/reset')."</a>&nbsp;\n";
         echo "<a onclick=\"return match_delete();\" href='$deleteURL&amp;action=delete' style='color:".(!empty($m->date_played) ? 'Red' : 'Blue').";'>".$lng->getTrn('common/delete')."</a>&nbsp;\n";
         echo "<a href='$matchURL&amp;action=".(($m->locked) ? 'unlock' : 'lock')."'>" . ($m->locked ? $lng->getTrn('common/unlock') : $lng->getTrn('common/lock')) . "</a>&nbsp;\n";
-        echo "<br><a href='javascript:void(0);' onClick='generateRandomRoll();'>Generar Tiradas</a>";
-        echo "<br><a href='javascript:void(0);' onClick='disabledToEnabled(true);'>Desbloquear Tiradas</a>";
-        echo "<br><a href='javascript:void(0);' onClick='generateFanFactor(2,".$team2->rg_ff.");generateFanFactor(1,".$team1->rg_ff.");'>Generar FanFactor</a>";
+        echo "<br><a href='javascript:void(0);' onClick='generateRandomRoll();'>".$lng->getTrn('matches/report/actions/roll')."</a>";
+        echo "<br><a href='javascript:void(0);' onClick='disabledToEnabled(true);'>".$lng->getTrn('matches/report/actions/unlock')."</a>";
+        echo "<br><a href='javascript:void(0);' onClick='generateFanFactor(2,".$team2->rg_ff.");generateFanFactor(1,".$team1->rg_ff.");'>".$lng->getTrn('matches/report/actions/fanfactor')."</a>";
 
         echo "<br><a href='javascript:void(0);' onClick='slideToggleFast(\"chRound\");'>".$lng->getTrn('matches/report/chround')."</a><div id='chRound' style='display:none;'>
         <form method='POST'>
@@ -960,7 +960,7 @@ public static function report() {
                 <b>Raised zombie?:</b> <input type='checkbox' name='t${id}zombie' value='1' onclick='slideToggleFast(\"t${id}zombie\");'><br>\n";
                 echo "<div id='t${id}zombie' style='display:none;'>\n";
                 echo "<table class='common'>\n";
-                self::_print_player_row("t${id}zombie", 'Raised zombie', '&mdash;', 'Zombie', false, array(), $DIS);
+                self::_print_player_row("t${id}zombie", $lng->getTrn('position/raisedzombie'), '&mdash;', $lng->getTrn('position/zombie'), false, array(), $DIS);
                 echo "</table>\n";
                 echo "</div>\n";
             }
@@ -975,7 +975,7 @@ public static function report() {
                 echo "</select>\n";
                 foreach (range(0,$maxRotters) as $n) {
                     echo "<div id='t${id}rotter$n' style='display:none;'><table class='common'>\n";
-                    self::_print_player_row("t${id}rotter$n", "Raised Rotter #$n", '&mdash;', 'Rotter', false, array(), $DIS);
+                    self::_print_player_row("t${id}rotter$n", $lng->getTrn('position/raisedrotter'). " #$n", '&mdash;', $lng->getTrn('position/rotter'), false, array(), $DIS);
                     echo "</table></div>\n";
                 }
             }
