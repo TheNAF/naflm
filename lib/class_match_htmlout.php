@@ -583,10 +583,10 @@ public static function report() {
     <?php
     if (Module::isRegistered('PDFMatchReport')) {
         $str = '<a href="handler.php?type=pdfmatchreport&amp;tid1='.$team1->team_id.'&amp;tid2='.$team2->team_id.'&amp;mid='.$m->match_id.'" TARGET="_blank">'.$lng->getTrn('matches/report/actions/download').'</a>';
-        echo "<tr><td><b>Match report</b>:</td><td>$str</td></tr>";
+        echo "<tr><td><b>".$lng->getTrn('matches/report/title')."</b>:</td><td>$str</td></tr>";
     }
     if (Module::isRegistered('UPLOAD_BOTOCS')) {
-        echo "<tr><td><b>Replay</b>:</td><td colspan='3'><a href='handler.php?type=leegmgr&amp;replay=$m->match_id'>View replay</a></td></tr>";
+        echo "<tr><td><b>Replay</b>:</td><td colspan='3'><a href='handler.php?type=leegmgr&amp;replay=$m->match_id'>".$lng->getTrn('matches/report/replay')."</a></td></tr>";
     }
 
     echo "    <tr>
@@ -663,9 +663,10 @@ public static function report() {
             </td></tr>
             <?php
             if (!$settings['hide_ES_extensions']) {
+                $link = "index.php?section=matches&amp;type=report&amp;mid=$m->match_id&amp;es_report=1";
                 ?>
                 <tr><td colspan='<?php echo $CP;?>'>
-                    <b>E</b>xtra player <b>S</b>tats (ES) <a href="index.php?section=matches&amp;type=report&amp;mid=<?php echo $m->match_id?>&amp;es_report=1">report page here</a>
+                    <?php echo str_replace('#link', $link, $lng->getTrn('matches/report/extraplayerstats'));?>
                 </td></tr>
                 <?php
             }
@@ -897,6 +898,7 @@ public static function report() {
                switch(strtolower(str_replace(' ', '', $f)))
                {
                    case 'name': $header_text = $lng->getTrn('common/name'); break;
+                   case 'position': $header_text = $lng->getTrn('common/pos'); break;
                    case 'mvp': $header_text = $lng->getTrn('matches/report/mvp'); break;
                    case 'cp': $header_text = $lng->getTrn('matches/report/cp'); break;
                    case 'bh': $header_text = $lng->getTrn('matches/report/bh'); break;
@@ -944,10 +946,10 @@ public static function report() {
             ?><table class="text"><tr><td style="width: 100%;"></td><?php
                 if (1) {
                     ?>
-                    <td style="background-color: <?php echo COLOR_HTML_MNG;     ?>;"><font color='black'><b>&nbsp;MNG&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY; ?>;"><font color='black'><b>&nbsp;Journeyman&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY_USED; ?>;"><font color='black'><b>&nbsp;Used&nbsp;journeyman&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_NEWSKILL;?>;"><font color='black'><b>&nbsp;New&nbsp;skill&nbsp;available&nbsp;</b></font></td>
+                    <td style="background-color: <?php echo COLOR_HTML_MNG;     ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/mng'); ?>&nbsp;</b></font></td>
+                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY; ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/journeyman'); ?>&nbsp;</b></font></td>
+                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY_USED; ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/usedjourneyman'); ?>&nbsp;</b></font></td>
+                    <td style="background-color: <?php echo COLOR_HTML_NEWSKILL;?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/newskill'); ?>&nbsp;</b></font></td>
                     <?php
                 }
             ?></tr></table><?php
@@ -983,7 +985,7 @@ public static function report() {
 
             <table style='border-spacing: 0px 10px;'>
                 <tr><td align="left" valign="top">
-                    <b>Star Players</b>:
+                    <b><?php echo $lng->getTrn('common/starplayers'); ?></b>:
                     <input type='button' id="addStarsBtn_<?php echo $id;?>" value="<?php echo $lng->getTrn('common/add');?>"
                     onClick="stars = document.getElementById('stars_<?php echo $id;?>'); addStarMerc(<?php echo $id;?>, stars.options[stars.selectedIndex].value);" <?php echo $DIS; ?>>
                     <select id="stars_<?php echo $id;?>" <?php echo $DIS; ?>>
@@ -995,7 +997,7 @@ public static function report() {
                     </select>
                 </td></tr>
                 <tr><td align="left" valign="top">
-                    <b>Mercenaries</b>: <input type='button' id="addMercsBtn_<?php echo $id;?>" value="<?php echo $lng->getTrn('common/add');?>" onClick="addStarMerc(<?php echo "$id, ".ID_MERCS;?>);" <?php echo $DIS; ?>>
+                    <b><?php echo $lng->getTrn('common/mercenaries'); ?></b>: <input type='button' id="addMercsBtn_<?php echo $id;?>" value="<?php echo $lng->getTrn('common/add');?>" onClick="addStarMerc(<?php echo "$id, ".ID_MERCS;?>);" <?php echo $DIS; ?>>
                 </td></tr>
             </table>
 

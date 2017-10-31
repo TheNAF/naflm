@@ -109,6 +109,8 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
         <races>Races</races>
         <star>Star</star>
         <stars>Stars</stars>
+        <starplayers>Star Players</starplayers>
+        <mercenaries>Mercenaries</mercenaries>
 
         <roster>Roster</roster>
         <availablestars>Available Star Players</availablestars>
@@ -429,15 +431,18 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
         <report>
 
             <!-- General -->
+            <title>Match report</title>
             <clickforhelp>Need help?</clickforhelp>
             <notplayed>Not yet played</notplayed>
             <report>report</report>
             <chround>Change round</chround>
+            <replay>View replay</replay>
 
             <!-- Subsecs of team page -->
             <info>Game information</info>
             <stadium>Stadium</stadium>
             <fans>Fans (RL spectators)</fans>
+            <extraplayerstats><![CDATA[Extra player Stats (ES) <a href="#link">report page here</a>]]></extraplayerstats>
 
             <results>Game results</results>
             <treas>Treasury</treas>
@@ -475,6 +480,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <inj>Inj</inj>
             <ageing1>Ageing 1</ageing1>
             <ageing2>Ageing 2</ageing2>
+
+            <!-- Match report footer -->
+            <mng>MNG</mng>
+            <journeyman>Journeyman</journeyman>
+            <usedjourneyman>Used Journeyman</usedjourneyman>
+            <newskill>New skill available</newskill>
 
         </report>
     </matches>
@@ -853,7 +864,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
         <nobody>--Cuerpo vacio--</nobody>
 
         <submit>Enviar</submit>
-        <save>Salvar</save>
+        <save>Guardar</save>
         <create>Crear</create>
         <delete>Borrar</delete>
         <edit>Editar</edit>
@@ -934,6 +945,8 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
         <races>Razas</races>
         <star>Estrella</star>
         <stars>Estrellas</stars>
+        <starplayers>Jugadores estrella</starplayers>
+        <mercenaries>Mercenarios</mercenaries>
 
         <won>Ganados</won>
         <lost>Perdidos</lost>
@@ -1241,6 +1254,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
         <report>
 
             <!-- General -->
+            <title>Informe del partido</title>
             <clickforhelp>Necesitas ayuda?</clickforhelp>
             <notplayed>Aun no jugado</notplayed>
             <report>Acta</report>
@@ -1248,8 +1262,9 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
 
             <!-- Subsecs of team page -->
             <info>Información del Partido</info>
-                <stadium>Estadio</stadium>
-                <fans>Fans (Espectadores de carne y hueso)</fans>
+            <stadium>Estadio</stadium>
+            <fans>Fans (Espectadores de carne y hueso)</fans>
+            <extraplayerstats><![CDATA[<a href="#link">Informe de Estadísticas adicionales de jugadores</a>]]></extraplayerstats>
 
             <results>Resultados del partido</results>
             <treas>Tesorería</treas>
@@ -1287,6 +1302,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <inj>Her</inj>
             <ageing1>Envejecimiento 1</ageing1>
             <ageing2>Envejecimiento 2</ageing2>
+
+            <!-- Match report footer -->
+            <mng>LPPE</mng>
+            <journeyman>Independiente</journeyman>
+            <usedjourneyman>Independiente usado</usedjourneyman>
+            <newskill>Nueva habilidad disponible</newskill>
 
         </report>
     </matches>
