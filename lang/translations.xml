@@ -1264,11 +1264,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <info>Información del Partido</info>
             <stadium>Estadio</stadium>
             <fans>Fans (Espectadores de carne y hueso)</fans>
-<<<<<<< HEAD
             <extraplayerstats><![CDATA[<a href="#link">Informe de Estadísticas adicionales de jugadores</a>]]></extraplayerstats>
-=======
-            <extraplayerstats><![CDATA[Extra player Stats (ES) <a href="#link">report page here</a>]]></extraplayerstats>
->>>>>>> branch 'master' of https://github.com/dtamajon/naflm.git
 
             <results>Resultados del partido</results>
             <treas>Tesorería</treas>
@@ -1308,11 +1304,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <ageing2>Envejecimiento 2</ageing2>
 
             <!-- Match report footer -->
-<<<<<<< HEAD
             <mng>LPPE</mng>
-=======
-            <mng>No Juega próximo partido</mng>
->>>>>>> branch 'master' of https://github.com/dtamajon/naflm.git
             <journeyman>Independiente</journeyman>
             <usedjourneyman>Independiente usado</usedjourneyman>
             <newskill>Nueva habilidad disponible</newskill>
