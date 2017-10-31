@@ -946,10 +946,10 @@ public static function report() {
             ?><table class="text"><tr><td style="width: 100%;"></td><?php
                 if (1) {
                     ?>
-                    <td style="background-color: <?php echo COLOR_HTML_MNG;     ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/mng'); ?>&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY; ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/journeyman'); ?>&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_JOURNEY_USED; ?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/usedjourneyman'); ?>&nbsp;</b></font></td>
-                    <td style="background-color: <?php echo COLOR_HTML_NEWSKILL;?>;"><font color='black'><b>&nbsp;<?php echo $lng->getTrn('matches/report/newskill'); ?>&nbsp;</b></font></td>
+                    <td style="padding:0 4px;background-color: <?php echo COLOR_HTML_MNG;     ?>;"><font color='black'><b><?php echo $lng->getTrn('matches/report/mng'); ?></b></font></td>
+                    <td style="padding:0 4px;background-color: <?php echo COLOR_HTML_JOURNEY; ?>;"><font color='black'><b><?php echo $lng->getTrn('matches/report/journeyman'); ?></b></font></td>
+                    <td style="padding:0 4px;background-color: <?php echo COLOR_HTML_JOURNEY_USED; ?>;"><font color='black'><b><?php echo $lng->getTrn('matches/report/usedjourneyman'); ?></b></font></td>
+                    <td style="padding:0 4px;background-color: <?php echo COLOR_HTML_NEWSKILL;?>;"><font color='black'><b><?php echo $lng->getTrn('matches/report/newskill'); ?></b></font></td>
                     <?php
                 }
             ?></tr></table><?php
