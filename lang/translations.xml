@@ -792,6 +792,11 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
     <gobblergrimlich>Gobbler Grimlich</gobblergrimlich>
     <scylaanfingrimm>Scyla Anfingrimm</scylaanfingrimm>
     <withergraspdoubledrool>Withergrasp Doubledrool</withergraspdoubledrool>
+    <!-- Added BB2016 Spike! #2-->
+  <asperonthorn>Asperon Thorn</asperonthorn>
+  <elijahdoom>Elijah Doom</elijahdoom>
+  <kirothkrakeneye>Kiroth Krakeneye</kirothkrakeneye>
+  <mordrixhex>Mordrix Hex</mordrixhex>
 </starplayer>
 
 <daysofweek>
