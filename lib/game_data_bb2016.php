@@ -1768,16 +1768,16 @@ $stars = array(
        'icon'   => 'star',
        'races'  => array(7),
    ),
-   'Eldril Sidewinder' => array (
+   'Eldril Sidewinder' => array ( /*Updated in BB2016 Spike! #2*/
        'id'     => -12,
        'ma'     => 8,
        'st'     => 3,
        'ag'     => 4,
        'av'     => 7,
-       'def'    => array (99, 20, 23, 98, 44, 8),
+       'def'    => array (20,23,98,99,44,8),
        'cost'   => 200000,
        'icon'   => 'star',
-       'races'  => array(3, 5, 8, 20),
+       'races'  => array(T_RACE_DARK_ELF, T_RACE_ELF,T_RACE_HIGH_ELF, T_RACE_WOOD_ELF),
    ),
    'Flint Churnblade' => array (
        'id'     => -13,
@@ -1889,16 +1889,16 @@ $stars = array(
        'icon'   => 'star',
        'races'  => array(11, 22),
    ),
-   'Horkon Heartripper' => array (
+   'Horkon Heartripper' => array ( /*Updated in BB2016 Spike! #2*/
        'id'     => -23,
        'ma'     => 7,
        'st'     => 3,
        'ag'     => 4,
        'av'     => 7,
-       'def'    => array (99, 23, 25, 55, 10, 106),
+       'def'    => array (23,25,99,55,10,106),
        'cost'   => 210000,
        'icon'   => 'star',
-       'races'  => array(3),
+       'races'  => array(T_RACE_DARK_ELF),
    ),
    'Hthark the Unstoppable' => array (
        'id'     => -24,
@@ -1911,16 +1911,16 @@ $stars = array(
        'icon'   => 'star',
        'races'  => array(2),
    ),
-   'Hubris Rakarth' => array (
+   'Hubris Rakarth' => array ( /*Updated in BB2016 Spike! #2*/
        'id'     => -25,
        'ma'     => 7,
        'st'     => 4,
        'ag'     => 4,
        'av'     => 8,
-       'def'    => array (99, 1, 3, 24, 54, 11),
+       'def'    => array (1, 3,24, 99,54, 11),
        'cost'   => 260000,
        'icon'   => 'star',
-       'races'  => array(3, 5),
+       'races'  => array(T_RACE_DARK_ELF, T_RACE_ELF),
    ),
    'Icepelt Hammerblow' => array (
        'id'     => -26,
@@ -2284,7 +2284,7 @@ $stars = array(
         'def'   => array (99, 23, 5, 24, 53, 25),
         'cost'  => 250000,
         'icon'  => 'star',
-        'races' => array(0, 3)
+        'races' => array(T_RACE_AMAZON, T_RACE_DARK_ELF)
     ),
     'Sinnedbad' => array (
         'id'    => -59,
@@ -2487,6 +2487,51 @@ $stars = array(
         'cost'  => 250000,
         'icon'  => 'star',
         'races' => array(T_RACE_CHAOS, T_RACE_NORSE),
+    ),
+	/*Added in BB2016 Spike! #2*/
+	'Asperon Thorn' => array (
+        'id'    => -77,
+        'ma'    => 6,
+        'st'    => 3,
+        'ag'    => 4,
+        'av'    => 8,
+        'def'   => array (42,7,99,45,46,12),
+        'cost'  => 160000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_DARK_ELF, T_RACE_ELF, T_RACE_HIGH_ELF),
+    ),
+	'Elijah Doom' => array (
+        'id'    => -78,
+        'ma'    => 6,
+        'st'    => 3,
+        'ag'    => 4,
+        'av'    => 9,
+        'def'   => array (4,52,99,57,14),
+        'cost'  => 190000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_DARK_ELF, T_RACE_ELF),
+    ),
+	'Kiroth Krakeneye' => array (
+        'id'    => -79,
+        'ma'    => 7,
+        'st'    => 3,
+        'ag'    => 4,
+        'av'    => 8,
+        'def'   => array (72,74,99,8,13,77),
+        'cost'  => 170000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_DARK_ELF, T_RACE_ELF),
+    ),
+	'Mordrix Hex' => array (
+        'id'    => -80,
+        'ma'    => 7,
+        'st'    => 3,
+        'ag'    => 4,
+        'av'    => 7,
+        'def'   => array (99, 1, 2, 23, 4, 5, 54),
+        'cost'  => 230000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_DARK_ELF),
     ),
 );
 /*  Paired Stars  ***************************************************************************************** */
