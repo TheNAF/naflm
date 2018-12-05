@@ -33,8 +33,8 @@ class ObjEvent
 			if (!isset($col)) $col = 'date_bought';
 			$_query = "SELECT DISTINCT player_id AS 'pid', %COL AS 'date', $_COMMON_COLS__T_PLAYER FROM players, mv_players WHERE players.player_id = mv_players.f_pid AND players.type = ".PLAYER_TYPE_NORMAL." AND %NODE = $node_id AND %COL IS NOT NULL ORDER BY %COL DESC LIMIT $N";
 			$query = str_replace(array('%COL', '%NODE'), array($col, $mv_keys[$node]), $_query);
-			$result = mysql_query($query);
-			while ($row = mysql_fetch_object($result)) {
+			$result = mysqli_query(mysql_up(),$query);
+			while ($row = mysqli_fetch_object($result)) {
 				$events[] = $row;
 			}
 			break;
@@ -45,8 +45,8 @@ class ObjEvent
 				players_skills.f_skill_id = game_data_skills.skill_id AND 
 				".$mv_keys[$node]." = $node_id 
 			GROUP BY player_id, f_skill_id ORDER BY players_skills.id DESC LIMIT $N";
-			$result = mysql_query($query);
-			while ($row = mysql_fetch_object($result)) {
+			$result = mysqli_query(mysql_up(),$query);
+			while ($row = mysqli_fetch_object($result)) {
 				$events[] = $row;
 			}
 			break;

@@ -40,9 +40,9 @@ public $about = '';
 
 function __construct($ft_id) 
 {
-    $result = mysql_query("SELECT * FROM famousteams WHERE ft_id = $ft_id");
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),"SELECT * FROM famousteams WHERE ft_id = $ft_id");
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             foreach ($row as $key => $val) {
                 $this->$key = $val;
             }
@@ -52,9 +52,9 @@ function __construct($ft_id)
 
 public function edit($title, $about) 
 {
-    if (mysql_query("UPDATE famousteams SET 
-                    title = '".mysql_real_escape_string($title)."', 
-                    about = '".mysql_real_escape_string($about)."' 
+    if (mysqli_query(mysql_up(),"UPDATE famousteams SET 
+                    title = '".mysqli_real_escape_string($title)."', 
+                    about = '".mysqli_real_escape_string($about)."' 
                     WHERE ft_id = $this->ft_id")) {
         $this->title = $title;
         $this->about = $about;
@@ -66,7 +66,7 @@ public function edit($title, $about)
 
 public function delete()
 {
-    return (mysql_query("DELETE FROM famousteams WHERE ft_id = $this->ft_id"));
+    return (mysqli_query(mysql_up(),"DELETE FROM famousteams WHERE ft_id = $this->ft_id"));
 }
 
 /***************
@@ -116,9 +116,9 @@ public static function getFT($node, $id, $N = false)
             return array();
     }
 
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),$query) or die(mysqli_error($conn));
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $entry = new self($row['id']);
             // Add extra fields to object.
             unset($row['id']);
@@ -133,11 +133,11 @@ public static function getFT($node, $id, $N = false)
 
 public static function create($tid, $title, $about)
 {
-    return (mysql_query("
+    return (mysqli_query(mysql_up(),"
             INSERT INTO famousteams 
             (tid, title, about, date) 
             VALUES 
-            ($tid, '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($about)."', NOW())
+            ($tid, '".mysqli_real_escape_string($title)."', '".mysqli_real_escape_string($about)."', NOW())
             "));
 }
 
@@ -200,7 +200,7 @@ public static function triggerHandler($type, $argv){}
 public static function isInFT($tid) 
 {
     $query = "SELECT tid FROM famousteams WHERE tid = $tid";
-    return (($result = mysql_query($query)) && mysql_num_rows($result) > 0);
+    return (($result = mysqli_query(mysql_up(),$query)) && mysqli_num_rows($result) > 0);
 }
 
 public static function makeList() {
@@ -284,14 +284,14 @@ public static function makeList() {
                 <b><?php echo $lng->getTrn('team', __CLASS__).'</b>';?><br>
                 <?php
                 $query = "SELECT team_id, name FROM teams WHERE f_lid = $node_id ORDER by name ASC";
-                $result = mysql_query($query);
-                if ($result && mysql_num_rows($result) == 0) {
+                $result = mysqli_query(mysql_up(),$query);
+                if ($result && mysqli_num_rows($result) == 0) {
                     $_DISABLED = 'DISABLED';
                 }
                 ?>
                 <select name="tid" id="teams" <?php echo $_DISABLED;?>>
                     <?php
-                    while ($row = mysql_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                         echo "<option value='$row[team_id]' ".(($tid == $row['team_id']) ? 'SELECTED' : '').">$row[name]</option>\n";
                     }
                     ?>

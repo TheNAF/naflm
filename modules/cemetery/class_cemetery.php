@@ -162,10 +162,10 @@ private static function entries($tid)
 {
     $WHERE_TID = ($tid) ? "AND owned_by_team_id = $tid" : '';
     $query = "SELECT name, date_died, player_id as 'pid', owned_by_team_id 'f_tid', f_tname,  cemetery_id,date,title,about, DATEDIFF(date_died,date_bought) AS 'lifetime' FROM players LEFT JOIN cemetery ON players.player_id = cemetery.pid WHERE date_died IS NOT NULL $WHERE_TID ORDER BY players.date_died DESC";
-    $result = mysql_query($query);
+    $result = mysqli_query(mysql_up(),$query);
     $entries = array();
-    if (mysql_num_rows($result) > 0) {
-        while ($obj = mysql_fetch_object($result)) {
+    if (mysqli_num_rows($result) > 0) {
+        while ($obj = mysqli_fetch_object($result)) {
             $entries[] = $obj;
         }    
     }
@@ -177,23 +177,23 @@ public static function edit($pid, $title, $about)
     $ENTRY_EXISTS = get_alt_col('cemetery', 'pid', $pid, 'date');
     if ($ENTRY_EXISTS) {
         $query = "UPDATE cemetery SET 
-            title = '".mysql_real_escape_string($title)."', 
-            about = '".mysql_real_escape_string($about)."' 
+            title = '".mysqli_real_escape_string($title)."', 
+            about = '".mysqli_real_escape_string($about)."' 
             WHERE pid = $pid";
-        return mysql_query($query);
+        return mysqli_query(mysql_up(),$query);
     }
     else {
         $query = "INSERT INTO cemetery 
             (pid, title, about, date) 
             VALUES 
-            ($pid, '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($about)."', NOW())";
-        return mysql_query($query);
+            ($pid, '".mysqli_real_escape_string($title)."', '".mysqli_real_escape_string($about)."', NOW())";
+        return mysqli_query(mysql_up(),$query);
     }
 }
 
 public static function delete($pid)
 {
-    return (mysql_query("DELETE FROM cemetery WHERE pid = $pid"));
+    return (mysqli_query(mysql_up(),"DELETE FROM cemetery WHERE pid = $pid"));
 }
 
 /*

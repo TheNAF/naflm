@@ -181,10 +181,10 @@ public static function getLeaguePreferences() {
     list($sel_lid, $HTML_LeagueSelector) = HTMLOUT::simpleLeagueSelector();
     echo $HTML_LeagueSelector;
 
-	$result = mysql_query("SELECT lid, name, prime_tid, league_name, forum_url, welcome, rules FROM leagues LEFT OUTER JOIN league_prefs on lid=f_lid WHERE lid=$sel_lid");
+	$result = mysqli_query(mysql_up(),"SELECT lid, name, prime_tid, league_name, forum_url, welcome, rules FROM leagues LEFT OUTER JOIN league_prefs on lid=f_lid WHERE lid=$sel_lid");
 
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $theme_css = FileManager::readFile(FileManager::getCssDirectoryName() . "/league_override_$sel_lid.css"); 
             
             return new LeaguePref($row['lid'], $row['name'],
@@ -205,11 +205,11 @@ function validate() {
 function save() {
     global $settings, $rules;
     
-    $hasLeaguePref = mysql_fetch_object(mysql_query("SELECT f_lid from league_prefs where f_lid=$this->lid"));
+    $hasLeaguePref = mysqli_fetch_object(mysqli_query(mysql_up(),"SELECT f_lid from league_prefs where f_lid=$this->lid"));
     if($hasLeaguePref) {
-        $query = "UPDATE league_prefs SET prime_tid=$this->p_tour, league_name='".mysql_real_escape_string($this->league_name)."', forum_url='".mysql_real_escape_string($this->forum_url)."' , welcome='".mysql_real_escape_string($this->welcome)."' , rules='".mysql_real_escape_string($this->rules)."'  WHERE f_lid=$this->lid";
+        $query = "UPDATE league_prefs SET prime_tid=$this->p_tour, league_name='".mysqli_real_escape_string($this->league_name)."', forum_url='".mysqli_real_escape_string($this->forum_url)."' , welcome='".mysqli_real_escape_string($this->welcome)."' , rules='".mysqli_real_escape_string($this->rules)."'  WHERE f_lid=$this->lid";
     } else {
-        $query = "INSERT INTO league_prefs (f_lid, prime_tid, second_tid, league_name, forum_url, welcome, rules) VALUE ($this->lid, $this->p_tour, $this->s_tour, '".mysql_real_escape_string($this->league_name)."', '".mysql_real_escape_string($this->forum_url)."', '".mysql_real_escape_string($this->welcome)."', '".mysql_real_escape_string($this->rules)."')";
+        $query = "INSERT INTO league_prefs (f_lid, prime_tid, second_tid, league_name, forum_url, welcome, rules) VALUE ($this->lid, $this->p_tour, $this->s_tour, '".mysqli_real_escape_string($this->league_name)."', '".mysqli_real_escape_string($this->forum_url)."', '".mysqli_real_escape_string($this->welcome)."', '".mysqli_real_escape_string($this->rules)."')";
     }
            
     FileManager::writeFile(FileManager::getCssDirectoryName() . "/league_override_$this->lid.css", $this->theme_css);
@@ -224,7 +224,7 @@ function save() {
     $settings['lang'] = $this->language;
     $rules['initial_treasury'] = $this->tv;
             
-    return mysql_query($query);
+    return mysqli_query(mysql_up(),$query);
 }
 
 public static function showLeaguePreferences() {

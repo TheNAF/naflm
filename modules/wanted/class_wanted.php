@@ -39,9 +39,9 @@ public $bounty      = '';
 
 function __construct($wanted_id) 
 {
-    $result = mysql_query("SELECT * FROM wanted WHERE wanted_id = $wanted_id");
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),"SELECT * FROM wanted WHERE wanted_id = $wanted_id");
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             foreach ($row as $key => $val) {
                 $this->$key = $val;
             }
@@ -51,9 +51,9 @@ function __construct($wanted_id)
 
 public function edit($why, $bounty) 
 {
-    if (mysql_query("UPDATE wanted SET 
-                    why = '".mysql_real_escape_string($why)."', 
-                    bounty = '".mysql_real_escape_string($bounty)."' 
+    if (mysqli_query(mysql_up(),"UPDATE wanted SET 
+                    why = '".mysqli_real_escape_string($why)."', 
+                    bounty = '".mysqli_real_escape_string($bounty)."' 
                     WHERE wanted_id = $this->wanted_id")) {
         $this->why = $why;
         $this->bounty = $bounty;
@@ -65,7 +65,7 @@ public function edit($why, $bounty)
 
 public function delete()
 {
-    return (mysql_query("DELETE FROM wanted WHERE wanted_id = $this->wanted_id"));
+    return (mysqli_query(mysql_up(),"DELETE FROM wanted WHERE wanted_id = $this->wanted_id"));
 }
 
 /***************
@@ -118,9 +118,9 @@ public static function getWanted($node, $id, $N = false)
             return array();
     }
 
-    $result = mysql_query($query) or die(mysql_error());
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),$query) or die(mysqli_error($conn));
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $entry = new self($row['id']);
             // Add extra fields to object.
             unset($row['id']);
@@ -135,11 +135,11 @@ public static function getWanted($node, $id, $N = false)
 
 public static function create($player_id, $why, $bounty)
 {
-        return (mysql_query("
+        return (mysqli_query(mysql_up(),"
                 INSERT INTO wanted 
                 (pid, why, bounty, date) 
                 VALUES 
-                ($player_id, '".mysql_real_escape_string($why)."', '".mysql_real_escape_string($bounty)."', NOW())
+                ($player_id, '".mysqli_real_escape_string($why)."', '".mysqli_real_escape_string($bounty)."', NOW())
                 "));
 }
 
@@ -204,7 +204,7 @@ public static function triggerHandler($type, $argv){}
 public static  function isWanted($pid) 
 {
     $query = "SELECT pid FROM wanted WHERE pid = $pid";
-    return (($result = mysql_query($query)) && mysql_num_rows($result) > 0);
+    return (($result = mysqli_query(mysql_up(),$query)) && mysqli_num_rows($result) > 0);
 }
 
 public static function makeList() {
@@ -289,14 +289,14 @@ public static function makeList() {
                 <b><?php echo $lng->getTrn('player', __CLASS__).'</b>&nbsp;&mdash;&nbsp;'.$lng->getTrn('sort_hint', __CLASS__);?><br>
                 <?php
                 $query = "SELECT DISTINCT player_id, f_tname, name FROM players, mv_players WHERE player_id = f_pid AND f_lid = $node_id ORDER by f_tname ASC, name ASC";
-                $result = mysql_query($query);
-                if ($result && mysql_num_rows($result) == 0) {
+                $result = mysqli_query(mysql_up(),$query);
+                if ($result && mysqli_num_rows($result) == 0) {
                     $_DISABLED = 'DISABLED';
                 }
                 ?>
                 <select name="player_id" id="players" <?php echo $_DISABLED;?>>
                     <?php
-                    while ($row = mysql_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                         echo "<option value='$row[player_id]' ".(($player_id == $row['player_id']) ? 'SELECTED' : '').">$row[f_tname]: $row[name] </option>\n";
                     }
                     ?>

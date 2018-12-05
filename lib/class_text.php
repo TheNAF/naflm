@@ -35,9 +35,9 @@ class TextSubSys
      * Methods 
      ***************/
     function __construct($txt_id) {
-        $result = mysql_query("SELECT * FROM texts WHERE txt_id = $txt_id");
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT * FROM texts WHERE txt_id = $txt_id");
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 foreach ($row as $key => $val) {
                     $this->$key = $val;
                 }
@@ -46,17 +46,17 @@ class TextSubSys
     }
     
     public function delete() {
-        return (mysql_query("DELETE FROM texts WHERE txt_id = $this->txt_id"));
+        return (mysqli_query(mysql_up(),"DELETE FROM texts WHERE txt_id = $this->txt_id"));
     }
 
     public function pin($bool) {
-        return (mysql_query("UPDATE texts SET pinned = $bool WHERE txt_id = $this->txt_id"));
+        return (mysqli_query(mysql_up(),"UPDATE texts SET pinned = $bool WHERE txt_id = $this->txt_id"));
     }
     
     public function edit($txt, $txt2, $f_id = false, $type = false) {
-        if (mysql_query("UPDATE texts SET 
-                        txt2 = '".mysql_real_escape_string($txt2)."', 
-                        txt = '".mysql_real_escape_string($txt)."' 
+        if (mysqli_query(mysql_up(),"UPDATE texts SET 
+                        txt2 = '".mysqli_real_escape_string($txt2)."', 
+                        txt = '".mysqli_real_escape_string($txt)."' 
                         ".(($f_id) ? ", f_id = $f_id " : '')." 
                         ".(($type) ? ", type = $type " : '')." 
                         WHERE txt_id = $this->txt_id")) {
@@ -72,8 +72,8 @@ class TextSubSys
      ***************/
     public static function create($f_id, $type, $txt, $txt2, $f_id2 = false) {
         $query = "INSERT INTO texts (f_id, txt2, txt, date, type".(($f_id2) ? ', f_id2' : '').") 
-                VALUES ($f_id, '".mysql_real_escape_string($txt2)."', '".mysql_real_escape_string($txt)."', NOW(), $type".(($f_id2) ? ", $f_id2" : '').")";
-        return mysql_query($query);
+                VALUES ($f_id, '".mysqli_real_escape_string($txt2)."', '".mysqli_real_escape_string($txt)."', NOW(), $type".(($f_id2) ? ", $f_id2" : '').")";
+        return mysqli_query(mysql_up(),$query);
     }
     
     public static function getMainBoardMessages($n, $lid = false, $get_tnews = true, $get_summaries = true) {
@@ -158,9 +158,9 @@ class ObjDescriptions extends TextSubSys
      * Methods 
      ***************/
     function __construct($type, $f_id) {
-        $result = mysql_query("SELECT * FROM texts WHERE type = $type AND f_id = $f_id");
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT * FROM texts WHERE type = $type AND f_id = $f_id");
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 foreach ($row as $key => $val) {
                     $this->$key = $val;
                 }
@@ -218,12 +218,12 @@ class Message extends TextSubSys
      ***************/
     public static function getMessages($n = false, $lid = false) {
         $m = array();
-        $result = mysql_query("SELECT txt_id 
+        $result = mysqli_query(mysql_up(),"SELECT txt_id 
             FROM texts
             WHERE type = ".T_TEXT_MSG." AND (f_id2 = ".self::T_BROADCAST." OR ".(($lid) ? "f_id2 = $lid" : 'TRUE').") 
             ORDER BY pinned DESC, date DESC LIMIT $n");
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($m, new Message($row['txt_id']));
             }
         }
@@ -257,10 +257,10 @@ class MatchSummary extends TextSubSys
     function __construct($mid) {
         $this->match_id = $mid;
         $query = "SELECT txt_id FROM texts WHERE f_id = $mid AND type = ".T_TEXT_MATCH_SUMMARY;
-        $result = mysql_query($query);
-        if ($result && mysql_num_rows($result) > 0) {
+        $result = mysqli_query(mysql_up(),$query);
+        if ($result && mysqli_num_rows($result) > 0) {
             $this->exists = true;
-            $row = mysql_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             parent::__construct($row['txt_id']);
         }
     }
@@ -283,9 +283,9 @@ class MatchSummary extends TextSubSys
             AND txt != '' 
             ".(($lid) ? "AND f_lid = $lid" : '')." 
             ORDER BY date_played DESC LIMIT $n";
-        $result = mysql_query($query);
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),$query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 if (!empty($row['txt'])) {
                     $r[] = new self($row['match_id']);
                 }
@@ -335,9 +335,9 @@ class TeamNews extends TextSubSys
         $query = "SELECT txt_id FROM texts, teams 
             WHERE f_id = team_id AND type = ".T_TEXT_TNEWS.(($tid) ? " AND f_id = $tid " : '').(($lid) ? " AND teams.f_lid = $lid " : ''). " 
             ORDER BY date DESC LIMIT $n";
-        $result = mysql_query($query);
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),$query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($news, new TeamNews($row['txt_id']));
             }
         }

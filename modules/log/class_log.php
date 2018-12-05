@@ -78,7 +78,7 @@ public static function triggerHandler($type, $argv) {}
 
 public static function createEntry($cat, $cid, $msg)
 {
-    return mysql_query("INSERT INTO log (date, cid, category, msg) VALUES (NOW(), $cid, $cat, '".mysql_real_escape_string($msg)."')");
+    return mysqli_query(mysql_up(),"INSERT INTO log (date, cid, category, msg) VALUES (NOW(), $cid, $cat, '".mysqli_real_escape_string($msg)."')");
 }
 
 public static function logViewPage()
@@ -92,9 +92,9 @@ public static function logViewPage()
     echo "<table style='width:100%;'>\n";
     echo "<tr><td><i>Date</i></td><td><i>Message</i></td></tr><tr><td colspan='2'><hr></td></tr>\n";
     $query = "SELECT * FROM log WHERE date > SUBDATE(NOW(), INTERVAL ".LOG_HIST_LENGTH." MONTH) ORDER BY date DESC";
-    $result = mysql_query($query);
+    $result = mysqli_query(mysql_up(),$query);
     $logs = array();
-    while ($l = mysql_fetch_object($result)) {
+    while ($l = mysqli_fetch_object($result)) {
         echo "<tr><td>".textdate($l->date)."</td><td>$l->msg</td></tr>\n";
     }
     echo "</table>\n";

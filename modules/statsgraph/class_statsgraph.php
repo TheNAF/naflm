@@ -87,8 +87,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('Games' => 'royalblue');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -119,8 +119,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries);
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('Active teams' => 'olivedrab');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -151,8 +151,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries);
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('Active coaches' => 'darkorange1');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -178,8 +178,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('Games' => 'royalblue');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row, SG_MULTIBAR_HIST_LENGTH_DAYS);
@@ -204,8 +204,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('CP' => 'seagreen', 'TD' => 'indianred');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -228,8 +228,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('CAS' => 'firebrick1');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -252,8 +252,8 @@ class SGraph implements ModuleInterface
 #            }
 
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('smp' => 'blue');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -277,8 +277,8 @@ class SGraph implements ModuleInterface
 #            }
 #
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('avg_gate' => 'blue');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -301,8 +301,8 @@ class SGraph implements ModuleInterface
 #            }
 
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('avg_abs_diff' => 'blue');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -325,8 +325,8 @@ class SGraph implements ModuleInterface
 #            }
 
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('avg_dtreasury' => 'blue');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -349,8 +349,8 @@ class SGraph implements ModuleInterface
 #            }
 
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('fans' => 'blue');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -379,8 +379,8 @@ class SGraph implements ModuleInterface
 #                SELECT f_match_id, SUM(IF(f_player_id <= ".ID_STARS_BEGIN.", 1, 0)) AS stars FROM match_data GROUP BY f_match_id
 #            ) AS starsTbl";
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches, $tableMercs, $tableStars WHERE mercsTbl.f_match_id = matches.match_id AND starsTbl.f_match_id = matches.match_id";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('avg_stars' => 'red', 'avg_mercs' => 'green');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -409,8 +409,8 @@ class SGraph implements ModuleInterface
 #            }
 
 #            $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id";
-#            $result = mysql_query($query);
-#            $row    = mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $row    = mysqli_fetch_assoc($result);
 #
 #            $lengends = array('mng' => 'green', 'ni' => 'red', 'ma' => 'blue', 'av' => 'aqua', 'ag' => 'brown', 'st' => 'purple', 'dead' => 'slategray');
 #            list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -421,9 +421,9 @@ class SGraph implements ModuleInterface
             */
 #            global $raceididx;
 #            $query  = "SELECT DISTINCT(f_race_id) AS 'race', COUNT(f_race_id) 'cnt' FROM teams GROUP BY f_race_id";
-#            $result = mysql_query($query);
+#            $result = mysqli_query(mysql_up(),$query);
 #            $data = array();
-#            while ($row = mysql_fetch_assoc($result)) {
+#            while ($row = mysqli_fetch_assoc($result)) {
 #                $data[$raceididx[$row['race']]." ($row[cnt])"] = $row['cnt'];
 #            }
 #            $graph = new PieGraph($opts['xdim'],$opts['ydim'],"auto");
@@ -440,8 +440,8 @@ class SGraph implements ModuleInterface
                 CAS distribution
             */
 #            $query  = "SELECT SUM(bh) AS 'bh', SUM(si) AS 'si', SUM(ki) AS 'ki' FROM match_data";
-#            $result = mysql_query($query);
-#            $o = (object) mysql_fetch_assoc($result);
+#            $result = mysqli_query(mysql_up(),$query);
+#            $o = (object) mysqli_fetch_assoc($result);
 #            $data = array("BH ($o->bh)" => $o->bh, "SI ($o->si)" => $o->si, "Ki ($o->ki)" => $o->ki);
 #            $graph = new PieGraph($opts['xdim'],$opts['ydim'],"auto");
 #            $graph->SetShadow();
@@ -492,8 +492,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id AND $where";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('BH' => 'forestgreen', 'SI' => 'firebrick', 'Ki' => 'blue');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -520,8 +520,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id AND $where";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('CP' => 'forestgreen', 'TD' => 'firebrick');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -551,8 +551,8 @@ class SGraph implements ModuleInterface
             }
 
             $query  = "SELECT ".implode(', ', $queries)." FROM matches, match_data WHERE f_match_id = match_id AND $where";
-            $result = mysql_query($query);
-            $row    = mysql_fetch_assoc($result);
+            $result = mysqli_query(mysql_up(),$query);
+            $row    = mysqli_fetch_assoc($result);
 
             $lengends = array('MNG' => 'green', 'Ni' => 'red', 'MA' => 'blue', 'AV' => 'aqua', 'AG' => 'brown', 'ST' => 'purple', 'Dead' => 'slategray');
             list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -582,8 +582,8 @@ class SGraph implements ModuleInterface
                 }
 
                 $query  = "SELECT ".implode(', ', $queries)." FROM matches WHERE team1_id = $o->team_id OR team2_id = $o->team_id";
-                $result = mysql_query($query);
-                $row    = mysql_fetch_assoc($result);
+                $result = mysqli_query(mysql_up(),$query);
+                $row    = mysqli_fetch_assoc($result);
 
                 $lengends = array('W' => 'forestgreen', 'L' => 'firebrick', 'D' => 'blue');
                 list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -606,8 +606,8 @@ class SGraph implements ModuleInterface
                 }
 
                 $query  = "SELECT ".implode(', ', $queries)." FROM matches WHERE team1_id = $o->team_id OR team2_id = $o->team_id";
-                $result = mysql_query($query);
-                $row    = mysql_fetch_assoc($result);
+                $result = mysqli_query(mysql_up(),$query);
+                $row    = mysqli_fetch_assoc($result);
 
                 $lengends = array('Avg. change' => 'darkolivegreen4');
                 list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);
@@ -630,8 +630,8 @@ class SGraph implements ModuleInterface
                 }
 
                 $query  = "SELECT ".implode(', ', $queries)." FROM matches WHERE team1_id = $o->team_id OR team2_id = $o->team_id";
-                $result = mysql_query($query);
-                $row    = mysql_fetch_assoc($result);
+                $result = mysqli_query(mysql_up(),$query);
+                $row    = mysqli_fetch_assoc($result);
 
                 $lengends = array('SMP' => 'blue');
                 list($datasets, $labels) = SGraph::mbarsInputFormatter($lengends, $row);

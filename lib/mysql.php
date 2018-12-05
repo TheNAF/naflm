@@ -1,5 +1,10 @@
 <?php
 
+/*PHP 7.2 Update*/
+define('MYSQL_BOTH',MYSQLI_BOTH);
+define('MYSQL_NUM',MYSQLI_NUM);
+define('MYSQL_ASSOC',MYSQLI_ASSOC);
+
 /* THIS FILE is used for MySQL-helper routines */
 // These are the OBBLM core tables.
 // Commonly used col. defs.
@@ -843,7 +848,7 @@ $objFields_notsum = array('win_pct', 'swon', 'sdraw', 'slost');
 function mysql_up($do_table_check = false) {
     // Brings up MySQL for use in PHP execution.
     global $db_host, $db_user, $db_passwd, $db_name; // From settings.php
-    $conn = mysql_connect($db_host, $db_user, $db_passwd);
+    $conn = mysqli_connect($db_host, $db_user, $db_passwd);
     if (!$conn)
         die("<font color='red'><b>Could not connect to the MySQL server.
             <ul>
@@ -851,7 +856,7 @@ function mysql_up($do_table_check = false) {
                 <li>Are the settings in <i>settings.php</i> correct?</li>
                 <li>Is PHP set up correctly?</li>
             </ul></b></font>");
-    if (!mysql_select_db($db_name))
+    if (!mysqli_select_db($conn, $db_name))
         die("<font color='red'><b>Could not select the database '$db_name'</b><br><br>
             Please make sure that:
             <ul>
@@ -865,8 +870,8 @@ function mysql_up($do_table_check = false) {
         $tables_expected = array_keys($core_tables);
         $tables_found = array();
         $query = "SHOW TABLES";
-        $result = mysql_query($query);
-        while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+        $result = mysqli_query(mysql_up(), $query);
+        while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
             array_push($tables_found, $row[0]);
         }
         $tables_diff = array_diff($tables_expected, $tables_found);
@@ -887,8 +892,8 @@ function get_alt_col($V, $X, $Y, $Z) {
      *  $Y = look-up value
      *  $Z = column to return value from.
      */
-    $result = mysql_query("SELECT $Z FROM $V WHERE $X = '" . mysql_real_escape_string($Y) . "'");
-    return (mysql_num_rows($result) > 0 && ($r = mysql_fetch_row($result))) ? $r[0] : null;
+    $result = mysqli_query(mysql_up(), "SELECT $Z FROM $V WHERE $X = '" . mysqli_real_escape_string(mysql_up(), $Y) . "'");
+    return (mysqli_num_rows($result) > 0 && ($r = mysqli_fetch_row($result))) ? $r[0] : null;
 }
 
 function get_alt_col_int($V, $X, $Y, $Z) {
@@ -899,8 +904,8 @@ function get_alt_col_int($V, $X, $Y, $Z) {
      *  $Y = look-up value
      *  $Z = column to return value from.
      */
-    $result = mysql_query("SELECT $Z FROM $V WHERE $X = $Y");
-    return (mysql_num_rows($result) > 0 && ($r = mysql_fetch_row($result))) ? $r[0] : null;
+    $result = mysqli_query(mysql_up(), "SELECT $Z FROM $V WHERE $X = $Y");
+    return (mysqli_num_rows($result) > 0 && ($r = mysqli_fetch_row($result))) ? $r[0] : null;
 }
 
 function get_rows($tbl, array $getFields, $where = array()) {
@@ -912,8 +917,8 @@ function get_rows($tbl, array $getFields, $where = array()) {
     */
     $query = 'SELECT '.(empty($getFields) ? '*' : implode(',', $getFields))." FROM $tbl ".(empty($where) ? '' : 'WHERE '.implode(' AND ', $where));
     $ret = array();
-    if ($result = mysql_query($query)) {
-        while ($row = mysql_fetch_object($result)) {
+    if ($result = mysqli_query(mysql_up(), $query)) {
+        while ($row = mysqli_fetch_object($result)) {
             $ret[] = $row;
         }
     }
@@ -934,8 +939,8 @@ function get_parent_id($type, $id, $parent_type) {
     array_shift($REL_trimmed_padded);
     $wheres = array_map(create_function('$rl,$rl_next', 'return "$rl[tbl].$rl[parent_id] = $rl_next[tbl].$rl_next[id]";'), $REL_trimmed, $REL_trimmed_padded);
     $query = 'SELECT '.$relations[$parent_type-1]['parent_id'].' AS "parent_id" FROM '.implode(',', $tables).' WHERE '.$relations[$type]['id']."=$id".((!empty($wheres)) ? ' AND '.implode(' AND ', $wheres) : '');
-    $result = mysql_query($query);
-    $row = mysql_fetch_assoc($result);
+    $result = mysqli_query(mysql_up(), $query);
+    $row = mysqli_fetch_assoc($result);
     return $row['parent_id'];
 }
 
@@ -946,24 +951,24 @@ function get_parent_name($type, $id, $parent_type) {
 }
 
 function get_list($table, $col, $val, $new_col) {
-    $result = mysql_query("SELECT $new_col FROM $table WHERE $col = '$val'");
-    if (mysql_num_rows($result) <= 0)
+    $result = mysqli_query(mysql_up(), "SELECT $new_col FROM $table WHERE $col = '$val'");
+    if (mysqli_num_rows($result) <= 0)
         return array();
-    $row = mysql_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
     return (empty($row[$new_col])) ? array() : explode(',', $row[$new_col]);
 }
 
 function set_list($table, $col, $val, $new_col, $new_val = array()) {
     $new_val = implode(',', $new_val);
-    if (mysql_query("UPDATE $table SET $new_col = '$new_val' WHERE $col = '$val'"))
+    if (mysqli_query(mysql_up(), "UPDATE $table SET $new_col = '$new_val' WHERE $col = '$val'"))
         return true;
     else
         return false;
 }
 
 function SQLFetchField($query) {
-    $result = mysql_query($query);
-    list($field) = ($result) ? mysql_fetch_row($result) : array(null);
+    $result = mysqli_query(mysql_up(), $query);
+    list($field) = ($result) ? mysqli_fetch_row($result) : array(null);
     return $field;
 }
 
@@ -1013,7 +1018,7 @@ function setup_database() {
         'title'      => 'OBBLM installed!',
         'msg'        => 'Congratulations! You have successfully installed Online Blood Bowl League Manager. See "About" and "Introduction" for more information.'));
     // Done!
-    mysql_close($conn);
+    mysqli_close($conn);
     return true;
 }
 
@@ -1057,7 +1062,7 @@ function upgrade_database($version, $opts, $upgradeSQLs) {
             continue;
         $status = true;
         foreach ($SQLs as $query) {
-            $status &= (mysql_query($query) or die(mysql_error()));
+            $status &= (mysqli_query(mysql_up(), $query) or die(mysqli_error()));
         }
         echo ($status) ? "<font color='green'>OK &mdash; SQLs of $modname</font><br>\n" : "<font color='red'>FAILED &mdash; SQLs of $modname</font><br>\n";
     }
@@ -1074,7 +1079,7 @@ function upgrade_database($version, $opts, $upgradeSQLs) {
 	if (isset($upgradeSQLs[$version])) {
 		$core_SQLs = $upgradeSQLs[$version];
 		$status = true;
-		foreach ($core_SQLs as $query) { $status &= (mysql_query($query) or die(mysql_error()."\n<br>SQL:\n<br>---\n<br>".$query));}
+		foreach ($core_SQLs as $query) { $status &= (mysqli_query(mysql_up(), $query) or die(mysqli_error()."\n<br>SQL:\n<br>---\n<br>".$query));}
 		$cnt = "(".count($core_SQLs)." total)";
 	    echo ($status) ? "<font color='green'>OK &mdash; Core SQLs</font> $cnt<br>\n" : "<font color='red'>FAILED &mdash; Core SQLs</font> $cnt<br>\n";
     }
@@ -1108,7 +1113,7 @@ function upgrade_database($version, $opts, $upgradeSQLs) {
             break;
     }
     if (isset($upgradeSettings[$version]) && $upgradeSettings[$version]['syncall']) {
-        echo (mysql_query("CALL syncAll()"))
+        echo (mysqli_query(mysql_up(), "CALL syncAll()"))
             ? "<font color='green'>OK &mdash; synchronised all dynamic stats and properties</font><br>\n"
             : "<font color='red'>FAILED &mdash; could not synchronise all dynamic stats and properties</font><br>\n";
     }
@@ -1126,8 +1131,8 @@ class SQLUpgrade
     public static function doesColExist($tbl, $col) {
         global $db_name;
         $colCheck = "SELECT EXISTS(SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='$db_name' AND COLUMN_NAME='$col' AND TABLE_NAME='$tbl') AS 'exists'";
-        $result = mysql_query($colCheck);
-        $row = mysql_fetch_assoc($result);
+        $result = mysqli_query(mysql_up(), $colCheck);
+        $row = mysqli_fetch_assoc($result);
         return (bool) $row['exists'];
     }
 
@@ -1141,21 +1146,21 @@ class SQLUpgrade
     }
 
     public static function runIfTrue($evalQuery, $query) {
-        $result = mysql_query($evalQuery);
-        if (!$result || mysql_num_rows($result) == 0) {
+        $result = mysqli_query(mysql_up(), $evalQuery);
+        if (!$result || mysqli_num_rows($result) == 0) {
             return self::NONE;
         }
-        $row = mysql_fetch_row($result);
+        $row = mysqli_fetch_row($result);
         return ((int) $row[0]) ? $query : self::NONE;
     }
     
     public static function getCurrentDatabaseVersion() {
         if(!self::doesColExist('version', 'version'))
             return false;
-        $result = mysql_query("SELECT version from version");
-        if (!$result || mysql_num_rows($result) == 0)
+        $result = mysqli_query(mysql_up(), "SELECT version from version");
+        if (!$result || mysqli_num_rows($result) == 0)
             return false;
-        $row = mysql_fetch_row($result);
+        $row = mysqli_fetch_row($result);
         return (int) $row[0];
     }
     

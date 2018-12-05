@@ -85,15 +85,15 @@ switch ($_GET['type'])
 		switch ($_GET['obj']) {
 			case T_OBJ_COACH:
 				$query = "SELECT coach_id AS 'id', name FROM coaches WHERE name LIKE '$_GET[query]%' ORDER BY name ASC";
-				$result = mysql_query($query);
-				while($row = mysql_fetch_assoc($result)) {
+				$result = mysqli_query(mysql_up(), $query);
+				while($row = mysqli_fetch_assoc($result)) {
 					$objs[$row['id']] = $row['name'];
 				}
 				break;
 			case T_OBJ_TEAM:
 				$query = "SELECT team_id AS 'id', name FROM teams WHERE name LIKE '%$_GET[query]%' ORDER BY name ASC";
-				$result = mysql_query($query);
-				while($row = mysql_fetch_assoc($result)) {
+				$result = mysqli_query(mysql_up(), $query);
+				while($row = mysqli_fetch_assoc($result)) {
 					$objs[$row['id']] = $row['name'];
 				}
 				break;
@@ -137,8 +137,8 @@ switch ($_GET['type'])
 		switch ($_GET['obj']) {
 			case T_OBJ_COACH:
 				$query = "SELECT coach_id AS 'id', name FROM coaches WHERE name LIKE '$_GET[query]%' ORDER BY name ASC";
-				$result = mysql_query($query);
-				while($row = mysql_fetch_assoc($result)) {
+				$result = mysqli_query(mysql_up(), $query);
+				while($row = mysqli_fetch_assoc($result)) {
 					$objs[$row['id']] = $row['name'];
 				}
 				break;
@@ -148,8 +148,8 @@ switch ($_GET['type'])
 				$FROM_lid = ($lid) ? "f_lid = $lid AND" : '';
 				$FROM_did = ($did) ? "f_did = $did AND" : '';
 				$query = "SELECT team_id AS 'id', name, rdy FROM teams WHERE $FROM_lid $FROM_did name LIKE '%$_GET[query]%' ORDER BY name ASC";
-				$result = mysql_query($query);
-				while($row = mysql_fetch_assoc($result)) {
+				$result = mysqli_query(mysql_up(), $query);
+				while($row = mysqli_fetch_assoc($result)) {
 					$objs[$row['id']] = $row['name'];
 				}
 				break;
@@ -204,4 +204,4 @@ switch ($_GET['type'])
 		fatal("Sorry. I don't know what the type '$_GET[type]' means.\n");
 }
 
-mysql_close($conn);
+mysqli_close($conn);

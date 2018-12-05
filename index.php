@@ -1,5 +1,9 @@
 <?php
 
+// Report all PHP errors (see changelog)
+/*error_reporting(E_ALL);
+ini_set('display_errors', 'On');*/
+
 $time_start = microtime(true); # Used by MTS().
 
 /* Includes, constants, error_reporting() level, session_start(), OBBLM run requirements, MySQL connection, language load. */
@@ -102,5 +106,7 @@ if(Mobile::isMobile()) {
 }
 
 HTMLOUT::frame_end(); // Spit out all the end-tags.
-mysql_close($conn);
+mysqli_close($conn);
 MTS('END OF SCRIPT');
+
+?>

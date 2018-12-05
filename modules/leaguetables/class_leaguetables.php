@@ -361,8 +361,8 @@ public static function showTeam($t, & $i) {
 public static function getUnplayedTeamsForTournament($tour_id) {
 	$teams = array();
 	$query = "SELECT team1_id FROM matches WHERE date_played IS NULL AND f_tour_id=$tour_id AND team1_id NOT IN (SELECT f_tid FROM mv_teams WHERE f_trid=$tour_id) UNION SELECT team2_id FROM matches WHERE date_played IS NULL AND f_tour_id=$tour_id AND team2_id NOT IN (SELECT f_tid FROM mv_teams WHERE f_trid=$tour_id)";
-	$result = mysql_query($query);
-	while($row = mysql_fetch_assoc($result)) {
+	$result = mysqli_query(mysql_up(),$query);
+	while($row = mysqli_fetch_assoc($result)) {
 		array_push($teams, new Team($row['team1_id']));
 	}
 	return $teams;

@@ -94,8 +94,8 @@ public static function main($argv) {
                                 $s = ($d == 'cas') ? 'bh+ki+si' : $d;
                                 foreach (array(1,2) as $j) {
                                     $query = "SELECT SUM($s) as '$s' FROM matches, match_data WHERE f_match_id = match_id AND match_id = $m->match_id AND f_team_id = team${j}_id";
-                                    $result = mysql_query($query);
-                                    $row = mysql_fetch_assoc($result);
+                                    $result = mysqli_query(mysql_up(),$query);
+                                    $row = mysqli_fetch_assoc($result);
                                     $v[$j] = ($row[$s]) ? $row[$s] : 0;
                                 }
                                 echo "<b>$v[1] &nbsp;-&nbsp; $v[2]</b>";
@@ -232,13 +232,13 @@ private static function getMemMatches($node = false, $node_id = false) {
 
     foreach ($qryarr as $k => $query) {
         $mObjs = array();
-        if (($result = mysql_query($query)) && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        if (($result = mysqli_query(mysql_up(),$query)) && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($mObjs, new Match($row['match_id']));
             }
         }
-        elseif (mysql_errno() != 0) {
-            die("<b>Query:</b><br>\n$query<br>\n<br>\n<b>Error:</b><br>\n".mysql_error()."<br>\n");
+        elseif (mysqli_errno($conn) != 0) {
+            die("<b>Query:</b><br>\n$query<br>\n<br>\n<b>Error:</b><br>\n".mysqli_error($conn)."<br>\n");
         }
         objsort($mObjs, array('+date_played'));
         $m[$k] = (count($mObjs) > MAX_MEM_MATCHES) ? array() : $mObjs;

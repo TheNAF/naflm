@@ -7,7 +7,7 @@ MTS('SQL core loaded.');
 if (isset($_POST['act'])) {
     $act = $_POST['act']; # Shortcut.
     if (preg_match('/\(\)$/', $act)) {
-        status(mysql_query("CALL $act"), "Ran $act");
+        status(mysqli_query(mysql_up(), "CALL $act"), "Ran $act");
     } else {
         switch ($act) 
         {

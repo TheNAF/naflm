@@ -33,9 +33,9 @@ class Star
         global $STATS_TRANS;
         $fields = array('cp','td','intcpt','mvp','bh+ki+si', 'bh','si','ki');
         $query = "SELECT ".implode(',', array_map(create_function('$f', 'return "SUM($f) AS \'$f\'";'), $fields))." FROM match_data WHERE f_player_id = $this->star_id AND ".$STATS_TRANS[$type].'='.$type_id;
-        $result = mysql_query($query);
+        $result = mysqli_query(mysql_up(),$query);
         $ret = array();
-        foreach (mysql_fetch_assoc($result) as $col => $val) {
+        foreach (mysqli_fetch_assoc($result) as $col => $val) {
             $ret[$col] = ($val) ? $val : 0;
         }
         $ret['cas'] = $ret['bh+ki+si'];
@@ -45,8 +45,8 @@ class Star
     
     public function setSkills($makeString = false) {
         $query = "SELECT skills FROM game_data_stars WHERE star_id = $this->star_id";
-        $result = mysql_query($query);
-        list($skillsstr) = mysql_fetch_row($result);
+        $result = mysqli_query(mysql_up(),$query);
+        list($skillsstr) = mysqli_fetch_row($result);
         $this->skills = ($makeString) ? skillsTrans($skillsstr) : (empty($skillsstr) ? array() : explode(',', $skillsstr));
     }
     
@@ -67,8 +67,8 @@ class Star
                 ".(($obj)  ? ' AND '.$STATS_TRANS[$obj]. " = $obj_id "  : '').'
                 '.(($node) ? ' AND '.$STATS_TRANS[$node]." = $node_id " : '').'
             ORDER BY date_played DESC LIMIT '.MAX_RECENT_GAMES;
-        if (($result = mysql_query($query)) && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        if (($result = mysqli_query(mysql_up(),$query)) && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $m = new Match($row['f_match_id']);
                 // Make fake match fields for this star's values.
                 $m->hiredBy          = $row['f_team_id'];
@@ -86,14 +86,14 @@ class Star
             Deletes a star's entry in a match.
         */
         # DO NOT CHANGE THE ORDER OF EXPRESSIONS!
-        $result = mysql_query("SELECT * FROM match_data WHERE f_player_id = $this->star_id AND f_match_id = $match_id");
-        $CNT = mysql_num_rows($result);
+        $result = mysqli_query(mysql_up(),"SELECT * FROM match_data WHERE f_player_id = $this->star_id AND f_match_id = $match_id");
+        $CNT = mysqli_num_rows($result);
         $query = "DELETE FROM match_data WHERE f_player_id = $this->star_id AND f_match_id = $match_id" . (($team_id) ? " AND f_team_id = $team_id" : '');
-        mysql_query($query);
+        mysqli_query(mysql_up(),$query);
         if ($CNT > 0) {
             $trid = get_alt_col('matches', 'match_id', $match_id, 'f_tour_id');
             $q = "SELECT syncMVplayer($this->star_id, $trid)";
-            mysql_query($q);
+            mysqli_query(mysql_up(),$q);
         }
         return true;
     }
@@ -111,8 +111,8 @@ class Star
                 f_match_id = match_id AND f_player_id <= ".ID_STARS_BEGIN." 
                 ".(($obj)  ? ' AND '.$STATS_TRANS[$obj]. " = $obj_id "  : '').'
                 '.(($node) ? ' AND '.$STATS_TRANS[$node]." = $node_id " : '');
-            if (($result = mysql_query($query)) && mysql_num_rows($result) > 0) {
-                while ($row = mysql_fetch_assoc($result)) {
+            if (($result = mysqli_query(mysql_up(),$query)) && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     array_push($starObjs, new Star($row['f_player_id']));
                 }
             }
@@ -161,8 +161,8 @@ class Mercenary
         $this->nr = $nr;
         $this->match_id = $match_id;
         $query = "SELECT * FROM match_data WHERE f_match_id = $match_id AND f_player_id = ".ID_MERCS." AND inj = $nr";
-        $result = mysql_query($query);
-        $row = mysql_fetch_assoc($result);
+        $result = mysqli_query(mysql_up(),$query);
+        $row = mysqli_fetch_assoc($result);
         $this->mvp = $row['mvp'];
         $this->cp = $row['cp'];
         $this->td = $row['td'];
@@ -183,7 +183,7 @@ class Mercenary
             Deletes a merc's entry in a match.
         */
         $query = "DELETE FROM match_data WHERE f_player_id = ".ID_MERCS." AND f_match_id = $match_id".(($team_id) ? " AND f_team_id = $team_id" : '');
-        return mysql_query($query);
+        return mysqli_query(mysql_up(),$query);
     }
     
     public static function getMercsHiredByTeam($team_id, $f_match_id = false) {
@@ -193,9 +193,9 @@ class Mercenary
         */
         $mercs = array();
         $query = "SELECT inj, f_match_id FROM match_data, matches WHERE f_match_id = match_id AND f_team_id = $team_id AND f_player_id = ".ID_MERCS.(($f_match_id) ? " AND f_match_id = $f_match_id" : '') . ' ORDER BY date_played DESC, inj ASC';
-        $result = mysql_query($query);
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),$query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($mercs, new Mercenary($row['f_match_id'], $row['inj']));
             }
         }

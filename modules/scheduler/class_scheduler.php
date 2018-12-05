@@ -316,12 +316,12 @@ public static function step1() {
 			ORDER BY 
 				leagues.name,divisions.name,tours.name";
 
-	$result = mysql_query($query) or die(mysql_error());
-    if ($result && mysql_num_rows($result) > 0) {
+	$result = mysqli_query(mysql_up(),$query) or die(mysqli_error($conn));
+    if ($result && mysqli_num_rows($result) > 0) {
 	
 		$current_lid = 0;
 		$current_did = 0;
-        while ($row = mysql_fetch_assoc($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {
 			// If a new league id comes up, close the previous
 			// league div and open a new one.
 			
@@ -436,10 +436,10 @@ public static function showTeamPoolForLeague($id, $showScheduleLink = false, $st
 		?><div class="teamPool"><?php 
 			$query = "SELECT team_id from teams where f_lid = $id and f_did = 0";
 			
-			$result = mysql_query($query) or die(mysql_error());
-			if ($result && mysql_num_rows($result) > 0) {
+			$result = mysqli_query(mysql_up(),$query) or die(mysqli_error($conn));
+			if ($result && mysqli_num_rows($result) > 0) {
 				$seperator = 0;
-				while ($row = mysql_fetch_assoc($result)) {
+				while ($row = mysqli_fetch_assoc($result)) {
 					self::showTeam($row['team_id'], $showScheduleLink);
 					$seperator += 1;
 					
@@ -485,10 +485,10 @@ public static function showTeamPoolForDivision($id, $showScheduleLink = false, $
 		?><div class="teamPool"><?php 
 			$query = "SELECT team_id FROM teams WHERE f_did = " . $id . " ORDER by name";
 			
-			$result = mysql_query($query) or die(mysql_error());
-			if ($result && mysql_num_rows($result) > 0) {
+			$result = mysqli_query(mysql_up(),$query) or die(mysqli_error($conn));
+			if ($result && mysqli_num_rows($result) > 0) {
 				$seperator = 0;
-				while ($row = mysql_fetch_assoc($result)) {
+				while ($row = mysqli_fetch_assoc($result)) {
 					self::showTeam($row['team_id'], $showScheduleLink);
 					$seperator += 1;
 					

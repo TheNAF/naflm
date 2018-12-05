@@ -10,7 +10,7 @@ define('T_NODE_ALL', -1);  # All nodes.
 define('T_RACE_ALL', -1);  # All races.
 
 class HTMLOUT
-{
+{	
 	public static function recentGames($obj, $obj_id, $node, $node_id, $opp_obj, $opp_obj_id, array $opts) {
 		/*
 			Make recent games table.
@@ -275,7 +275,7 @@ class HTMLOUT
 	}
 	
 	public static function standings($obj, $node, $node_id, array $opts) {
-		/*
+			/*
 			 Makes various kinds of standings tables.
 			 $obj and $node types are STATS_* types.
 			 $opts = array(
@@ -298,10 +298,12 @@ class HTMLOUT
 		$PAGELENGTH = 0; # Infinite, is overrided in below switch/case..
 		$extra['noHelp'] = false;
 		$W_TEAMS_FROM = array_key_exists('teams_from', $opts);
+
 		$enableRaceSelector = ($obj == T_OBJ_PLAYER || $obj == T_OBJ_TEAM && (!isset($opts['teams_from']) || $opts['teams_from'] != T_OBJ_RACE));
 		# NO filters for teams of a coach on the coach's teams list.
 		$_COACH_TEAM_LIST = ($W_TEAMS_FROM && $opts['teams_from'] == T_OBJ_COACH);
 		if ($_COACH_TEAM_LIST) {
+	
 			list(,,$T_STATE) = HTMLOUT::nodeSelector(array('nonodes' => true, 'state' => true)); # Produces a state selector.
 			$_SELECTOR = array(false,false,$T_STATE,T_RACE_ALL,'GENERAL','mv_played',self::T_NS__ffilter_ineq_gt,0);
 		} else {

@@ -15,8 +15,8 @@ class League
 	 * Methods
 	 ***************/
 	function __construct($lid) {
-		$result = mysql_query("SELECT * FROM leagues WHERE lid = $lid");
-		$row = mysql_fetch_assoc($result);
+		$result = mysqli_query(mysql_up(),"SELECT * FROM leagues WHERE lid = $lid");
+		$row = mysqli_fetch_assoc($result);
 		foreach ($row as $col => $val) {
 			$this->$col = ($val) ? $val : 0;
 		}
@@ -30,29 +30,29 @@ class League
 		foreach ($this->getDivisions() as $d) {
 			$status &= $d->delete();
 		}
-		return ($status && mysql_query("DELETE FROM leagues WHERE lid = $this->lid"));
+		return ($status && mysqli_query(mysql_up(),"DELETE FROM leagues WHERE lid = $this->lid"));
 	}
 
 	public function setName($name) {
-		$query = "UPDATE leagues SET name = '".mysql_real_escape_string($name)."' WHERE lid = $this->lid";
-		return (get_alt_col('leagues', 'name', $name, 'lid')) ? false : mysql_query($query);
+		$query = "UPDATE leagues SET name = '".mysqli_real_escape_string($name)."' WHERE lid = $this->lid";
+		return (get_alt_col('leagues', 'name', $name, 'lid')) ? false : mysqli_query(mysql_up(),$query);
 	}
 
 	public function setLocation($location) {
-		$query = "UPDATE leagues SET location = '".mysql_real_escape_string($location)."' WHERE lid = $this->lid";
-		return mysql_query($query);
+		$query = "UPDATE leagues SET location = '".mysqli_real_escape_string($location)."' WHERE lid = $this->lid";
+		return mysqli_query(mysql_up(),$query);
 	}
 
 	public function setTeamDivisionTies($bool) {
 		$query = "UPDATE leagues SET tie_teams = ".($bool ? 'TRUE' : 'FALSE')." WHERE lid = $this->lid";
-		return mysql_query($query);
+		return mysqli_query(mysql_up(),$query);
 	}
 
 	public function getDivisions($onlyIds = false) {
 		$divisions = array();
-		$result = mysql_query("SELECT did FROM divisions WHERE f_lid = $this->lid");
-		if ($result && mysql_num_rows($result) > 0) {
-			while ($row = mysql_fetch_assoc($result)) {
+		$result = mysqli_query(mysql_up(),"SELECT did FROM divisions WHERE f_lid = $this->lid");
+		if ($result && mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				array_push($divisions, ($onlyIds) ? $row['did'] : new Division($row['did']));
 			}
 		}
@@ -61,9 +61,9 @@ class League
 
 	public static function getLeagues($onlyIds = false) {
 		$leagues = array();
-		$result = mysql_query("SELECT lid FROM leagues");
-		if ($result && mysql_num_rows($result) > 0) {
-			while ($row = mysql_fetch_assoc($result)) {
+		$result = mysqli_query(mysql_up(),"SELECT lid FROM leagues");
+		if ($result && mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				array_push($leagues, ($onlyIds) ? $row['lid'] : new League($row['lid']));
 			}
 		}
@@ -72,9 +72,9 @@ class League
 
 	public static function getLeaguesWithLocation() {
 		$leagues = array();
-		$result = mysql_query("SELECT lid FROM leagues where location <> '' and location is not null");
-		if ($result && mysql_num_rows($result) > 0) {
-			while ($row = mysql_fetch_assoc($result)) {
+		$result = mysqli_query(mysql_up(),"SELECT lid FROM leagues where location <> '' and location is not null");
+		if ($result && mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				array_push($leagues, new League($row['lid']));
 			}
 		}
@@ -83,9 +83,9 @@ class League
 
 	public static function getLeaguesByLocation() {
 		$locations = array();
-		$result = mysql_query("SELECT lid FROM leagues");
-		if ($result && mysql_num_rows($result) > 0) {
-			while ($row = mysql_fetch_assoc($result)) {
+		$result = mysqli_query(mysql_up(),"SELECT lid FROM leagues");
+		if ($result && mysqli_num_rows($result) > 0) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				$league = new League($row['lid']);
 				if($league->location) {
 					if(!isset($locations[$league->location]))
@@ -100,11 +100,11 @@ class League
 
 	public static function create($name, $location, $tie_teams) {
 		global $lng;
-		$query = "INSERT INTO leagues (date, location, name, tie_teams) VALUES (NOW(), '".mysql_real_escape_string($location)."', '".mysql_real_escape_string($name)."', ".((int) $tie_teams).")";
+		$query = "INSERT INTO leagues (date, location, name, tie_teams) VALUES (NOW(), '".mysqli_real_escape_string($location)."', '".mysqli_real_escape_string($name)."', ".((int) $tie_teams).")";
 		if(get_alt_col('leagues', 'name', $name, 'lid'))
 			return $lng->getTrn('admin/nodes/errors/league_already_exists');
 		// Create the league
-		mysql_query($query);
+		mysqli_query(mysql_up(),$query);
 		// Make a new settings file for that league.
 		$new_lid = get_alt_col('leagues', 'name', $name, 'lid');
 		$settings_new_filename = FileManager::getSettingsDirectoryName() . "/settings_$new_lid.php";

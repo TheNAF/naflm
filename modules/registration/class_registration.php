@@ -209,19 +209,19 @@ class Registration implements ModuleInterface
 #        $query = sprintf( "INSERT INTO %s ( %s, %s, %s, %s, %s ) VALUES ( '%s', '%s', '%s', %d, %d )",
 #                 USERTABLE,
 #                 USERNAME, PASSWORD, EMAIL, ACTIVATION, ACCESS,
-#                 mysql_real_escape_string($this->username), $this->password, mysql_real_escape_string($this->email), NOT_ACTIVATED, ACCESS_LEVEL );
+#                 mysqli_real_escape_string($this->username), $this->password, mysqli_real_escape_string($this->email), NOT_ACTIVATED, ACCESS_LEVEL );
 
         $query = sprintf( "UPDATE %s SET %s = %d WHERE %s = '%s' LIMIT 1",
                  USERTABLE,
                  ACTIVATION, NOT_ACTIVATED, 
-                 USERNAME, mysql_real_escape_string($this->username) );
+                 USERNAME, mysqli_real_escape_string($this->username) );
 
 
-        $results = mysql_query($query);
+        $results = mysqli_query(mysql_up(),$query);
         if ( !$results )
         {
             $status = false;
-            $this->error = mysql_error();
+            $this->error = mysqli_error($conn);
         }
                             
         return $status;
@@ -546,7 +546,7 @@ class Registration implements ModuleInterface
         $c = new Coach($coach_id);
         if ( $c->retired == 2 )
         {
-            mysql_query("UPDATE coaches SET retired = 0 WHERE coach_id = $coach_id");
+            mysqli_query(mysql_up(),"UPDATE coaches SET retired = 0 WHERE coach_id = $coach_id");
         }
         else
         {

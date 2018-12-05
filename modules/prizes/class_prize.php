@@ -43,9 +43,9 @@ public $txt      = '';
     
 function __construct($prid) 
 {
-    $result = mysql_query("SELECT * FROM prizes WHERE prize_id = $prid");
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),"SELECT * FROM prizes WHERE prize_id = $prid");
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             foreach ($row as $key => $val) {
                 $this->$key = $val;
             }
@@ -57,14 +57,14 @@ function __construct($prid)
 
 public function delete()
 {
-    return (mysql_query("DELETE FROM prizes WHERE prize_id = $this->prize_id"));
+    return (mysqli_query(mysql_up(),"DELETE FROM prizes WHERE prize_id = $this->prize_id"));
 }
 
 public function edit($type, $tid, $trid, $title, $txt)
 {
-    if (mysql_query("UPDATE prizes SET 
-                    title = '".mysql_real_escape_string($title)."', 
-                    txt = '".mysql_real_escape_string($txt)."',
+    if (mysqli_query(mysql_up(),"UPDATE prizes SET 
+                    title = '".mysqli_real_escape_string($title)."', 
+                    txt = '".mysqli_real_escape_string($txt)."',
                     team_id = $tid,
                     tour_id = $trid,
                     type = $type 
@@ -133,9 +133,9 @@ public static function getPrizes($type, $id, $N = false)
             return array();
     }
 
-    $result = mysql_query($query);
-    if ($result && mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    $result = mysqli_query(mysql_up(),$query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $pr = new Prize($row['prize_id']);
             if ($_IS_OBJ) {
                 $prizes[] = $pr;
@@ -170,9 +170,9 @@ public static function create($type, $tid, $trid, $title, $txt)
 
     // Delete if already exists for type and tour.
     $query = "SELECT prize_id FROM prizes WHERE tour_id = $trid AND type = $type";
-    $result = mysql_query($query);
-    if ($result && mysql_num_rows($result) > 0) {
-        $row = mysql_fetch_assoc($result);
+    $result = mysqli_query(mysql_up(),$query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
         $pr = new Prize($row['prize_id']);
         $pr->delete();
     }
@@ -182,12 +182,12 @@ public static function create($type, $tid, $trid, $title, $txt)
             INSERT INTO prizes 
             (date, type, team_id, tour_id, title, txt) 
             VALUES 
-            (NOW(), $type, $tid, $trid, '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($txt)."')
+            (NOW(), $type, $tid, $trid, '".mysqli_real_escape_string($title)."', '".mysqli_real_escape_string($txt)."')
             ";
-    $result = mysql_query($query);
+    $result = mysqli_query(mysql_up(),$query);
     $query = "SELECT MAX(prize_id) AS 'prize_id' FROM prizes;";
-    $result = mysql_query($query);
-    $row = mysql_fetch_assoc($result);  
+    $result = mysqli_query(mysql_up(),$query);
+    $row = mysqli_fetch_assoc($result);  
     
     return true;
 }

@@ -34,8 +34,8 @@ class Tour {
     function __construct($tour_id) {
         global $settings;
         // MySQL stored information.
-        $result = mysql_query("SELECT * FROM tours WHERE tour_id = $tour_id");
-        $row    = mysql_fetch_assoc($result);
+        $result = mysqli_query(mysql_up(),"SELECT * FROM tours WHERE tour_id = $tour_id");
+        $row    = mysqli_fetch_assoc($result);
         foreach ($row as $col => $val) {
             $this->$col = ($val) ? $val : 0;
         }
@@ -50,9 +50,9 @@ class Tour {
          * Returns an array of match objects for those matches which are assigned to this tournament.
          */
         $matches = array();
-        $result = mysql_query("SELECT match_id FROM matches WHERE f_tour_id = $this->tour_id ORDER BY match_id ASC");
-        if (mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT match_id FROM matches WHERE f_tour_id = $this->tour_id ORDER BY match_id ASC");
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($matches, new Match($row['match_id']));
             }
         }
@@ -65,13 +65,13 @@ class Tour {
          */
         $teams = array();
         $team_ids = array();
-        $result = mysql_query("SELECT DISTINCT(tids) AS 'tid' FROM (
+        $result = mysqli_query(mysql_up(),"SELECT DISTINCT(tids) AS 'tid' FROM (
             SELECT team1_id AS 'tids' FROM matches WHERE f_tour_id = $this->tour_id
                 UNION
             SELECT team2_id AS 'tids' FROM matches WHERE f_tour_id = $this->tour_id
             ) AS tbl ORDER BY tids");
-        if (mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $team_ids[] = $row['tid'];
             }
             if ($only_return_ids) {
@@ -107,13 +107,13 @@ class Tour {
             $q[] = "DELETE FROM tours      WHERE tour_id = $this->tour_id";
             $status = true;
             foreach ($q as $query) {
-                $status &= mysql_query($query);
+                $status &= mysqli_query(mysql_up(),$query);
             }
             return $status;
         }
         elseif ($this->is_empty) {
             $query = "DELETE FROM tours WHERE tour_id = $this->tour_id";
-            if (mysql_query($query))
+            if (mysqli_query(mysql_up(),$query))
                 return true;
         }
         else {
@@ -124,18 +124,18 @@ class Tour {
     public function save() {
         $query = "UPDATE tours SET
             rs = $this->rs,
-            name = '" . mysql_real_escape_string($this->name) . "',
+            name = '" . mysqli_real_escape_string($this->name) . "',
             type = $this->type,
             locked = ".(($this->locked) ? 1 : 0).",
             allow_sched = $this->allow_sched
         WHERE tour_id = $this->tour_id";
-        return mysql_query($query);
+        return mysqli_query(mysql_up(),$query);
     }
     
     // Run this to sync. all teams' points in this tournament. 
     // Use this after having changed the PTS def. (ranking system).
     public function syncPTS() {
-        return mysql_query("CALL syncTourPTS($this->tour_id)");
+        return mysqli_query(mysql_up(),"CALL syncTourPTS($this->tour_id)");
     }
 
     /***************
@@ -151,9 +151,9 @@ class Tour {
          * Returns an array of all tournament objects.
          */
         $tours = array();
-        $result = mysql_query("SELECT tour_id FROM tours ORDER BY date_created DESC");
-        if (mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT tour_id FROM tours ORDER BY date_created DESC");
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($tours, new Tour($row['tour_id']));
             }
         }
@@ -164,9 +164,9 @@ class Tour {
         /*
          * Returns the tournament object for the latest tournament.
          */
-        $result = mysql_query("SELECT tour_id FROM tours ORDER BY date_created DESC LIMIT 1");
-        if (mysql_num_rows($result) > 0) {
-            $row = mysql_fetch_assoc($result);
+        $result = mysqli_query(mysql_up(),"SELECT tour_id FROM tours ORDER BY date_created DESC LIMIT 1");
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             return (new Tour($row['tour_id']));
         } else {
             return null;
@@ -183,11 +183,11 @@ class Tour {
         // Done in in scheduler section code.
         /* Create tournament */
         // Quit if can't make tournament entry.
-        $query = "INSERT INTO tours (name, f_did, type, rs, date_created, allow_sched) VALUES ('" . mysql_real_escape_string($input['name']) . "', $input[did], $input[type], $input[rs], NOW(), $input[allow_sched])";
-        if (!mysql_query($query)) {
+        $query = "INSERT INTO tours (name, f_did, type, rs, date_created, allow_sched) VALUES ('" . mysqli_real_escape_string($input['name']) . "', $input[did], $input[type], $input[rs], NOW(), $input[allow_sched])";
+        if (!mysqli_query(mysql_up(),$query)) {
             return false;
         }
-        $tour_id = mysql_insert_id();
+        $tour_id = mysqli_insert_id($conn);
         /* Generate matches depending on type */
         // FFA match(es)?
         if ($input['type'] == TT_FFA) {

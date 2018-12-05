@@ -280,9 +280,9 @@ class XML_BOTOCS implements ModuleInterface
 
         $teams = array();
         
-        $result = mysql_query( "SELECT team_id FROM teams WHERE owned_by_coach_id = $coach_id AND name LIKE '%[P]' AND RETIRED = 0 ORDER BY name ASC" );
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(), "SELECT team_id FROM teams WHERE owned_by_coach_id = $coach_id AND name LIKE '%[P]' AND RETIRED = 0 ORDER BY name ASC" );
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $teams[] = $row['team_id'];
             }
         }

@@ -62,10 +62,10 @@ class Coach
     }
     
     public static function getByName($coachName) {
-        $result = mysql_query("SELECT coach_id FROM coaches WHERE name = '$coachName'");
+        $result = mysqli_query(mysql_up(), "SELECT coach_id FROM coaches WHERE name = '$coachName'");
         $theCoach = null;
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $theCoach = new Coach($row['coach_id']);
             }
         }
@@ -100,9 +100,9 @@ class Coach
         $F_DID = $did ? "AND f_did = $did" : '';
         $SORTBY = isset($opts['sortby']) ? $opts['sortby'] : 'name ASC';
         
-        $result = mysql_query("SELECT team_id FROM teams WHERE owned_by_coach_id = $this->coach_id $F_LID $F_DID ORDER BY $SORTBY");
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT team_id FROM teams WHERE owned_by_coach_id = $this->coach_id $F_LID $F_DID ORDER BY $SORTBY");
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($teams, new Team($row['team_id']));
             }
         }
@@ -112,9 +112,9 @@ class Coach
     
     public function getReadyTeams() {
         $teams = array();
-        $result = mysql_query("SELECT team_id FROM teams WHERE owned_by_coach_id = $this->coach_id AND rdy = 1");
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT team_id FROM teams WHERE owned_by_coach_id = $this->coach_id AND rdy = 1");
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($teams, new Team($row['team_id']));
             }
         }
@@ -125,8 +125,8 @@ class Coach
     public function getWonTours() {
         // Returns an array of tournament objects for those tournaments the coach's teams have won.
         $tours = array();
-        $result = mysql_query("SELECT tour_id FROM tours,teams WHERE winner = team_id AND owned_by_coach_id = $this->coach_id");
-        while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),"SELECT tour_id FROM tours,teams WHERE winner = team_id AND owned_by_coach_id = $this->coach_id");
+        while ($row = mysqli_fetch_assoc($result)) {
             array_push($tours, new Tour($row['tour_id']));
         }
         return $tours;
@@ -146,7 +146,7 @@ class Coach
             foreach ($this->getTeams() as $t) {
                 $status &= $t->delete();
             }            
-            $status &= mysql_query("DELETE FROM coaches WHERE coach_id = ".$this->coach_id);
+            $status &= mysqli_query(mysql_up(),"DELETE FROM coaches WHERE coach_id = ".$this->coach_id);
         } else {
             $status = false;
         }
@@ -154,13 +154,13 @@ class Coach
     }
     
     public function setRetired($bool) {
-        return mysql_query("UPDATE coaches SET retired = ".(($bool) ? 1 : 0)." WHERE coach_id = $this->coach_id");
+        return mysqli_query(mysql_up(),"UPDATE coaches SET retired = ".(($bool) ? 1 : 0)." WHERE coach_id = $this->coach_id");
     }
     
     public function getLeagues() {
-        $result = mysql_query("select name from memberships join leagues on memberships.lid=leagues.lid where cid = $this->coach_id");
+        $result = mysqli_query(mysql_up(),"select name from memberships join leagues on memberships.lid=leagues.lid where cid = $this->coach_id");
         $leagues = array();
-        while($league = mysql_fetch_object($result)) {
+        while($league = mysqli_fetch_object($result)) {
             array_push($leagues, $league->name);
         }
         return $leagues;
@@ -169,12 +169,12 @@ class Coach
     public function setRing($rtype, $ring, $lid = false) {
         if ($rtype == self::T_RING_GROUP_GLOBAL && in_array($ring, self::$RINGS[self::T_RING_GROUP_GLOBAL])) {
             $this->ring = $ring;
-            return mysql_query("UPDATE coaches SET ring = $ring WHERE coach_id = $this->coach_id");
+            return mysqli_query(mysql_up(),"UPDATE coaches SET ring = $ring WHERE coach_id = $this->coach_id");
         }
         else if ($rtype == self::T_RING_GROUP_LOCAL && in_array($ring, self::$RINGS[self::T_RING_GROUP_LOCAL]) && $lid) {
-            $status = mysql_query("DELETE FROM memberships WHERE cid = $this->coach_id AND lid = $lid");
+            $status = mysqli_query(mysql_up(),"DELETE FROM memberships WHERE cid = $this->coach_id AND lid = $lid");
             if ($ring != self::T_RING_LOCAL_NONE) {
-                $status &= mysql_query("INSERT INTO memberships (cid,lid,ring) VALUES($this->coach_id, $lid, $ring)");
+                $status &= mysqli_query(mysql_up(),"INSERT INTO memberships (cid,lid,ring) VALUES($this->coach_id, $lid, $ring)");
             }
             return $status;
         }
@@ -259,8 +259,8 @@ class Coach
 
         $my_admin_menu = array();
 
-        $result = mysql_query("SELECT COUNT(*) FROM memberships WHERE cid = $this->coach_id AND ring = ".self::T_RING_LOCAL_ADMIN);
-        list($cnt) = mysql_fetch_row($result);
+        $result = mysqli_query(mysql_up(),"SELECT COUNT(*) FROM memberships WHERE cid = $this->coach_id AND ring = ".self::T_RING_LOCAL_ADMIN);
+        list($cnt) = mysqli_fetch_row($result);
         $my_admin_menu = array_merge(
             $this->ring == Coach::T_RING_GLOBAL_ADMIN ? $ring_com_access+$ring_sys_access : array(),
             $cnt > 0 ? $ring_com_access : array()
@@ -270,38 +270,38 @@ class Coach
 
     public function setPasswd($passwd) {
         $query = "UPDATE coaches SET passwd = '".md5($passwd)."' WHERE coach_id = $this->coach_id";
-        return (mysql_query($query) && ($this->passwd = md5($passwd)));
+        return (mysqli_query(mysql_up(),$query) && ($this->passwd = md5($passwd)));
     }
 
     public function setName($name) {
         if (!isset($name) || empty($name)) {return false;}
-        $result = mysql_query("SELECT coach_id FROM coaches WHERE name = BINARY('".mysql_real_escape_string($name)."')");
-        if ($result && mysql_num_rows($result) > 0) {return false;} // Duplicates not allowed.
-        $query = "UPDATE coaches SET name = '".mysql_real_escape_string($name)."' WHERE coach_id = $this->coach_id";
-        return (mysql_query($query) && ($this->name = $name) && SQLTriggers::run(T_SQLTRIG_COACH_UPDATE_CHILD_RELS, array('id' => $this->coach_id, 'obj' => $this)));
+        $result = mysqli_query(mysql_up(),"SELECT coach_id FROM coaches WHERE name = BINARY('".mysqli_real_escape_string($name)."')");
+        if ($result && mysqli_num_rows($result) > 0) {return false;} // Duplicates not allowed.
+        $query = "UPDATE coaches SET name = '".mysqli_real_escape_string($name)."' WHERE coach_id = $this->coach_id";
+        return (mysqli_query(mysql_up(),$query) && ($this->name = $name) && SQLTriggers::run(T_SQLTRIG_COACH_UPDATE_CHILD_RELS, array('id' => $this->coach_id, 'obj' => $this)));
     }
 
     public function setMail($mail) {
-        $query = "UPDATE coaches SET mail = '".mysql_real_escape_string($mail)."' WHERE coach_id = $this->coach_id";
-        return (mysql_query($query) && ($this->mail = $mail));
+        $query = "UPDATE coaches SET mail = '".mysqli_real_escape_string($mail)."' WHERE coach_id = $this->coach_id";
+        return (mysqli_query(mysql_up(),$query) && ($this->mail = $mail));
     }
 
     public function setPhone($phnr) {
-        $query = "UPDATE coaches SET phone = '".mysql_real_escape_string($phnr)."' WHERE coach_id = $this->coach_id";
-        return (mysql_query($query) && ($this->phone = $phnr));
+        $query = "UPDATE coaches SET phone = '".mysqli_real_escape_string($phnr)."' WHERE coach_id = $this->coach_id";
+        return (mysqli_query(mysql_up(),$query) && ($this->phone = $phnr));
     }
 
     public function setRealName($rname) {
-        $query = "UPDATE coaches SET realname = '".mysql_real_escape_string($rname)."' WHERE coach_id = $this->coach_id";
-        return (mysql_query($query) && ($this->realname = $rname));
+        $query = "UPDATE coaches SET realname = '".mysqli_real_escape_string($rname)."' WHERE coach_id = $this->coach_id";
+        return (mysqli_query(mysql_up(),$query) && ($this->realname = $rname));
     }
 
     public function isInMatch($match_id) {
         /**
          * Returns the boolean evaluation of a coach's participation in a specific match.
          **/
-        $result = mysql_query("SELECT team1_id, team2_id FROM matches WHERE match_id = $match_id");
-        $row    = mysql_fetch_assoc($result);
+        $result = mysqli_query(mysql_up(),"SELECT team1_id, team2_id FROM matches WHERE match_id = $match_id");
+        $row    = mysqli_fetch_assoc($result);
         $coach_id1 = get_alt_col('teams', 'team_id', $row['team1_id'], 'owned_by_coach_id');
         $coach_id2 = get_alt_col('teams', 'team_id', $row['team2_id'], 'owned_by_coach_id');
         return ($this->coach_id == $coach_id1 || $this->coach_id == $coach_id2);
@@ -331,9 +331,9 @@ class Coach
     public function setActivationCode($set_AC) {
         if ($set_AC) {
             $AC = md5(date('l jS \of F Y h:i:s A'));
-            return mysql_query("UPDATE coaches SET activation_code = '$AC' WHERE coach_id = $this->coach_id") ? $AC : false;
+            return mysqli_query(mysql_up(),"UPDATE coaches SET activation_code = '$AC' WHERE coach_id = $this->coach_id") ? $AC : false;
         } else {
-            return mysql_query("UPDATE coaches SET activation_code = NULL WHERE coach_id = $this->coach_id");
+            return mysqli_query(mysql_up(),"UPDATE coaches SET activation_code = NULL WHERE coach_id = $this->coach_id");
         }
     }
     
@@ -349,8 +349,8 @@ class Coach
 
     public function confirmActivation($AC) {
         $query = "SELECT activation_code = '$AC' FROM coaches WHERE coach_id = $this->coach_id";
-        $result = mysql_query($query);
-        list($OK) = mysql_fetch_row($result);
+        $result = mysqli_query(mysql_up(),$query);
+        list($OK) = mysqli_fetch_row($result);
         if ($OK) {
             $this->setRetired(false);
             $this->setActivationCode(false);
@@ -365,8 +365,8 @@ class Coach
      * Statics
      ***************/
     public static function exists($id) {
-        $result = mysql_query("SELECT COUNT(*) FROM coaches WHERE coach_id = $id");
-        list($CNT) = mysql_fetch_row($result);
+        $result = mysqli_query(mysql_up(),"SELECT COUNT(*) FROM coaches WHERE coach_id = $id");
+        list($CNT) = mysqli_fetch_row($result);
         return ($CNT == 1);
     }
 
@@ -397,13 +397,13 @@ class Coach
         $query = "SELECT l.lid AS 'lid', d.did AS 'did', t.tour_id AS 'trid',".implode(',',$properFields)."
             FROM leagues AS l LEFT JOIN divisions AS d ON d.f_lid = l.lid LEFT JOIN tours AS t ON t.f_did = d.did ".
             ((!$GLOBAL_VIEW) ? "LEFT JOIN memberships AS m ON m.lid = l.lid WHERE m.cid = $cid" : '') . ' GROUP BY l.name ASC, did DESC, trid DESC';
-        $result = mysql_query($query);
+        $result = mysqli_query(mysql_up(),$query);
 
         switch ($NODE_SRUCT)
         {
             case self::NODE_STRUCT__TREE:
                 $struct = array();
-                while ($r = mysql_fetch_object($result)) {
+                while ($r = mysqli_fetch_object($result)) {
                     if (!empty($r->trid)) $struct[$r->lid][$r->did][$r->trid]['desc'] = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_TOURNAMENT]),null));
                     if (!empty($r->did))  $struct[$r->lid][$r->did]['desc']           = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_DIVISION]),null));
                                           $struct[$r->lid]['desc']                    = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_LEAGUE]),null));
@@ -412,7 +412,7 @@ class Coach
                 return $struct;
             case self::NODE_STRUCT__FLAT:
                 $leagues = $divisions = $tours = array();
-                while ($r = mysql_fetch_object($result)) {
+                while ($r = mysqli_fetch_object($result)) {
                     if (!empty($r->trid)) $tours[$r->trid]    = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_TOURNAMENT]),null));
                     if (!empty($r->did))  $divisions[$r->did] = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_DIVISION]),null));
                                           $leagues[$r->lid]   = array_intersect_key((array) $r, array_fill_keys(array_values($extraFields[T_NODE_LEAGUE]),null));
@@ -430,9 +430,9 @@ class Coach
         if($where) {
             $query = $query . ' WHERE ' . $where;
         }
-        $result = mysql_query($query);
-        if ($result && mysql_num_rows($result) > 0) {
-            while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query(mysql_up(),$query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 array_push($coaches, new Coach($row['coach_id']));
             }
         }
@@ -522,15 +522,15 @@ class Coach
             return false;
 
         $query = "INSERT INTO coaches (name, realname, passwd, mail, phone, ring, settings) 
-                    VALUES ('" . mysql_real_escape_string($input['name']) . "',
-                            '" . mysql_real_escape_string($input['realname']) . "', 
+                    VALUES ('" . mysqli_real_escape_string($input['name']) . "',
+                            '" . mysqli_real_escape_string($input['realname']) . "', 
                             '" . md5($input['passwd']) . "', 
-                            '" . mysql_real_escape_string($input['mail']) . "', 
-                            '" . mysql_real_escape_string($input['phone']) . "', 
+                            '" . mysqli_real_escape_string($input['mail']) . "', 
+                            '" . mysqli_real_escape_string($input['phone']) . "', 
                             " . $input['ring'].",
                             '".array_strpack_assoc('%k=%v', $input['settings'], ',')."')";
 
-        if (($status = mysql_query($query)) && is_numeric($cid = mysql_insert_id())) {
+        if (($status = mysqli_query(mysql_up(),$query)) && is_numeric($cid = mysqli_insert_id($conn))) {
             // Set default memberships
             $newCoach = new Coach($cid);
             foreach (array_merge($settings['default_leagues'], $input['def_leagues']) as $lid) {

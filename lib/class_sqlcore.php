@@ -30,27 +30,27 @@ class SQLCore
 		$status &= Table::createTable($skillstbl,$core_tables[$skillstbl]);
 
 		foreach ($DEA as $race_name => $race_details) {
-			$query = "INSERT INTO $races(race_id, name, cost_rr) VALUES (".$race_details['other']['race_id'].", '".mysql_real_escape_string($race_name)."', ".$race_details['other']['rr_cost'].")";
-			$status &= mysql_query($query);
+			$query = "INSERT INTO $races(race_id, name, cost_rr) VALUES (".$race_details['other']['race_id'].", '".mysqli_real_escape_string($race_name)."', ".$race_details['other']['rr_cost'].")";
+			$status &= mysqli_query(mysql_up(),$query);
 			foreach ($race_details['players'] as $player_name => $PD) { # Player Details
 				$query = "INSERT INTO $players(
 						pos_id, f_race_id, pos, cost, qty, ma,st,ag,av, skills,norm,doub
 					) VALUES (
-						$PD[pos_id], ".$race_details['other']['race_id'].", '".mysql_real_escape_string($player_name)."', $PD[cost], $PD[qty], $PD[ma],$PD[st],$PD[ag],$PD[av],
+						$PD[pos_id], ".$race_details['other']['race_id'].", '".mysqli_real_escape_string($player_name)."', $PD[cost], $PD[qty], $PD[ma],$PD[st],$PD[ag],$PD[av],
 						'".implode(',',$PD['def'])."', '".implode('',$PD['norm'])."', '".implode('',$PD['doub'])."'
 					)";
-				$status &= mysql_query($query);
+				$status &= mysqli_query(mysql_up(),$query);
 			}
 		}
 		foreach ($stars as $star_name => $SD) {
 			$query = "INSERT INTO $starstbl(star_id, name, cost, races, ma,st,ag,av, skills) VALUES (
-				$SD[id], '".mysql_real_escape_string($star_name)."', $SD[cost], '".implode(',', $SD['races'])."', $SD[ma],$SD[st],$SD[ag],$SD[av], '".implode(',', $SD['def'])."'
+				$SD[id], '".mysqli_real_escape_string($star_name)."', $SD[cost], '".implode(',', $SD['races'])."', $SD[ma],$SD[st],$SD[ag],$SD[av], '".implode(',', $SD['def'])."'
 			)";
-			$status = mysql_query($query);
+			$status = mysqli_query(mysql_up(),$query);
 		}
 		foreach ($skillarray as $grp => $skills) {
 			foreach ($skills as $id => $s) {
-				$status &= mysql_query("INSERT INTO $skillstbl(skill_id, name, cat) VALUES ($id, '".mysql_real_escape_string($s)."', '$grp')");
+				$status &= mysqli_query(mysql_up(),"INSERT INTO $skillstbl(skill_id, name, cat) VALUES ($id, '".mysqli_real_escape_string($s)."', '$grp')");
 			}
 		}
 		return $status;
@@ -1231,11 +1231,11 @@ class SQLCore
 		foreach ($routines as $r) {
 			$matches = array();
 			if (preg_match('/^CREATE FUNCTION (\w*)\(/', $r, $matches)) {
-				$status &= mysql_query('DROP FUNCTION IF EXISTS '.$matches[1]);
+				$status &= mysqli_query(mysql_up(),'DROP FUNCTION IF EXISTS '.$matches[1]);
 			}
 			$matches = array();
 			if (preg_match('/^CREATE PROCEDURE (\w*)\(/', $r, $matches)) {
-				$status &= mysql_query('DROP PROCEDURE IF EXISTS '.$matches[1]);
+				$status &= mysqli_query(mysql_up(),'DROP PROCEDURE IF EXISTS '.$matches[1]);
 			}
 		}
 
@@ -1243,7 +1243,7 @@ class SQLCore
 			return $status;
 		}
 		foreach ($routines as $r) {
-			$status &= (mysql_query($r) or die("<br><b><font color='red'>FATAL ERROR</font></b>: One or more OBBLM MySQL functions/procedures could not be created. This error is <b>most likely</b> due to your database user NOT having the \"CREATE ROUTINE\" privilege. Some web hosts are willing to help you work around this problem by running this install/upgrade script for you. If not, you will have to find another web host allowing \"CREATE ROUTINE\".<br><br>\n<b>MySQL error (errno ".mysql_errno()."):</b><br>". mysql_error().'<br><br><b>The function/procedure SQL code that failed was:</b><br>'.$r.'<br><br><b>Need help?</b> Try seeking help at the <a TARGET="_blank" href="http://code.google.com/p/obblm/issues/list">OBBLM developers site</a>'));
+			$status &= (mysqli_query(mysql_up(),$r) or die("<br><b><font color='red'>FATAL ERROR</font></b>: One or more OBBLM MySQL functions/procedures could not be created. This error is <b>most likely</b> due to your database user NOT having the \"CREATE ROUTINE\" privilege. Some web hosts are willing to help you work around this problem by running this install/upgrade script for you. If not, you will have to find another web host allowing \"CREATE ROUTINE\".<br><br>\n<b>MySQL error (errno ".mysqli_errno($conn)."):</b><br>". mysqli_error($conn).'<br><br><b>The function/procedure SQL code that failed was:</b><br>'.$r.'<br><br><b>Need help?</b> Try seeking help at the <a TARGET="_blank" href="http://code.google.com/p/obblm/issues/list">OBBLM developers site</a>'));
 		}
 		return $status;
 	}
@@ -1300,8 +1300,8 @@ class SQLCore
 		);
 		$status = true;
 		foreach ($indicies as $def) {
-			@mysql_query("DROP INDEX $def[name] ON $def[tbl]");
-			$status &= mysql_query("ALTER TABLE $def[tbl] ADD INDEX $def[name] $def[idx]");
+			@mysqli_query(mysql_up(),"DROP INDEX $def[name] ON $def[tbl]");
+			$status &= mysqli_query(mysql_up(),"ALTER TABLE $def[tbl] ADD INDEX $def[name] $def[idx]");
 		}
 		return $status;
 	}
@@ -1328,9 +1328,9 @@ class SQLCore
 		# Create, if not exists, the match_data_es table.
 		Table::createTableIfNotExists('match_data_es', $MDES);
 		// Remove non-existing fields.
-		$result = mysql_query("DESCRIBE match_data_es");
+		$result = mysqli_query(mysql_up(),"DESCRIBE match_data_es");
 		$existingFields = array();
-		while ($r = mysql_fetch_assoc($result)) {
+		while ($r = mysqli_fetch_assoc($result)) {
 			// Ignore relational fields.
 			if (preg_match('/^f\_/', $r['Field'])) {
 				continue;
@@ -1338,13 +1338,13 @@ class SQLCore
 			$existingFields[] = $r['Field'];
 			if (!in_array($r['Field'], array_keys($ES_fields))) {
 				$dropped[] = $r['Field'];
-				$status &= mysql_query("ALTER TABLE match_data_es DROP $r[Field]");
+				$status &= mysqli_query(mysql_up(),"ALTER TABLE match_data_es DROP $r[Field]");
 			}
 		}
 		// Add new fields.
 		foreach (array_diff(array_keys($ES_fields), $existingFields) as $newField) {
 			$added[] = $newField;
-			$status &= mysql_query("ALTER TABLE match_data_es ADD COLUMN $newField ".$ES_fields[$newField]['type']);
+			$status &= mysqli_query(mysql_up(),"ALTER TABLE match_data_es ADD COLUMN $newField ".$ES_fields[$newField]['type']);
 		}
 		return array($status,$added,$dropped);
 	}

@@ -127,19 +127,29 @@ class Stats
 			".((!empty($sortRule))  ? ' ORDER BY '.implode(', ', $sortRule) : '')." 
 			$LIMIT";
 
-		$ret = array();
-		if (($result = mysql_query($query)) && is_resource($result) && mysql_num_rows($result) > 0) {
-			while ($r = mysql_fetch_assoc($result)) {
+		$ret = array();		
+		if (($result = mysqli_query(mysql_up(),$query)) && $result instanceof mysqli_result && mysqli_num_rows($result) > 0) {
+			while ($r = mysqli_fetch_assoc($result)) {
 				array_push($ret, $r);
 			}
 		}
+		//echo mysqli_num_rows($result);
+		/*while ($row = mysqli_fetch_assoc($result))
+		 {
+			foreach($row as $k => $v) {
+			  echo 'the key is ' . $k . ' and the value is ' . $v . '<br>';
+			}
+		 }*/
 		if (!empty($N)) {
 			$query_cnt = str_replace($LIMIT, '', $query);
-			$result = mysql_query($query_cnt); 
-			$pages = ceil(mysql_num_rows($result)/$delta);
+			$result = mysqli_query(mysql_up(),$query_cnt); 
+			$pages = ceil(mysqli_num_rows($result)/$delta);
 		} else {
 			$pages = 1;
 		}
+		/*foreach($ret as $k => $v) {
+		   echo 'the key is ' . $k . ' and the value is ' . $v . '<br>';
+		}*/
 		return array($ret, $pages);
 	}
 
@@ -182,9 +192,9 @@ class Stats
 				AND match_id > 0 
 				AND ".implode(' AND ', $where)." 
 			ORDER BY $ORDERBY_RND date_played DESC $LIMIT";
-		$result = mysql_query($query);
-		if (is_resource($result) && mysql_num_rows($result) > 0) {
-			while ($r = mysql_fetch_assoc($result)) {
+		$result = mysqli_query(mysql_up(),$query);
+		if ($result instanceof mysqli_result && mysqli_num_rows($result) > 0) {
+			while ($r = mysqli_fetch_assoc($result)) {
 				if ($mkObjs) {
 					$m = new Match($r['match_id']);
 					$m->result = $r['result'];
@@ -199,8 +209,8 @@ class Stats
 		# Count number of rows
 		$query_cnt = preg_replace('/^(.*)FROM/sU', "SELECT COUNT(DISTINCT(match_id)) AS 'cnt' FROM", $query);
 		$query_cnt = str_replace($LIMIT, '', $query_cnt);
-		$result = mysql_query($query_cnt);
-		$row = mysql_fetch_assoc($result);
+		$result = mysqli_query(mysql_up(),$query_cnt);
+		$row = mysqli_fetch_assoc($result);
 		$pages = (!isset($delta) || !$delta) ? 1 : ceil($row['cnt']/$delta);
 		return array($matches, $pages);
 	}

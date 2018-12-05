@@ -21,7 +21,7 @@ require_once('gd_image.inc.php');
 define('JPG_VERSION','3.0.7');
 
 // Minimum required PHP version
-define('MIN_PHPVERSION','5.1.0');
+define('MIN_PHPVERSION','7.2.0');
 
 // Special file name to indicate that we only want to calc
 // the image map in the call to Graph::Stroke() used

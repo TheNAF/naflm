@@ -4,6 +4,44 @@ define('T_HTML_TEAMS_PER_PAGE', 50);
 
 class Team_HTMLOUT extends Team
 {
+	public $mv_cp,$mv_td,$mv_intcpt,$mv_cas,$mv_mvp, $mv_bh, $mv_si, $mv_ki,$mv_played,$rg_win_pct,$rg_elo,$mv_won,
+			$mv_lost,$mv_draw,$rg_swon,$rg_slost,$rg_sdraw,$wt_cnt, $rg_ff = 0;
+
+			public $mv_pass_attempts = 0;
+	public $mv_interceptions_thrown = 0;
+	public $mv_safe_throws = 0;
+	public $mv_pass_distance = 0;
+	public $mv_dumpoff_attempts = 0;
+	public $mv_dumpoff_completions =0;
+	public $mv_catch_attempts = 0;
+	public $mv_catches = 0;
+	public $mv_handoffs = 0;
+	public $mv_handoffs_received = 0;
+	public $mv_handoff_catches  = 0;
+	public $mv_pickup_attempts = 0;
+	public $mv_pickups = 0;
+	public $mv_rushing_distance_leap = 0;
+	public $mv_rushing_distance_push = 0;
+	public $mv_rushing_distance_move = 0;
+	public $mv_rushing_distance_block = 0;
+	public $mv_rushing_distance_shadowing = 0;
+	public $mv_leap_attempts = 0;
+	public $mv_leaps = 0;
+	public $mv_dodges, $mv_dodge_attempts,$mv_blitz_actions,$mv_gfi_attempts,$mv_gfis,$mv_inflicted_blocks,$mv_inflicted_defender_downs,
+		$mv_inflicted_defender_stumbles,$mv_inflicted_pushes,$mv_inflicted_both_downs,$mv_inflicted_attacker_downs,$mv_inflicted_knock_downs, 
+		$mv_inflicted_strip_balls,$mv_inflicted_stuns,$mv_inflicted_kos,$mv_inflicted_sacks,$mv_inflicted_bhs,$mv_sustained_knocked_downs,
+		$mv_sustained_crowd_surfs,$mv_sustained_sis, $mv_inflicted_crowd_surfs,$mv_inflicted_sis,$mv_inflicted_kills,$mv_sustained_blocks,
+		$mv_sustained_sacks,$mv_sustained_stuns,$mv_sustained_kos,$mv_sustained_bhs,$mv_sustained_kill,$mv_inflicted_fouls,$mv_inflicted_foul_stuns,
+		$mv_inflicted_foul_kos,$mv_inflicted_foul_bhs,$mv_inflicted_foul_sis,$mv_inflicted_foul_kills,$mv_sustained_fouls,$mv_sustained_ejections
+		,$mv_apothecary_used,$mv_ko_recovery_attempts,$mv_ko_recoveries,$mv_thickskull_used,$mv_regeneration_attempts,$mv_regenerations,$mv_kickoffs
+		,$mv_kick_distance,$mv_dice_rolls,$mv_dice_natural_ones,$mv_dice_natural_sixes,$mv_dice_target_sum,$mv_dice_roll_sum,$mv_big_guy_stupidity_attempts,$mv_big_guy_stupidity_successes,$mv_big_guy_stupidity_blitz_attempts,$mv_big_guy_stupidity_blitz_successes,$mv_throw_team_mate_attempts,$mv_throw_team_mate_successes,$mv_throw_team_mate_distance
+		,$mv_throw_team_mate_to_safe_landing,$mv_times_thrown,$mv_landing_attempts,$mv_landings,$mv_distance_thrown,$mv_rushing_distance_thrown,$mv_bloodlust_rolls,$mv_bloodlust_successes,$mv_bloodfeeds,$mv_hypnoze_rolls,$mv_hypnoze_successes
+		,$mv_tentacles_rolls,$mv_tentacles_successes,$mv_foul_appearance_rolls,$mv_foul_appearance_successes,$mv_dauntless_rolls
+		,$mv_dauntless_successes,$mv_shadowing_rolls,$mv_shadowing_successes,$mv_bombs_throw_attempts,$mv_bombs_thrown
+		,$mv_sustained_bomb_effect,$mv_sustained_bomb_stun,$mv_sustained_bomb_ko,$mv_sustained_bomb_bh,$mv_sustained_bomb_si,$mv_sustained_bomb_kill
+			= 0;
+
+
 	public static function dispList() {
 		global $lng;
 		/*
@@ -37,8 +75,8 @@ class Team_HTMLOUT extends Team
 			$queryGet = '('.$_subt1.') UNION DISTINCT ('.$_subt2.') ORDER BY tname ASC';
 		}
 
-		$result = mysql_query($queryCnt);
-		list($cnt) = mysql_fetch_row($result);
+		$result = mysqli_query(mysql_up(),$queryCnt);
+		list($cnt) = mysqli_fetch_row($result);
 		$pages = ($cnt == 0) ? 1 : ceil($cnt/T_HTML_TEAMS_PER_PAGE);
 		global $page;
 		$page = (isset($_GET['page']) && $_GET['page'] <= $pages) ? $_GET['page'] : 1; # Page 1 is default, of course.
@@ -52,8 +90,8 @@ class Team_HTMLOUT extends Team
 		$queryGet .= ' LIMIT '.(($page-1)*T_HTML_TEAMS_PER_PAGE).', '.(($page)*T_HTML_TEAMS_PER_PAGE);
 
 		$teams = array();
-		$result = mysql_query($queryGet);
-		while ($t = mysql_fetch_object($result)) {
+		$result = mysqli_query(mysql_up(),$queryGet);
+		while ($t = mysqli_fetch_object($result)) {
 			$img = new ImageSubSys(IMGTYPE_TEAMLOGO, $t->team_id);
 			$t->logo = "<img border='0px' height='20' width='20' alt='Team race picture' src='".$img->getPath($t->f_race_id)."'>";
 			$retired = $t->retired;
