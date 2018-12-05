@@ -517,7 +517,7 @@ if ($settings['enable_pdf_logos']) {
     $pdf->Image($img->getPath(),346,436,128,128,'','',false,0);
 
     // OBBLM text lower left corner as a pic
-    $pdf->Image('modules/pdf/OBBLM_pdf_logo.png', MARGINX+12, 534, 60, 28, '', '', false, 0);
+    //$pdf->Image('modules/pdf/OBBLM_pdf_logo.png', MARGINX+12, 534, 60, 28, '', '', false, 0);
 }
 
 // Color legends
@@ -553,7 +553,7 @@ $pdf->Cell(50, 8, 'Stat downgrade', 0, 0, 'L', false);
 $pdf->SetFont('Tahoma', '', 7);
 $pdf->SetFillColorBB($pdf->hex2cmyk(COLOR_ROSTER_NORMAL));
 $pdf->SetXY($currentx+160, $currenty+1);        
-$donate = "Please consider donating to the OBBLM project if you enjoy this software and wish to support\n further development and maintenance. For more information visit nicholasmr.dk";
+$donate = "";/* "Please consider donating to the OBBLM project if you enjoy this software and wish to support\n further development and maintenance. For more information visit nicholasmr.dk";*/
 $pdf->Multicell(300, 8, $donate, 0, 0, 'L', false);
 
 // Output the PDF document

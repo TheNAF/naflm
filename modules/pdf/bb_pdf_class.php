@@ -33,6 +33,8 @@ require_once('fpdf.php');
 class BB_PDF extends FPDF
 {
 
+public $CurPageFormat;
+
 var $tmpFiles = array(); // Private for PNG Alpha Channel support
 
 // For rounded rectangles
