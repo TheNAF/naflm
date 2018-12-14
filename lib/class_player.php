@@ -140,6 +140,7 @@ class Player
     public function setStats($node, $node_id, $set_avg = false) {
         foreach (Stats::getAllStats(T_OBJ_PLAYER, $this->player_id, $node, $node_id, $set_avg) as $key => $val) {
             $this->$key = $val;
+			//echo "$val<br>";
         }
         return true;
     }
@@ -366,7 +367,7 @@ class Player
     }
 
     public function rename($new_name) {
-        return mysqli_query(mysql_up(),"UPDATE players SET name = '" . mysqli_real_escape_string($new_name) . "' WHERE player_id = $this->player_id");
+        return mysqli_query(mysql_up(),"UPDATE players SET name = '" . mysqli_real_escape_string(mysql_up(),$new_name) . "' WHERE player_id = $this->player_id");
     }
     
     public function renumber($number) {
@@ -728,14 +729,14 @@ class Player
         }
 
         $input['owned_by_team_id'] = (int) $input['team_id']; unset($input['team_id']);
-        $input['name'] = "'".mysqli_real_escape_string($input['name'])."'"; 
+        $input['name'] = "'".mysqli_real_escape_string(mysql_up(), $input['name'])."'"; 
         $input['date_bought'] = 'NOW()';
         $input['type'] = $JM ? PLAYER_TYPE_JOURNEY : PLAYER_TYPE_NORMAL;
         foreach (array('ach_ma', 'ach_st', 'ach_ag', 'ach_av', 'extra_spp') as $f) {$input[$f] = 0;}
 
         $query = "INSERT INTO players (".implode(',',array_keys($input)).") VALUES (".implode(',', array_values($input)).")";
         if (mysqli_query(mysql_up(),$query)) {
-            $pid = mysqli_insert_id($conn);
+            $pid = mysqli_insert_id(mysql_up());
             $team->dtreasury(-1 * $price);
         } else {
             self::$T_CREATE_SQL_ERROR['query'] = $query;

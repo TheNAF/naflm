@@ -5,6 +5,14 @@ define('MYSQL_BOTH',MYSQLI_BOTH);
 define('MYSQL_NUM',MYSQLI_NUM);
 define('MYSQL_ASSOC',MYSQLI_ASSOC);
 
+/*function mysqli_last_result($link) {
+    while (mysqli_more_results($link)) {
+        mysqli_use_result($link); 
+        mysqli_next_result($link);
+    }
+    return mysqli_store_result($link);
+}*/
+
 /* THIS FILE is used for MySQL-helper routines */
 // These are the OBBLM core tables.
 // Commonly used col. defs.
@@ -1113,9 +1121,44 @@ function upgrade_database($version, $opts, $upgradeSQLs) {
             break;
     }
     if (isset($upgradeSettings[$version]) && $upgradeSettings[$version]['syncall']) {
+		//echo "jow";
+		/*if (mysqli_multi_query(mysql_up(), "CALL syncAll()")) {
+			do {
+				
+				if ($result = mysqli_store_result(mysql_up())) {
+					while ($row = mysqli_fetch_row($result)) {
+						printf("%s\n", $row[0]);
+					}
+					mysqli_free_result($result);
+				}
+				
+				if (mysqli_more_results(mysql_up())) {
+					printf("-----------------\n");
+				}
+			} while (mysqli_next_result(mysql_up()));
+			echo "<font color='green'>OK &mdash; synchronised all dynamic stats and properties</font><br>\n";
+		}else{
+			echo "<font color='red'>FAILED &mdash; could not synchronise all dynamic stats and properties</font><br>\n";
+		}*/
+
+		//$result = mysqli_query(mysql_up(), 
+		//	"CALL syncAll") or die("Query fail: " . mysqli_error());
+
+		//$query  = "CALL syncAllMVs();";
+		//$query .= "CALL syncAllDPROPS();";
+		//$query .= "CALL syncAllRels(); ";
+
+		/*mysqli_multi_query(mysql_up(), $query);
+		$result = mysqli_last_result($link);
+		$row = $result->fetch_row();
+		echo $row[0];
+		*/
+		//echo "Manueel synch doen";
+
         echo (mysqli_query(mysql_up(), "CALL syncAll()"))
             ? "<font color='green'>OK &mdash; synchronised all dynamic stats and properties</font><br>\n"
             : "<font color='red'>FAILED &mdash; could not synchronise all dynamic stats and properties</font><br>\n";
+			
     }
     // Done!
     return isset($upgradeMsgs[$version]) ? $upgradeMsgs[$version] : '' ;

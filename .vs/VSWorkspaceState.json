@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\lib",
-    "\\modules\\conference",
-    "\\modules\\leaguetables"
+    "\\lib"
   ],
-  "SelectedNode": "\\lib\\class_translations.php",
+  "SelectedNode": "\\lib\\mysql_upgrade_queries.php",
   "PreviewInSolutionExplorer": false
 }

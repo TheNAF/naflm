@@ -41,17 +41,17 @@ class SQLTriggers
                 self::_player(T_SQLTRIG_PLAYER_DPROPS, $argv);
                 break;
             case T_SQLTRIG_PLAYER_DPROPS: 
-                mysqli_query(mysql_up(),"CALL getPlayerDProps($pid, @inj_ma,@inj_av,@inj_ag,@inj_st,@inj_ni, @ma,@av,@ag,@st, @ma_ua,@av_ua,@ag_ua,@st_ua, @value, @status, @date_died)") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"CALL getPlayerDProps($pid, @inj_ma,@inj_av,@inj_ag,@inj_st,@inj_ni, @ma,@av,@ag,@st, @ma_ua,@av_ua,@ag_ua,@st_ua, @value, @status, @date_died)") or die(mysqli_error(mysql_up()));
                 mysqli_query(mysql_up(),"UPDATE players SET 
                             inj_ma = @inj_ma, inj_av = @inj_av, inj_ag = @inj_ag, inj_st = @inj_st, inj_ni = @inj_ni, 
                             ma = @ma, av = @av, ag = @ag, st = @st, 
                             ma_ua = @ma_ua, av_ua = @av_ua, ag_ua = @ag_ua, st_ua = @st_ua, 
-                            value = @value, status = @status, date_died = @date_died WHERE player_id = $pid") or die(mysqli_error($conn));
+                            value = @value, status = @status, date_died = @date_died WHERE player_id = $pid") or die(mysqli_error(mysql_up()));
                 self::_team(T_SQLTRIG_TEAM_DPROPS, array('id' => $p->owned_by_team_id, 'obj' => new Team($p->owned_by_team_id))); # TV updated dependency.
                 break;
             case T_SQLTRIG_PLAYER_RELS: 
-                mysqli_query(mysql_up(),"CALL getPlayerRels($pid, @f_cid, @f_rid, @f_cname, @f_rname, @f_tname, @f_pos_name)") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE players SET f_cid = @f_cid, f_rid = @f_rid, f_cname = @f_cname, f_rname = @f_rname, f_tname = @f_tname, f_pos_name = @f_pos_name WHERE player_id = $pid") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"CALL getPlayerRels($pid, @f_cid, @f_rid, @f_cname, @f_rname, @f_tname, @f_pos_name)") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE players SET f_cid = @f_cid, f_rid = @f_rid, f_cname = @f_cname, f_rname = @f_rname, f_tname = @f_tname, f_pos_name = @f_pos_name WHERE player_id = $pid") or die(mysqli_error(mysql_up()));
                 break;
         }
     }
@@ -67,17 +67,17 @@ class SQLTriggers
                 self::_race(T_SQLTRIG_RACE_TEAMCNT, array('id' => $t->f_race_id, 'obj' => new Race($t->f_race_id)));
                 break;
 			case T_SQLTRIG_TEAM_DPROPS: 
-                mysqli_query(mysql_up(),"CALL getTeamDProps($tid, @tv, @ff)") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE teams SET tv = @tv, ff = @ff WHERE team_id = $tid") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"CALL getTeamDProps($tid, @tv, @ff)") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE teams SET tv = @tv, ff = @ff WHERE team_id = $tid") or die(mysqli_error(mysql_up()));
                 break;
             case T_SQLTRIG_TEAM_RELS: 
-                mysqli_query(mysql_up(),"CALL getTeamRels($tid, @f_cname, @f_rname)") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE teams SET f_cname = @f_cname, f_rname = @f_rname WHERE team_id = $tid") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"CALL getTeamRels($tid, @f_cname, @f_rname)") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE teams SET f_cname = @f_cname, f_rname = @f_rname WHERE team_id = $tid") or die(mysqli_error(mysql_up()));
                 break;
             case T_SQLTRIG_TEAM_UPDATE_CHILD_RELS: 
-                mysqli_query(mysql_up(),"UPDATE players,teams SET f_tname = teams.name, f_cid = owned_by_coach_id, players.f_cname = teams.f_cname WHERE team_id = $tid AND owned_by_team_id = team_id") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE mv_players,teams SET f_cid = owned_by_coach_id WHERE team_id = $tid AND f_tid = team_id") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE mv_teams,teams SET f_cid = owned_by_coach_id WHERE team_id = $tid AND f_tid = team_id") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"UPDATE players,teams SET f_tname = teams.name, f_cid = owned_by_coach_id, players.f_cname = teams.f_cname WHERE team_id = $tid AND owned_by_team_id = team_id") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE mv_players,teams SET f_cid = owned_by_coach_id WHERE team_id = $tid AND f_tid = team_id") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE mv_teams,teams SET f_cid = owned_by_coach_id WHERE team_id = $tid AND f_tid = team_id") or die(mysqli_error(mysql_up()));
                 self::_coach(T_SQLTRIG_COACH_TEAMCNT, array('id' => $t->owned_by_coach_id, 'obj' => new Coach($t->owned_by_coach_id)));
                 break;
         }
@@ -88,11 +88,11 @@ class SQLTriggers
         $c = $argv['obj'];
         switch ($T_SQLTRIG) {
             case T_SQLTRIG_COACH_UPDATE_CHILD_RELS: 
-                mysqli_query(mysql_up(),"UPDATE players,coaches SET f_cname = coaches.name WHERE coach_id = $cid AND f_cid = coach_id") or die(mysqli_error($conn));
-                mysqli_query(mysql_up(),"UPDATE teams,coaches SET f_cname = coaches.name WHERE coach_id = $cid AND owned_by_coach_id = coach_id") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"UPDATE players,coaches SET f_cname = coaches.name WHERE coach_id = $cid AND f_cid = coach_id") or die(mysqli_error(mysql_up()));
+                mysqli_query(mysql_up(),"UPDATE teams,coaches SET f_cname = coaches.name WHERE coach_id = $cid AND owned_by_coach_id = coach_id") or die(mysqli_error(mysql_up()));
                 break;
             case T_SQLTRIG_COACH_TEAMCNT:
-                mysqli_query(mysql_up(),"UPDATE coaches SET team_cnt = getTeamCnt(".T_OBJ_COACH.", $cid, NULL) WHERE coach_id = $cid") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"UPDATE coaches SET team_cnt = getTeamCnt(".T_OBJ_COACH.", $cid, NULL) WHERE coach_id = $cid") or die(mysqli_error(mysql_up()));
                 break;
         }
     }
@@ -102,18 +102,47 @@ class SQLTriggers
         $r = $argv['obj'];
         switch ($T_SQLTRIG) {
             case T_SQLTRIG_RACE_TEAMCNT:
-                mysqli_query(mysql_up(),"UPDATE races SET team_cnt = getTeamCnt(".T_OBJ_RACE.", $rid, NULL) WHERE race_id = $rid") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"UPDATE races SET team_cnt = getTeamCnt(".T_OBJ_RACE.", $rid, NULL) WHERE race_id = $rid") or die(mysqli_error(mysql_up()));
                 break;
         }
     }
     
     protected static function _match($T_SQLTRIG, array $argv) {
+		$conn = mysql_up();
         switch ($T_SQLTRIG) {
             case T_SQLTRIG_MATCH_UPD:
-                mysqli_query(mysql_up(),"CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], $argv[played])") or die(mysqli_error($conn));
+                //mysqli_query(mysql_up(),"CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], $argv[played])") or die(mysqli_error(mysql_up()));
+				//mysqli_multi_query(mysql_up(),"CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], $argv[played])") or die(mysqli_error(mysql_up()));
+
+				//$call = mysqli_prepare(mysql_up(), "CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], $argv[played])");
+				//mysqli_stmt_bind_param($call);
+				//mysqli_stmt_execute($call);
+
+				$query = "CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], $argv[played])";
+				echo $query;
+				if (mysqli_multi_query(mysql_up(), $query)) {
+					do {
+						
+						if ($result = mysqli_store_result(mysql_up())) {
+							while ($row = mysqli_fetch_row($result)) {
+								//printf("%s\n", $row[0]);
+							}
+							mysqli_free_result($result);
+						}
+						
+						if (mysqli_more_results(mysql_up())) {
+							//printf("-----------------\n");
+						}
+					} while (mysqli_next_result(mysql_up()));
+				}
+
+
+
+				echo "woohoo";
+
                 break;
 			case T_SQLTRIG_MATCH_DEL:
-                mysqli_query(mysql_up(),"CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], TRUE)") or die(mysqli_error($conn));
+                mysqli_query(mysql_up(),"CALL match_sync($argv[mid], $argv[trid], $argv[tid1], $argv[tid2], TRUE)") or die(mysqli_error(mysql_up()));
                 break;
         }
     }

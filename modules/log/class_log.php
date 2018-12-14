@@ -78,7 +78,7 @@ public static function triggerHandler($type, $argv) {}
 
 public static function createEntry($cat, $cid, $msg)
 {
-    return mysqli_query(mysql_up(),"INSERT INTO log (date, cid, category, msg) VALUES (NOW(), $cid, $cat, '".mysqli_real_escape_string($msg)."')");
+    return mysqli_query(mysql_up(),"INSERT INTO log (date, cid, category, msg) VALUES (NOW(), $cid, $cat, '".mysqli_real_escape_string(mysql_up(), $msg)."')");
 }
 
 public static function logViewPage()
