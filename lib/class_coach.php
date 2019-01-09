@@ -522,15 +522,15 @@ class Coach
             return false;
 
         $query = "INSERT INTO coaches (name, realname, passwd, mail, phone, ring, settings) 
-                    VALUES ('" . mysqli_real_escape_string($input['name']) . "',
-                            '" . mysqli_real_escape_string($input['realname']) . "', 
+                    VALUES ('" . mysqli_real_escape_string(mysql_up(), $input['name']) . "',
+                            '" . mysqli_real_escape_string(mysql_up(), $input['realname']) . "', 
                             '" . md5($input['passwd']) . "', 
-                            '" . mysqli_real_escape_string($input['mail']) . "', 
-                            '" . mysqli_real_escape_string($input['phone']) . "', 
+                            '" . mysqli_real_escape_string(mysql_up(), $input['mail']) . "', 
+                            '" . mysqli_real_escape_string(mysql_up(), $input['phone']) . "', 
                             " . $input['ring'].",
                             '".array_strpack_assoc('%k=%v', $input['settings'], ',')."')";
 
-        if (($status = mysqli_query(mysql_up(),$query)) && is_numeric($cid = mysqli_insert_id($conn))) {
+        if (($status = mysqli_query(mysql_up(),$query)) && is_numeric($cid = mysqli_insert_id(mysql_up()))) {
             // Set default memberships
             $newCoach = new Coach($cid);
             foreach (array_merge($settings['default_leagues'], $input['def_leagues']) as $lid) {
