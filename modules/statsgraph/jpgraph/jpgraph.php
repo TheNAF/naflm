@@ -8,6 +8,13 @@
 // Copyright (c) Aditus Consulting. All rights reserved.
 //========================================================================
 
+# added to fix timezone issues when you may or may not have access to it in your php.ini file.
+#
+if( ! ini_get('date.timezone') )
+{
+    date_default_timezone_set('GMT');
+}
+
 require_once('jpg-config.inc.php');
 require_once('jpgraph_gradient.php');
 require_once('jpgraph_errhandler.inc.php');
