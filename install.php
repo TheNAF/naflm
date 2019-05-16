@@ -12,7 +12,7 @@ if (isset($_POST['setup']) || (isset($argv[1]) ? $argv[1] == 'setup' : false)) {
         echo <<<EOL
 <br><br>
 <b>What now?</b><br>
-&mdash; Please remove the <i>install.php</i> file from your OBBLM folder and <a href='index.php'>continue to the main page</a>.<br> 
+&mdash; Renaming the <i>install.php</i> file from your OBBLM folder. Please continue to <a href='index.php'>the main page</a>.<br>
 &mdash; Once at the main page login using the coach account 'root' with password 'root'<br>
 &mdash; From there you may enter the <i>administration</i> section and add new users (coaches) including changing the root password.<br>
 &mdash; For further help visit the <a href='$helpURL'>OBBLM wiki</a>.<br>
@@ -22,6 +22,8 @@ if (isset($_POST['setup']) || (isset($argv[1]) ? $argv[1] == 'setup' : false)) {
 EOL;
         echo "<br><br>";
         HTMLOUT::dnt();
+	// issue #213 - removing the install.php file to support docker
+        rename (getcwd()."/install.php", getcwd()."/install.php.rename");    
     }
     else {
         echo "<br><b><font color='red'>Failed</font></b>";
