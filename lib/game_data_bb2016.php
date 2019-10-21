@@ -819,7 +819,21 @@ $DEA = array (
                 'cost'            => 140000,
                 'icon'            => 'kroxigor1',
                 'pos_id'        => 112,
-            )
+            ),
+            'Chameleon'    => array (
+                'ma'            => 7,
+                 'st'            => 2,
+                 'ag'            => 3,
+                 'av'            => 7,
+                 'def'        => array (23, 108, 8, 10),
+                 'norm'        => array ('A'),
+                 'doub'        => array ('G', 'S', 'P'),
+                 'qty'            => 2,
+                'cost'            => 70000,
+                'icon'            => 'lmskink1',
+                'pos_id'        => 113,
+            ),
+
         )
     ),
     
@@ -2488,6 +2502,63 @@ $stars = array(
         'icon'  => 'star',
         'races' => array(T_RACE_CHAOS, T_RACE_NORSE),
     ),
+    // Added in BB2016 Spike! #7
+    'Anqi Panqi' => array (
+        'id'    => -96,
+        'ma'    => 7,
+        'st'    => 4,
+        'ag'    => 1,
+        'av'    => 9,
+        'def'   => array (99, 1, 51, 57),
+        'cost'  => 210000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_LIZARDMAN),
+    ),
+    'Drull (+ Dribl)' => array (
+        'id'    => -97,
+        'ma'    => 8,
+        'st'    => 2,
+        'ag'    => 3,
+        'av'    => 7,
+        'def'   => array (99, 23, 26, 108, 106),
+        'cost'  => 190000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_LIZARDMAN),
+    ),
+    'Dribl (included with Drull)' => array (
+        'id'    => -98,
+        'ma'    => 8,
+        'st'    => 2,
+        'ag'    => 3,
+        'av'    => 7,
+        'def'   => array (99, 23, 26, 108, 27, 3),
+        'cost'  => 0,
+        'icon'  => 'star',
+        'races' => array(T_RACE_LIZARDMAN),
+    ),
+    'Glotl Stop' => array (
+        'id'    => -99,
+        'ma'    => 6,
+        'st'    => 6,
+        'ag'    => 1,
+        'av'    => 9,
+        'def'   => array (99, 5, 54, 56, 76, 59, 112),
+        'cost'  => 360000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_AMAZON, T_RACE_LIZARDMAN),
+    ),
+    'Zolcath the Zoat' => array (
+        'id'    => -100,
+        'ma'    => 5,
+        'st'    => 5,
+        'ag'    => 2,
+        'av'    => 9,
+        'def'   => array (99, 53, 54, 76, 103, 29, 72),
+        'cost'  => 280000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_AMAZON, T_RACE_LIZARDMAN, T_RACE_WOOD_ELF),
+    ),
+
 );
 /*  Paired Stars  ***************************************************************************************** */
 $starpairs = array (

@@ -566,6 +566,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
     <skink>Skink</skink>
     <saurus>Saurus</saurus>
     <kroxigor>Kroxigor</kroxigor>
+    <chameleon>Chameleon</chameleon>
     <!-- Necromantic -->
     <zombie>Zombie</zombie>
     <ghoul>Ghoul</ghoul>
@@ -792,6 +793,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
     <gobblergrimlich>Gobbler Grimlich</gobblergrimlich>
     <scylaanfingrimm>Scyla Anfingrimm</scylaanfingrimm>
     <withergraspdoubledrool>Withergrasp Doubledrool</withergraspdoubledrool>
+   <!-- Added BB2016 Spike! #7 -->
+    <anqipanqi>Anqi Panqi</anqipanqi>
+    <drulldribl>Drull (&amp; Dribl)</drulldribl>
+    <driblincludedwithdrull>Dribl (included with Drull)</driblincludedwithdrull>
+    <glotlstop>Glotl Stop</glotlstop>
+    <zolcaththezoat>Zolcath the Zoat</zolcaththezoat>
 </starplayer>
 
 <daysofweek>
@@ -1376,6 +1383,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
     <skink>Eslizón</skink>
     <saurus>Saurio</saurus>
     <kroxigor>Króxigor</kroxigor>
+    <chameleon>Chameleon</chameleon>
     <!-- Necromantic -->
     <zombie>Zombi</zombie>
     <ghoul>Necrófago</ghoul>
@@ -2992,6 +3000,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
     <skink>Skink</skink>
     <saurus>Saurus</saurus>
     <kroxigor>Kroxigor</kroxigor>
+    <chameleon>Caméléon</chameleon>
     <!-- Necromantic -->
     <zombie>Zombie</zombie>
     <ghoul>Goule</ghoul>
