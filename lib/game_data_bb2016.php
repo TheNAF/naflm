@@ -2502,9 +2502,20 @@ $stars = array(
         'icon'  => 'star',
         'races' => array(T_RACE_CHAOS, T_RACE_NORSE),
     ),
+    'Zolcath the Zoat' => array (
+        'id'    => -99,
+        'ma'    => 5,
+        'st'    => 5,
+        'ag'    => 2,
+        'av'    => 9,
+        'def'   => array (99, 53, 54, 76, 103, 29, 72),
+        'cost'  => 280000,
+        'icon'  => 'star',
+        'races' => array(T_RACE_AMAZON, T_RACE_LIZARDMAN, T_RACE_WOOD_ELF),
+    ),
     // Added in BB2016 Spike! #7
     'Anqi Panqi' => array (
-        'id'    => -96,
+        'id'    => -101,
         'ma'    => 7,
         'st'    => 4,
         'ag'    => 1,
@@ -2515,7 +2526,7 @@ $stars = array(
         'races' => array(T_RACE_LIZARDMAN),
     ),
     'Drull (+ Dribl)' => array (
-        'id'    => -97,
+        'id'    => -102,
         'ma'    => 8,
         'st'    => 2,
         'ag'    => 3,
@@ -2526,7 +2537,7 @@ $stars = array(
         'races' => array(T_RACE_LIZARDMAN),
     ),
     'Dribl (included with Drull)' => array (
-        'id'    => -98,
+        'id'    => -103,
         'ma'    => 8,
         'st'    => 2,
         'ag'    => 3,
@@ -2537,7 +2548,7 @@ $stars = array(
         'races' => array(T_RACE_LIZARDMAN),
     ),
     'Glotl Stop' => array (
-        'id'    => -99,
+        'id'    => -104,
         'ma'    => 6,
         'st'    => 6,
         'ag'    => 1,
@@ -2547,18 +2558,6 @@ $stars = array(
         'icon'  => 'star',
         'races' => array(T_RACE_AMAZON, T_RACE_LIZARDMAN),
     ),
-    'Zolcath the Zoat' => array (
-        'id'    => -100,
-        'ma'    => 5,
-        'st'    => 5,
-        'ag'    => 2,
-        'av'    => 9,
-        'def'   => array (99, 53, 54, 76, 103, 29, 72),
-        'cost'  => 280000,
-        'icon'  => 'star',
-        'races' => array(T_RACE_AMAZON, T_RACE_LIZARDMAN, T_RACE_WOOD_ELF),
-    ),
-
 );
 /*  Paired Stars  ***************************************************************************************** */
 $starpairs = array (
