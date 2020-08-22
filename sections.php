@@ -137,6 +137,7 @@ function sec_main() {
 
     ?>
     <div class="main_head"><?php echo $settings['league_name']; ?></div>
+    <div class="flex_container">
     <div class='main_leftColumn'>
         <div class="main_leftColumn_head">
             <?php
@@ -503,6 +504,7 @@ function sec_main() {
     }
     ?>
     </div>
+    </div>
     <div class="main_foot">
         <?php
         HTMLOUT::dnt();
@@ -579,6 +581,7 @@ function _infocus($teams) {
             position:relative;
             left: 160px;
             height: 80px;
+            max-width: 50%;
         }
 
         #inFocusContent<?php echo $_INFOCUSCNT;?> P {
@@ -604,7 +607,8 @@ function _infocus($teams) {
         }
 
         #inFocusContent<?php echo $_INFOCUSCNT;?> DIV.last-inFocus {
-            z-index:9;redeclare compare_spp
+            /* THIS LINE IS INCOMPLETE, NEED TO ASSESS WHAT IT DOES AND HOW TO FIX */
+            /* z-index:9;redeclare compare_spp  */
         }
     </style>
     <div id="inFocusBox<?php echo $_INFOCUSCNT;?>" >

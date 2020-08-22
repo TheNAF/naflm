@@ -1,0 +1,24 @@
+/*************************** Flexible Sizing Theme **************************/
+
+div.flex_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+
+}
+div.main_rightColumn {width: 100%; background-color: inherit;}
+div.main_leftColumn {width: 100%; background-color: inherit;}
+    div.main_leftColumn_head     {clear: both; text-align: right; padding-right: 20px; background-color: inherit;} /* Padding should be the same as lcolBox padding. */
+        div.main_leftColumn_welcome  {clear: both; padding-left: 20px; padding-top: 3px; padding-bottom: 3px; background-color: inherit; text-align: left;}
+        div.main_leftColumn_left  {padding-left: 20px; padding-top: 10px; padding-bottom: 10px; background-color: inherit; text-align: left; float:left;}
+        div.main_leftColumn_right {padding-left: 20px; padding-top: 3px;  padding-bottom: 3px;  background-color: inherit; text-align: right; float:right;}
+
+@media only screen and (min-width: 992px) {
+    div.flex_container {
+        flex-direction: row;
+    }
+    div.main_leftColumn, div.main_rightColumn {
+        width: 50%;
+    }
+}
