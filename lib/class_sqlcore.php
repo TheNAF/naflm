@@ -194,7 +194,7 @@ class SQLCore
 			DECLARE cid1, cid2 '.$CT_cols[T_OBJ_COACH].';
 
 			/* Tour DPROPS */
-			DECLARE empty,begun,finished BOOLEAN;
+			DECLARE is_empty,is_begun,is_finished BOOLEAN;
 			DECLARE winner '.$CT_cols[T_OBJ_TEAM].';
 
 			/* Team DPROPS */
@@ -221,8 +221,8 @@ class SQLCore
 		';
 			# Needs $matches_setup_rels.
 		$matches_tourDProps = '
-			CALL getTourDProps(trid, empty, begun, finished, winner);
-			UPDATE tours SET tours.empty = empty, tours.begun = begun, tours.finished = finished, tours.winner = winner WHERE tour_id = trid;
+			CALL getTourDProps(trid, is_empty, is_begun, is_finished, winner);
+			UPDATE tours SET tours.is_empty = is_empty, tours.is_begun = is_begun, tours.is_finished = is_finished, tours.winner = winner WHERE tour_id = trid;
 		';
 			# Needs $matches_setup_rels.
 		$matches_teamDProps = '
@@ -995,7 +995,7 @@ class SQLCore
 				DECLARE done INT DEFAULT 0;
 
 				DECLARE trid '.$CT_cols[T_NODE_TOURNAMENT].';
-				DECLARE empty,begun,finished BOOLEAN;
+				DECLARE is_empty,is_begun,is_finished BOOLEAN;
 				DECLARE winner '.$CT_cols[T_OBJ_TEAM].';
 
 				DECLARE pid '.$CT_cols[T_OBJ_PLAYER].';
@@ -1018,8 +1018,8 @@ class SQLCore
 				REPEAT
 					FETCH cur_tr INTO trid;
 					IF NOT done THEN
-						CALL getTourDProps(trid, empty, begun, finished, winner);
-						UPDATE tours SET tours.empty = empty, tours.begun = begun, tours.finished = finished, tours.winner = winner WHERE tours.tour_id = trid;
+						CALL getTourDProps(trid, is_empty, is_begun, is_finished, winner);
+						UPDATE tours SET tours.is_empty = is_empty, tours.is_begun = is_begun, tours.is_finished = is_finished, tours.winner = winner WHERE tours.tour_id = trid;
 					END IF;
 				UNTIL done END REPEAT;
 				CLOSE cur_tr;
@@ -1168,17 +1168,17 @@ class SQLCore
 					+ '.(((int) $rules['bank_threshold'] > 0) ? '1' : '0').' * IF(treasury > '. $rules['bank_threshold']*1000 .',treasury - '. $rules['bank_threshold']*1000 .',0);
 			END',
 
-			'CREATE PROCEDURE getTourDProps(IN trid '.$CT_cols[T_NODE_TOURNAMENT].', OUT empty BOOLEAN, OUT begun BOOLEAN, OUT finished BOOLEAN, OUT winner '.$CT_cols[T_OBJ_TEAM].')
+			'CREATE PROCEDURE getTourDProps(IN trid '.$CT_cols[T_NODE_TOURNAMENT].', OUT is_empty BOOLEAN, OUT is_begun BOOLEAN, OUT is_finished BOOLEAN, OUT winner '.$CT_cols[T_OBJ_TEAM].')
 				NOT DETERMINISTIC
 				READS SQL DATA
 			BEGIN
 				DECLARE type '.$core_tables['tours']['type'].';
 				SELECT tours.type INTO type FROM tours WHERE tour_id = trid;
 
-				SET empty = (SELECT (COUNT(*) < 1) FROM matches WHERE f_tour_id = trid);
-				SET begun = (SELECT (COUNT(*) > 0) FROM matches WHERE f_tour_id = trid AND date_played IS NOT NULL);
+				SET is_empty = (SELECT (COUNT(*) < 1) FROM matches WHERE f_tour_id = trid);
+				SET is_begun = (SELECT (COUNT(*) > 0) FROM matches WHERE f_tour_id = trid AND date_played IS NOT NULL);
 				SET winner = (SELECT IF(team1_score > team2_score, team1_id, team2_id) FROM matches WHERE f_tour_id = trid AND round = '.RT_FINAL.' AND date_played IS NOT NULL AND team1_score != team2_score LIMIT 1);
-				SET finished = (SELECT (type = '.TT_RROBIN.' AND COUNT(*) = 0 OR type = '.TT_FFA.' AND winner IS NOT NULL) FROM matches WHERE f_tour_id = trid AND date_played IS NULL);
+				SET is_finished = (SELECT (type = '.TT_RROBIN.' AND COUNT(*) = 0 OR type = '.TT_FFA.' AND winner IS NOT NULL) FROM matches WHERE f_tour_id = trid AND date_played IS NULL);
 			END',
 
 			/*

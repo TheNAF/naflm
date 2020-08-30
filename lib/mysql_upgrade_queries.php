@@ -72,9 +72,9 @@ $upgradeSQLs = array(
         SQLUpgrade::runIfColumnNotExists('players', 'date_died', 'ALTER TABLE players ADD COLUMN date_died DATETIME'),
         SQLUpgrade::runIfColumnNotExists('players', 'ma', 'ALTER TABLE players ADD COLUMN ('.implode(', ', array_map(create_function('$f','return "$f TINYINT UNSIGNED DEFAULT 0";'), array('ma','st','ag','av','inj_ma','inj_st','inj_ag','inj_av','inj_ni'))).')'),
         SQLUpgrade::runIfColumnNotExists('players', 'win_pct', 'ALTER TABLE players ADD COLUMN win_pct FLOAT UNSIGNED DEFAULT 0'),
-        SQLUpgrade::runIfColumnNotExists('tours', 'empty', 'ALTER TABLE tours ADD COLUMN empty BOOLEAN DEFAULT TRUE'),
-        SQLUpgrade::runIfColumnNotExists('tours', 'begun', 'ALTER TABLE tours ADD COLUMN begun BOOLEAN DEFAULT FALSE'),
-        SQLUpgrade::runIfColumnNotExists('tours', 'finished', 'ALTER TABLE tours ADD COLUMN finished BOOLEAN DEFAULT FALSE'),
+        SQLUpgrade::runIfColumnNotExists('tours', 'is_empty', 'ALTER TABLE tours ADD COLUMN is_empty BOOLEAN DEFAULT TRUE'),
+        SQLUpgrade::runIfColumnNotExists('tours', 'is_begun', 'ALTER TABLE tours ADD COLUMN is_begun BOOLEAN DEFAULT FALSE'),
+        SQLUpgrade::runIfColumnNotExists('tours', 'is_finished', 'ALTER TABLE tours ADD COLUMN is_finished BOOLEAN DEFAULT FALSE'),
         SQLUpgrade::runIfColumnNotExists('tours', 'winner', 'ALTER TABLE tours ADD COLUMN winner MEDIUMINT UNSIGNED'),
         // Add relation fields
         SQLUpgrade::runIfColumnNotExists('players', 'f_cid', 'ALTER TABLE players ADD COLUMN f_cid MEDIUMINT UNSIGNED'),

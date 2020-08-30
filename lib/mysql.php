@@ -168,9 +168,9 @@ $core_tables = array(
         'rs'            => 'TINYINT UNSIGNED DEFAULT 1',
         'locked'        => 'BOOLEAN NOT NULL DEFAULT 0',
         // Dynamic properties (DPROPS)
-        'empty'         => 'BOOLEAN DEFAULT TRUE',
-        'begun'         => 'BOOLEAN DEFAULT FALSE',
-        'finished'      => 'BOOLEAN DEFAULT FALSE',
+        'is_empty'         => 'BOOLEAN DEFAULT TRUE',
+        'is_begun'         => 'BOOLEAN DEFAULT FALSE',
+        'is_finished'      => 'BOOLEAN DEFAULT FALSE',
         'winner'        => $CT_cols[T_OBJ_TEAM],
         'allow_sched'   => 'BOOLEAN DEFAULT FALSE',
     ),
@@ -973,48 +973,67 @@ function SQLBoolEval($query) {
 
 function setup_database() {
     global $core_tables;
+    $checks_passed = true;
     $conn = mysql_up();
     require_once('lib/class_sqlcore.php');
     // Create core tables.
     echo "<b>Creating core tables...</b><br>\n";
     foreach ($core_tables as $tblName => $def) {
-        echo (Table::createTable($tblName, $def))
-            ? "<font color='green'>OK &mdash; $tblName</font><br>\n"
-            : "<font color='red'>FAILED &mdash; $tblName</font><br>\n";
+        if (Table::createTable($tblName, $def)) {
+            echo "<font color='green'>OK &mdash; $tblName</font><br>\n";
+        } else {
+            echo "<font color='red'>FAILED &mdash; $tblName</font><br>\n";
+            $checks_passed=false;
+        }
     }
     // Create tables used by modules.
     echo "<b>Creating module tables...</b><br>\n";
     foreach (Module::createAllRequiredTables() as $module => $tables) {
         foreach ($tables as $name => $tblStat) {
-            echo ($tblStat)
-                ? "<font color='green'>OK &mdash; $name</font><br>\n"
-                : "<font color='red'>FAILED &mdash; $name</font><br>\n";
+            if ($tblStat) {
+                echo "<font color='green'>OK &mdash; $name</font><br>\n";
+            } else {
+                echo "<font color='red'>FAILED &mdash; $name</font><br>\n";
+                $checks_passed=false;
+            }
         }
     }
     echo "<b>Other tasks...</b><br>\n";
-    echo (SQLCore::syncGameData())
-        ? "<font color='green'>OK &mdash; Synchronize game data with database</font><br>\n"
-        : "<font color='red'>FAILED &mdash; Error whilst synchronizing game data with database</font><br>\n";
-    echo (SQLCore::installTableIndexes())
-        ? "<font color='green'>OK &mdash; applied table indexes</font><br>\n"
-        : "<font color='red'>FAILED &mdash; could not apply one more more table indexes</font><br>\n";
-    echo (SQLCore::installProcsAndFuncs(true))
-        ? "<font color='green'>OK &mdash; created MySQL functions/procedures</font><br>\n"
-        : "<font color='red'>FAILED &mdash; could not create MySQL functions/procedures</font><br>\n";
+    if (SQLCore::syncGameData()) {
+        echo "<font color='green'>OK &mdash; Synchronize game data with database</font><br>\n";
+    } else {
+        echo "<font color='red'>FAILED &mdash; Error whilst synchronizing game data with database</font><br>\n";
+        $checks_passed=false;
+    }
+    if (SQLCore::installTableIndexes()) {
+        echo "<font color='green'>OK &mdash; applied table indexes</font><br>\n";
+    } else {
+        echo "<font color='red'>FAILED &mdash; could not apply one more more table indexes</font><br>\n";
+        $checks_passed=false;
+    }
+    if (SQLCore::installProcsAndFuncs(true)) {
+        echo "<font color='green'>OK &mdash; created MySQL functions/procedures</font><br>\n";
+    } else {
+        echo "<font color='red'>FAILED &mdash; could not create MySQL functions/procedures</font><br>\n";
+        $checks_passed=false;
+    }
     // Create root user and leave welcome message on messageboard
 	global $rootpass;
 	$rootpass = isset($rootpass) ? $rootpass : 'root';
-    echo (Coach::create(array('name' => 'root', 'realname' => 'root', 'passwd' => $rootpass, 'ring' => Coach::T_RING_GLOBAL_ADMIN, 'mail' => '', 'phone' => '', 'settings' => array(), 'def_leagues' => array())))
-        ? "<font color=green>OK &mdash; root user created.</font><br>\n"
-        : "<font color=red>FAILED &mdash; root user was not created.</font><br>\n";
+    if (Coach::create(array('name' => 'root', 'realname' => 'root', 'passwd' => $rootpass, 'ring' => Coach::T_RING_GLOBAL_ADMIN, 'mail' => '', 'phone' => '', 'settings' => array(), 'def_leagues' => array()))) {
+        echo "<font color=green>OK &mdash; root user created.</font><br>\n";
+    } else {
+        echo "<font color=red>FAILED &mdash; root user was not created.</font><br>\n";
+        $checks_passed=false;
+    }
     Message::create(array(
         'f_coach_id' => 1,
         'f_lid'      => Message::T_BROADCAST,
-        'title'      => 'NAFLM installed!',
-        'msg'        => 'Congratulations! You have successfully installed the NAF League Manager. See "About" for more information. Ensure you change the root account password immediately.'));
+        'title'      => 'OBBLM installed!',
+        'msg'        => 'Congratulations! You have successfully installed Online Blood Bowl League Manager. See "About" and "Introduction" for more information.'));
     // Done!
     mysql_close($conn);
-    return true;
+    return $checks_passed;
 }
 
 function upgrade_database_to_version($toVersion, $fromVersion) {

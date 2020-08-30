@@ -367,7 +367,7 @@ function Image($file,$x=null, $y=null,$w=0,$h=0,$type='',$link='', $isMask=false
     if($h==0)
         $h=$w*$info['h']/$info['w'];
         
-    if ($isMask) $x = $this->CurPageFormat[1] + 10; // embed hidden, ouside the canvas, was: fwPt
+    //if ($isMask) $x = $this->CurPageFormat[1] + 10; // embed hidden, ouside the canvas, was: fwPt
     $this->_out(sprintf('q %.2f 0 0 %.2f %.2f %.2f cm /I%d Do Q',$w*$this->k,$h*$this->k,$x*$this->k,($this->h-($y+$h))*$this->k,$info['i']));
     if($link)
         $this->Link($x,$y,$w,$h,$link);

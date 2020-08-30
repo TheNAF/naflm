@@ -40,9 +40,9 @@ class Tour {
             $this->$col = ($val) ? $val : 0;
         }
         $this->locked = (bool) $this->locked;
-        $this->is_empty = $this->empty;
-        $this->is_begun = $this->begun;
-        $this->is_finished = $this->finished;
+        $this->is_empty = $this->is_empty;
+        $this->is_begun = $this->is_begun;
+        $this->is_finished = $this->is_finished;
     }
 
     public function getMatches() {
@@ -90,7 +90,7 @@ class Tour {
     }
 
     public function isRSWithPoints() {
-        // Returns bool for wheter or not this tournament's ranking system uses points.
+        // Returns bool for whether or not this tournament's ranking system uses points.
         global $hrs;
         return !empty($hrs[$this->rs]['points']);
     }

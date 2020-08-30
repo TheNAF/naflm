@@ -86,7 +86,8 @@ class Player_HTMLOUT extends Player
 		title($p->name);
 		$players = $team->getPlayers();
 		$i = $next = $prev = 0;
-		$end = end(array_keys($players));
+		$playerArray = array_keys($players);
+		$end = end($playerArray);
 		foreach ($players as $player) {
 			if ($player->player_id == $p->player_id) {
 				if ($i == 0) {

@@ -1,5 +1,7 @@
 README
 ------
-Please see the project Wiki for install instructions.
+Please see the project Wiki for instructions.
+
+Upgrade instructions can be found at; https://github.com/TheNAF/naflm/wiki/Upgrading-an-existing-install
 
 Lastest public build is found under releases and requires PHP 5.6 to run

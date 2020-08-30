@@ -312,7 +312,7 @@ public static function step1() {
 			AND 
 				tours.locked = 0
 			AND 
-				tours.finished = 0
+				tours.is_finished = 0
 			ORDER BY 
 				leagues.name,divisions.name,tours.name";
 
