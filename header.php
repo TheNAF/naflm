@@ -164,10 +164,10 @@ sortgamedata(); # Game data files are unsorted, make them pretty for display pur
 /********************
  *   Globals/Startup
  ********************/
-setupGlobalVars(T_SETUP_GLOBAL_VARS__COMMON);
 
 if (defined('T_NO_STARTUP')) {
-    Coach::logout();
+	Coach::logout();
+	setupGlobalVars(T_SETUP_GLOBAL_VARS__COMMON);
     require_once('modules/modsheader.php'); # Registration of modules.
 } else {
     $conn = mysql_up(defined('T_NO_TBL_CHK') ? !T_NO_TBL_CHK : true); # MySQL connect.
