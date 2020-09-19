@@ -201,7 +201,7 @@ switch ($_GET['type'])
 	case 'scheduler_apa_schedule_available':
 		break;
 	default:
-		fatal("Sorry. I don't know what the type '$_GET[type]' means.\n");
+		fatal("Sorry. I don't know what the type means.\n");
 }
 
 mysql_close($conn);

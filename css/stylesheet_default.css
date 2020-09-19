@@ -132,6 +132,10 @@ table.boxTable {border-spacing: 5px; width: 100%;}
 
 /* Used almost everywhere */
 table.common  {border: none; width: 100%; background-color: inherit;}
+table.common tr:nth-child(odd) {background-color: rgba(0,0,0,0.2);}
+table.common tr:nth-child(odd):hover {background-color: rgba(0,0,0,0.3);}
+table.common tr:nth-child(even):hover {background-color: rgba(0,0,0,0.1);}
+
 tr.commonhead {background-color: #CCCCCC;}
 
 /* For the tours list */

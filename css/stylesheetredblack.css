@@ -210,7 +210,6 @@ table.boxTable {border-spacing: 5px; width: 100%;}
  */
 
 /* Used almost everywhere */
-table.common  {border: none; width: 100%; background-color: inherit;}
 tr.commonhead {background-image: url(../images/bg_list3.gif);
     background-repeat: repeat-x; 
     color: #e1e5c4;
