@@ -199,7 +199,7 @@ table.boxTable {color:black; border-spacing: 5px; width: 100%;}
 
 /* Used almost everywhere */
 table.common  {border: none; width: 100%; background-color: inherit;}
-table.common tr:nth-child(odd) {background: #800000;}
+
 tr.commonhead {color: black; background-color: #CCCCCC;}
 
 /* For the tours list */
