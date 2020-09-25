@@ -2848,8 +2848,11 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <login>Connexion</login>
             <logout>Déconnexion</logout>
             <home>Accueil</home>
-            <cc>Coin du Coach</cc>
+            <cc>Coach</cc>
+			<leaguemenu>Ligue</leaguemenu>
+			<leaguehistory>Historique Ligue</leaguehistory>
             <teams>Équipes</teams>
+			<teamcreate>Créer une équipe</teamcreate>
             <coaches>Coachs</coaches>
             <matches_menu>
                 <name>Matchs</name>
@@ -2874,8 +2877,8 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                 <usr_man>Gérer : Utilisateurs</usr_man>
                 <!-- <tour_man> -->
                 <import>Importer une équipe</import>
-                <schedule>Planifier un match</schedule>
-                <cpanel>OBBLM panneau principal</cpanel>
+                <schedule>Calendrier</schedule>
+                <cpanel>Panneau principal</cpanel>
             </admin_menu>
             <plugins>Modules</plugins>
             <rules>Règles</rules>
@@ -3103,7 +3106,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                 <ff>Popularité</ff>
                 <smp>Points de fair-play</smp>
                 <pts>points</pts>
-                <tcas>Sorties totales faites par l'équipe</tcas>
+                <tcas>Pertes totales de l'équipe</tcas>
                 <fame>FAME</fame>
                 <tv>VE</tv>
                 <summary>Compte-rendu du match</summary>
@@ -3197,7 +3200,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <ogre>Ogre</ogre>
             <orc>Orque</orc>
             <shamblingundead>Mort-vivant</shamblingundead>
-            <vampire>Vampire</vampire>
+            <vampire>Vampire Blitzer</vampire>
             <skaven>Skaven</skaven>
             <woodelf>Elfe Sylvain</woodelf>
             <chaosrenegades>Pacte du Chaos</chaosrenegades>
@@ -3206,8 +3209,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <bretonnia>Bretonnien</bretonnia>
             <daemonsofkhorne>Démons de Khorne</daemonsofkhorne>
             <simyin>Simyin</simyin>
-            <oldworldalliance>Alliance du Vieux Monde</oldworldalliance>
-            <snotling>Snotling</snotling>
         </race>
 
         <position>
@@ -3220,9 +3221,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <runner>Coureur</runner>
             <!-- Amazon -->
             <triballinewoman>Trois-quart</triballinewoman>
-            <eaglewarriorthrower>Lanceuse Guerrière Aigle</eaglewarriorthrower>
-            <piranhawarriorcatcher>Receveuse Guerrière Piranha</piranhawarriorcatcher>
-            <kokakalimblitzer>Blitzeuse Koka Kalim</kokakalimblitzer>
             <!-- Chaos Chosen -->
             <beastmanrunner>Homme-bête</beastmanrunner>
             <chosenblocker>Guerrier du Chaos</chosenblocker>
@@ -3231,7 +3229,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <hobgoblinrunner>Hobgobelin</hobgoblinrunner>
             <chaosdwarfblocker>Bloqueur nain du Chaos</chaosdwarfblocker>
             <bullcentaurblitzer>Centaure Taureau</bullcentaurblitzer>
-            <enslavedminotaur>Minotaure</enslavedminotaur>
+            <!-- <enslavedminotaur> -->
             <!-- Dark Elf -->
             <assassin>Assassin</assassin>
             <witchelf>Furie</witchelf>
@@ -3240,7 +3238,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <deathroller>Roule-mort</deathroller>
             <!-- Goblin -->
             <goblin>Gobelin</goblin>
-            <bomma>Bombardier</bomma>
+            <bomma>Bomma</bomma>
             <pogoer>Bâton à ressort</pogoer>
             <looney>Barjot</looney>
             <fanatic>Fanatique</fanatic>
@@ -3250,34 +3248,25 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <!-- Halfling -->
             <halflinghopeful>Halfling</halflinghopeful>
             <treeman>Homme-arbre</treeman>
-            <halflingcatcher>Reçeveur Halfling</halflingcatcher>
-            <halflinghefty>Halfling Lourd</halflinghefty>
+            <halflingcatcher>Halfling Catcher</halflingcatcher>
+            <halflinghefty>Halfling Hefty</halflinghefty>
             <!-- Human -->
             <ogre>Ogre</ogre>
             <!-- Tomb Kings -->
             <skeletonlineman>Squelette</skeletonlineman>
-            <anointedthrower>Lanceur Oint</anointedthrower>
-            <anointedblitzer>Blitzeur Oint</anointedblitzer>
             <tombguardian>Gardien des tombes</tombguardian>
             <!-- Lizardman -->
-            <skinkrunner>Coureur Skink</skinkrunner>
-            <saurusblocker>Bloqueur Saurus</saurusblocker>
+            <skinkrunner>Skink Runner</skinkrunner>
+            <saurusblocker>Saurus Blocker</saurusblocker>
             <kroxigor>Kroxigor</kroxigor>
-            <chameleonskink>Skink Caméléon</chameleonskink>
             <!-- Necromantic Horror -->
             <zombie>Zombie</zombie>
-            <ghoulrunner>Ghoule</ghoulrunner>
-            <ghoul>Coureur Goule</ghoul>
-            <wightblitzer>Blitzeur Revenant</wightblitzer>
+            <ghoul>Goule</ghoul>
             <wight>Revenant</wight>
             <fleshgolem>Golem de chair</fleshgolem>
             <werewolf>Loup-Garou</werewolf>
             <necromanticwerewolf>Loup-Garou Nécromantique</necromanticwerewolf>
             <!-- Norse -->
-            <norselineman>Trois-quart Nordique</norselineman>
-            <norsethrower>Lanceur Nordique</norsethrower>
-            <norserunner>Coureur Nordique</norserunner>
-            <norseberserker>Berserker Nordique</norseberserker>
             <norsewerewolf>Loup-Garou Nordique</norsewerewolf>
             <yhetee>Troll des neiges</yhetee>
             <berserker>Berseker</berserker>
@@ -3290,7 +3279,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <rotspawn>Bête de Nurgle</rotspawn>
             <!-- Orge -->
             <gnoblar>Gnoblar</gnoblar>
-            <runtpunter>Botteur d'Avortons</runtpunter>
             <!-- Orc -->
             <blackorcblocker>Bloqueur Orque Noir</blackorcblocker>
             <!-- Skaven -->
@@ -3300,7 +3288,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <gutterrunner>Coureur d'égout</gutterrunner>
             <ratogre>Rat Ogre</ratogre>
             <!-- Shambling Undead -->
-            <skeleton>Squelette</skeleton>
             <mummy>Momie</mummy>
             <!-- Vampire -->
             <thralllineman>Serviteur</thralllineman>
@@ -3327,15 +3314,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <!-- <gorilla> -->
             <!-- <chimpanzee> -->
             <!-- <silverback> -->
-            <!-- Old World Alliance -->
-            <humanlineman>Trois-quart Humain</humanlineman>
-            <humanthrower>Lanceur Humain</humanthrower>
-            <humancatcher>Receveur humain</humancatcher>
-            <humanblitzer>Blitzeur Humain</humanblitzer>
-            <dwarfblocker>Bloqueur Nain</dwarfblocker>
-            <dwarfrunner>Coureur Nain</dwarfrunner>
-            <dwarfblitzer>Blitzeur Nain</dwarfblitzer>
-            <dwarftrollslayer>Roule-mort Nain</dwarftrollslayer>
         </position>
 
         <skill>
@@ -3424,12 +3402,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <titchy>Microbe</titchy>
             <wildanimal>Animal Sauvage</wildanimal>
             <weepingblades>Dague suintante</weepingblades>
-            <!-- Added BB2016 Spike! #8 -->
-            <disposable>Sacrifiable</disposable>
-            <kickteammate>Botter un Coéquipier</kickteammate>
-            <sportinggiant>Géant Sportif</sportinggiant>
-            <!-- Added BB2016 Spike! #8 -->
-            <swarming>Déferlement</swarming>
         </skill>
 
         <starplayer>
@@ -3437,7 +3409,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <bomberdribblesnot>Boomer Morvonez</bomberdribblesnot>
             <boomer>Blam’</boomer>
             <brickfarthgrotty>Pèt’Brik et Minab’</brickfarthgrotty>
-            <grottyincludedinbrickfarth>Minab’ (inclus avec Pèt’Brik)</grottyincludedinbrickfarth>
+            <!-- <grottyincludedinbrickfarth> -->
             <countluthorvondrakenborg>Comte Luthor Von Drakenborg</countluthorvondrakenborg>
             <deeprootstrongbranch>Racine Dutronc</deeprootstrongbranch>
             <eldrilsidewinder>Eldril Fendlabise</eldrilsidewinder>
@@ -3500,9 +3472,9 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <!-- Added BB2016 DZ1 -->
             <gufflepusmaw>Guffle Pusmaw</gufflepusmaw>
             <!-- Added BB2016 DZ2 -->
-            <glartsmashripsr>Glart Lavollée Sr</glartsmashripsr>
-            <lucienswiftvalenswift>Lucien Swift (&amp; Valen Swift)</lucienswiftvalenswift>
-            <valenswiftincludedwithlucienswift>Valen Swift (inclus avec Lucien Swift)</valenswiftincludedwithlucienswift>
+            <!-- <glartsmashripsr> -->
+            <!-- <lucienswiftvalenswift> -->
+            <!-- <valenswiftincludedwithlucienswift> -->
             <!-- <kreekrustgouger> -->
             <!-- <bogallante> -->
             <!-- <karlavonkill> -->
@@ -3512,8 +3484,6 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <gobblergrimlich>Gobbler Grimlich</gobblergrimlich>
             <scylaanfingrimm>Scyla Anfingrimm</scylaanfingrimm>
             <withergraspdoubledrool>Withergrasp Doubledrool</withergraspdoubledrool>
-            <drulldribl>Drull (&amp; Dribl)</drulldribl>
-            <driblincludedwithdrull>Dribl (inclus avec Drull)</driblincludedwithdrull>
         </starplayer>
 
         <daysofweek>

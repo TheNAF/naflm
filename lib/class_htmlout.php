@@ -984,10 +984,10 @@ class HTMLOUT
 		if (isset($_SESSION['logged_in'])) {
 		?>
 
-		<li class="topfirst"><a href="#">User Menu</a>
+		<li class="topfirst"><a href="#"><?php echo $lng->getTrn('menu/cc');?></a>
 			<ul>
-				<li class="subfirst"><a href="handler.php?type=teamcreator">Create a New Team</a></li>
-				<li><a href="index.php?section=matches&amp;type=usersched" >Schedule Match</a></li>
+				<li class="subfirst"><a href="handler.php?type=teamcreator"><?php echo $lng->getTrn('menu/teamcreate');?></a></li>
+				<li><a href="index.php?section=matches&amp;type=usersched" ><?php echo $lng->getTrn('menu/matches_menu/usersched');?></a></li>
 				 <li><a rel="nofollow" href="<?php echo urlcompile(T_URL_PROFILE,T_OBJ_COACH,$coach->coach_id,false,false).'&amp;subsec=teams';?>"><?php echo $lng->getTrn('cc/coach_teams');?></a></li>
 				<li><a rel="nofollow" href="<?php echo urlcompile(T_URL_PROFILE,T_OBJ_COACH,$coach->coach_id,false,false).'&amp;subsec=profile';?>"><?php echo $lng->getTrn('cc/profile');?></a></li>
 				<li><a rel="nofollow" href="<?php echo urlcompile(T_URL_PROFILE,T_OBJ_COACH,$coach->coach_id,false,false).'&amp;subsec=stats';?>"><?php echo $lng->getTrn('common/stats');?></a></li>
@@ -1026,7 +1026,7 @@ class HTMLOUT
 		} ?>        
 
 	<li class="topmenu">
-		<a href="#">League Menu</a>
+		<a href="#"><?php echo $lng->getTrn('menu/leaguemenu');?></a>
 		<ul>
 			<li class="subfirst"><a href="index.php?section=rules"><?php echo $lng->getTrn('menu/rules');?></a></li>
 			<li><a href="handler.php?type=leaguetables"><?php echo $lng->getTrn('name', 'LeagueTables');?></a></li>
@@ -1045,19 +1045,19 @@ class HTMLOUT
 		</ul>
 	</li>
 			
-	<li class="topmenu"><a rel="nofollow" href="index.php?section=rules">League History</a>
+	<li class="topmenu"><a href="#"><?php echo $lng->getTrn('menu/leaguehistory');?></a>
 		<ul>   
-			<?php if (Module::isRegistered('Gallery'))        { ?><li><a href="handler.php?type=gallery"><?php echo $lng->getTrn('name', 'Gallery');?></a></li><?php } ?>
-			<?php if (Module::isRegistered('Wanted'))        { ?><li><a href="handler.php?type=wanted"><?php echo $lng->getTrn('name', 'Wanted');?></a></li><?php } ?>
 			<?php if (Module::isRegistered('Prize'))        { ?><li><a href="handler.php?type=prize"><?php echo $lng->getTrn('name', 'Prize');?></a></li><?php } ?>
-			<?php if (Module::isRegistered('HOF'))        { ?><li><a href="handler.php?type=hof"><?php echo $lng->getTrn('name', 'HOF');?></a></li><?php } ?>
-			<?php if (Module::isRegistered('FamousTeams'))        { ?><li><a href="handler.php?type=famousteams"><?php echo $lng->getTrn('name', 'FamousTeams');?></a></li><?php } ?>
-			<?php if (Module::isRegistered('Memmatches'))        { ?><li><a href="handler.php?type=memmatches"><?php echo $lng->getTrn('name', 'Memmatches');?></a></li><?php } ?>
 			<li><a href="index.php?section=matches&amp;type=tours"><?php echo $lng->getTrn('menu/matches_menu/tours');?></a></li>
+			<?php if (Module::isRegistered('FamousTeams'))        { ?><li><a href="handler.php?type=famousteams"><?php echo $lng->getTrn('name', 'FamousTeams');?></a></li><?php } ?>
+			<?php if (Module::isRegistered('HOF'))        { ?><li><a href="handler.php?type=hof"><?php echo $lng->getTrn('name', 'HOF');?></a></li><?php } ?>
+			<?php if (Module::isRegistered('Wanted'))        { ?><li><a href="handler.php?type=wanted"><?php echo $lng->getTrn('name', 'Wanted');?></a></li><?php } ?>
+			<?php if (Module::isRegistered('Memmatches'))        { ?><li><a href="handler.php?type=memmatches"><?php echo $lng->getTrn('name', 'Memmatches');?></a></li><?php } ?>
+			<?php if (Module::isRegistered('Gallery'))        { ?><li><a href="handler.php?type=gallery"><?php echo $lng->getTrn('name', 'Gallery');?></a></li><?php } ?>
 		</ul>
 	</li>
 			
-	<li class="topmenu"><a rel="nofollow" href="#">Game Rules</a>
+	<li class="topmenu"><a rel="nofollow" href="#"><?php echo $lng->getTrn('menu/rules');?></a>
 		<ul> 
 			<li class="subfirst"><a rel="nofollow" href="#">Team Rosters ></a>
 				<ul>
@@ -1095,7 +1095,7 @@ class HTMLOUT
 		</ul>
 	</li>
 				
-	<li class="topmenu"><a rel="nofollow" href="#">Statistics</a>
+	<li class="topmenu"><a rel="nofollow" href="#"><?php echo $lng->getTrn('menu/statistics_menu/name');?></a>
 		<ul>
 			<li class="subfirst"><a rel="nofollow" href="<?php echo urlcompile(T_URL_STANDINGS,T_OBJ_TEAM,false,false,false);?>"><?php echo $lng->getTrn('menu/statistics_menu/team_stn');?></a></li>
 			<li><a rel="nofollow" href="<?php echo urlcompile(T_URL_STANDINGS,T_OBJ_PLAYER,false,false,false);?>"><?php echo $lng->getTrn('menu/statistics_menu/player_stn');?></a></li>
