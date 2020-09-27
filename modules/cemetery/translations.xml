@@ -41,4 +41,25 @@
 <about><![CDATA[Sobre la muerte del jugador. ¿Logros? ¿Por qué será recordado?]]></about>
 
 </es-ES>
+
+<fr-FR>
+
+<name>Cimetière</name>
+
+<player>Joueur</player>
+<submit>Soumettre</submit>
+<edit>Éditer</edit>
+<del>Supprimer</del>
+<posted>Posté</posted>
+<died>Mort</died>
+<after>après</after>
+<days>jours</days>
+
+<g_title>Titre</g_title>
+<g_about>A propos</g_about>
+
+<title><![CDATA[Titre de la nécrologie. Peut être laissé vide.]]></title>
+<about><![CDATA[A propos de la mort du joueur. Succès ? Dans les mémoires pour ?]]></about>
+
+</fr-FR>
 </translations>

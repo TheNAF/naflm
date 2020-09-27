@@ -45,4 +45,28 @@
 <table-points>Pts</table-points>
 
 </es-ES>
+
+<fr-FR>
+
+<name>Classement</name>
+<help>Veuillez sélectionner le tournoi pour lequel vous souhaitez afficher le classement</help>
+<no-conf>Aucune conférence assignée</no-conf>
+<menu-label>Classements</menu-label>
+<tours>Sélectionnez un tournoi</tours>
+
+<table-pos>#</table-pos>
+<table-coach>Coach</table-coach>
+<table-name>Équipe</table-name>
+<table-race>Race</table-race>
+<table-tv>TV</table-tv>
+<table-played>J.</table-played>
+<table-won>V.</table-won>
+<table-draw>N.</table-draw>
+<table-loss>D.</table-loss>
+<table-td>TD</table-td>
+<table-cas>Sor</table-cas>
+<table-points>Pts</table-points>
+
+</fr-FR>
+
 </translations>

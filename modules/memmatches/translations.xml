@@ -49,20 +49,20 @@
 <name>Matchs m&amp;eacute;morables</name>
 
 <record>Record</record>
-<desc>Quelles sont les matchs les plus m&amp;eacute;morables pour le nombre de touchdowns, les sorties, etc. ?</desc>
-<filled>More than X matches have the same record or no record exists at all.</filled>
+<desc>Quels sont les matchs les plus m&amp;eacute;morables pour le nombre de touchdowns, de sorties, etc.. ?</desc>
+<filled>Plus de X matchs ont le même record, ou aucun record n'existe du tout.</filled>
 
 <!-- Most of... -->
-<td>Le plus touchdowns</td>
+<td>Le plus de TDs</td>
 <cp>Le plus de passes</cp>
 <intcpt>Le plus d'interceptions</intcpt>
 <ki>Le plus de morts</ki>
 <cas>Le plus de sorties</cas>
-<svic>La plus large diff&amp;eacute;rence de touchdowns</svic>
+<svic>La plus large diff&amp;eacute;rence de TDs</svic>
 <inc>Le plus gros gains d'&amp;eacute;quipe</inc>
 <gate>La plus grosse affluence</gate>
-<mfans>Most RL fans/spectators</mfans>
-<tvdiff>Le plus large &amp;eacute;cart de valeur dans laquelle le favori a perdu</tvdiff>
+<mfans>Le plus de fans (IRL)</mfans>
+<tvdiff>La plus grosse différence de TVs entre les 2 équipes pour un match, pour lequel le favori a perdu</tvdiff>
 
 </fr-FR>
 </translations>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<translations>
+<en-GB>
+
+<name>League Preferences Administration</name>
+<menu-lge>League Preferences</menu-lge>
+<help>Using the league prefences league and global administrators can change some of the settings for a league without modifying the PHP files.</help>
+
+<lname>League</lname>
+
+<prime_title>Primary Tournament</prime_title>
+<prime_help>The primary tournament is used for the front page league table</prime_help>
+
+<second_title>Primary Division</second_title>
+<second_help>The primary division is used for front page player performance stats</second_help>
+
+<league_name_title>League Name</league_name_title>
+<league_name_help>Name of your league</league_name_help>
+
+<forum_url_title>Forum URL</forum_url_title>
+<forum_url_help>The link to use in the Forum button on the main menu. Leave this blank for no forum.</forum_url_help>
+
+<welcome_title>Welcome</welcome_title>
+<welcome_help>Message to appear at the top of the home page. This can be HTML.</welcome_help>
+
+<rules_title>League Rules</rules_title>
+<rules_help>The rules to display under the Rules menu. This can be HTML.</rules_help>
+
+
+<submit_text>OK</submit_text>
+<submit_title>Update this league`s preferences</submit_title>
+
+<failedSave>Unable to save preferences</failedSave>
+<failedValidate>Oh Noes! The league administration module has failed the ptid!=stid check.  Please alert your administrator!</failedValidate>
+<failedSave>Sorry, you don't have permission to update this league</failedSave>
+
+<saved>Updated</saved>
+
+<css_title>League CSS&lt;br/&gt; &lt;i&gt;(careful if you don't know CSS)&lt;/i&gt;&lt;br/&gt;You may need to clear cache after editing.</css_title>
+<css_help>You can theme your League, but you need to know CSS!</css_help>
+
+<core_theme_title>Core Theme</core_theme_title>
+<core_theme_help>These are pre-built themes you can use, or build from using the League CSS below.</core_theme_help>
+
+<tv_title>Initial Treasury</tv_title>
+<tv_help>Usually set this to 1000000, but you can pick other values.</tv_help>
+
+<language_title>Language</language_title>
+<language_help>Your leagues default language.</language_help>
+
+
+</en-GB>
+
+<fr-FR>
+
+<name>Préférences de ligue</name>
+<menu-lge>Préférences de ligue</menu-lge>
+<help>Utilise les préférences de ligue permet aux administrateurs globaux de modifier les paramètres de la ligue sans modifier les fichiers PHP.</help>
+
+<lname>Ligue</lname>
+
+<prime_title>Tournoi principal</prime_title>
+<prime_help>Le tournoi principal est affiché en page d'accueil de la ligue</prime_help>
+
+<second_title>Division principale</second_title>
+<second_help>La division principale est utilisée pour l'affichage des statistiques de joueurs</second_help>
+
+<league_name_title>Nom de la ligue</league_name_title>
+<league_name_help>Nom de votre ligue</league_name_help>
+
+<forum_url_title>URL du Forum</forum_url_title>
+<forum_url_help>Le lien pour accéder à votre forum de ligue depuis le menu principal. Laissez vide si aucun forum.</forum_url_help>
+
+<welcome_title>Bienvenue</welcome_title>
+<welcome_help>Message qui apparaîtra en haut de votre page d'accueil. Cela peut être du HTML.</welcome_help>
+
+<rules_title>Règles de ligue</rules_title>
+<rules_help>Les règles à afficher dans le menu Règles. Cela peut être du HTML.</rules_help>
+
+
+<submit_text>OK</submit_text>
+<submit_title>Mettre à jour les préférences de ligue.</submit_title>
+
+<failedSave>Impossible de sauvegarder les préférences.</failedSave>
+<failedValidate>Oh non ! Le module d'administration de ligue a échoué le contrôle ptid!=stid. Veuillez avertir votre administrateur.</failedValidate>
+<failedSave>Désolé, vous n'avez pas l'autorisation de mettre à jour cette ligue.</failedSave>
+
+<saved>Sauvegardé</saved>
+
+<css_title>CSS&lt;br/&gt; &lt;i&gt;(Attention si vous ne connaissez pas le CSS)&lt;/i&gt;&lt;br/&gt;Vous aurez à nettoyer votre cache après édition.</css_title>
+<css_help>Vous pouvez créer un thème pour votre ligue, mais vous devez connaître le CSS !</css_help>
+
+<core_theme_title>Thème</core_theme_title>
+<core_theme_help>Thèmes prêt à l'emploi ou créés depuis le module d'édition CSS au dessus.</core_theme_help>
+
+<tv_title>Trésorerie initiale</tv_title>
+<tv_help>Habituellement à 1000000, mais vous pouvez choisir un autre montant pour débuter votre ligue.</tv_help>
+
+<language_title>Langue</language_title>
+<language_help>La langue de votre ligue par défaut.</language_help>
+
+
+</fr-FR>
+
+</translations>
