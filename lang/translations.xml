@@ -96,6 +96,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <coaches>Coaches</coaches>
             <race>Race</race>
             <races>Races</races>
+            <optraces>Optional Races</optraces>
             <star>Star</star>
             <stars>Stars</stars>
             <roster>Roster</roster>
@@ -121,13 +122,13 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <ki>Kills</ki>
             <bh>Badly hurt</bh>
             <si>Seriously injured</si>
-            <cas>Cacualties</cas>
+            <cas>Casualties</cas>
             <mvp>Most valuable players</mvp>
             <pms>Display match average stats</pms>
             <ats>Display all-time stats</ats>
             <uploadnew>Upload new image</uploadnew>
             <notice_simul>
-                <![CDATA[<i>Note</i>: Both tables below are sorted simultaneously.]]>
+			    <![CDATA[<i>Note</i>: Both tables below are sorted simultaneously.]]>
             </notice_simul>
             <notice_spp>
                 <![CDATA[<i>Note</i>: <b>If</b> star players could earn SPP they would have the amount correspondng to the SPP column.]]>
@@ -164,7 +165,10 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <logout>Logout</logout>
             <home>Home</home>
             <cc>Coach corner</cc>
+            <leaguemenu>League</leaguemenu>
+            <leaguehistory>League History</leaguehistory>
             <teams>Teams</teams>
+            <teamcreate>Create new team</teamcreate>
             <coaches>Coaches</coaches>
             <matches_menu>
                 <name>Matches</name>
@@ -372,18 +376,10 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                     <removeNiggle>Remove player niggle</removeNiggle>
 
                     <desc>
-                        <unhire_journeyman>
-                            <![CDATA[ Regret permanently hiring a journeyman.<br> This only works on players from a 0-16 allowed position on your team's roster. ]]>
-                        </unhire_journeyman>
-                        <unsell_player>
-                            <![CDATA[ Regret firing a player. ]]>
-                        </unsell_player>
-                        <unbuy_goods>
-                            <![CDATA[ Regret buying team goods. ]]>
-                        </unbuy_goods>
-                        <bank>
-                            <![CDATA[ Make changes to team's treasury. ]]>
-                        </bank>
+                        <unhire_journeyman><![CDATA[ Regret permanently hiring a journeyman.<br> This only works on players from a 0-16 allowed position on your team's roster. ]]></unhire_journeyman>
+                        <unsell_player><![CDATA[ Regret firing a player. ]]></unsell_player>
+                        <unbuy_goods><![CDATA[ Regret buying team goods. ]]></unbuy_goods>
+                        <bank><![CDATA[ Make changes to team's treasury. ]]></bank>
                         <!-- <chown> -->
                         <spp>
                             <![CDATA[ Manage a player's extra SPP. ]]>
@@ -2745,8 +2741,11 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <retired>Retraite</retired>
             <skills>Compétences</skills>
             <skill>Compétence</skill>
+            <normal>Normal</normal>
+            <double>Double</double>			
             <injs>Blessures</injs>
             <pos>Position</pos>
+            <maxqty>Qté max</maxqty>
             <price>Prix</price>
             <number>Numéro</number>
             <opponent>Adversaire</opponent>
@@ -2785,8 +2784,11 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <coaches>Coachs</coaches>
             <race>Race</race>
             <races>Races</races>
+			<optraces>Races optionnelles</optraces>
             <star>Champion</star>
             <stars>Champions</stars>
+            <roster>Roster</roster>
+            <availablestars>Champions disponibles</availablestars>
             <won>Victoires</won>
             <lost>Défaites</lost>
             <draw>Nuls</draw>
@@ -2794,19 +2796,14 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <played>Jouée</played>
             <playedtours>Tournois joués</playedtours>
             <wontours>Tournois gagnés</wontours>
-            <ready>Prêt</ready>
-            <dead>Mort</dead>
-            <sold>Vendu</sold>
-            <bought>Acheté</bought>
             <ma>Mv</ma>
             <st>F</st>
             <ag>Ag</ag>
             <av>Ar</av>
-            <english>Anglais</english>
-            <spanish>Espagnol</spanish>
-            <german>Allemand</german>
-            <french>Français</french>
-            <italian>Italien</italian>
+            <ready>Prêt</ready>
+            <dead>Mort</dead>
+            <sold>Vendu</sold>
+            <bought>Acheté</bought>
             <td>Touchdowns</td>
             <intcpt>Interceptions</intcpt>
             <cp>Réussites</cp>
@@ -2818,8 +2815,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <pms>Afficher les stats des matchs</pms>
             <ats>Afficher toutes les stats</ats>
             <uploadnew>Envoyer une nouvelle image</uploadnew>
-            <notice_simul>&lt;i&gt;Note&lt;/i&gt;: Les tables ci-dessous sont triées simultanément.</notice_simul>
-            <notice_spp>&lt;i&gt;Note&lt;/i&gt;: &lt;b&gt;Si&lt;/b&gt; les stars peuvent gagner des compétences, elles auront le montant correspondant dans la colonne.</notice_spp>
+            <notice_simul>
+                <![CDATA[<i>Note</i>: Les tables ci-dessous sont triées simultanément.]]>
+            </notice_simul>
+            <notice_spp>
+			    <![CDATA[<i>Note</i>: <b>Si</b> les champions peuvent gagner de l'expérience, elles auront les points d'XP correspondant dans la colonne Exp.]]>
+            </notice_spp>
             <sortedagainst>Trié par</sortedagainst>
             <confirm_box>Êtes-vous sûr ?</confirm_box>
 
@@ -2835,12 +2836,14 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <extrastats>Statistiques supplémentaires</extrastats>
             <stat>Statistiques</stat>
             <!-- use "all-time" string from nodeSelect() translation -->
-            <matchavg>Match&amp;nbsp;moy.</matchavg>
-            <!-- <english> -->
-            <!-- <spanish> -->
-            <!-- <german> -->
-            <!-- <french> -->
-            <!-- <italian> -->
+            <matchavg>
+                <![CDATA[Match&amp;nbsp;moy.]]>
+            </matchavg>
+            <english>Anglais</english>
+            <spanish>Espagnol</spanish>
+            <german>Allemand</german>
+            <french>Français</french>
+            <italian>Italien</italian>
         </common>
 
         <!-- Link names for menu elements -->
@@ -2849,10 +2852,10 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <logout>Déconnexion</logout>
             <home>Accueil</home>
             <cc>Coach</cc>
-			<leaguemenu>Ligue</leaguemenu>
-			<leaguehistory>Historique Ligue</leaguehistory>
+            <leaguemenu>Ligue</leaguemenu>
+            <leaguehistory>Historique Ligue</leaguehistory>
             <teams>Équipes</teams>
-			<teamcreate>Créer une équipe</teamcreate>
+            <teamcreate>Nouvelle équipe</teamcreate>
             <coaches>Coachs</coaches>
             <matches_menu>
                 <name>Matchs</name>
@@ -2873,8 +2876,8 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                 <name>Administration</name>
                 <nodes>Ligues, divisions, tournois</nodes>
                 <!-- <ld_man> -->
-                <ct_man>Gérer : Coachs &amp; équipes</ct_man>
-                <usr_man>Gérer : Utilisateurs</usr_man>
+                <ct_man>Coachs &amp; équipes</ct_man>
+                <usr_man>Utilisateurs</usr_man>
                 <!-- <tour_man> -->
                 <import>Importer une équipe</import>
                 <schedule>Calendrier</schedule>
@@ -2979,8 +2982,8 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
 
                 <box_tm>
                     <title>Gestion de l'équipe</title>
-                    <hire_player>Engager un joueur</hire_player>
-                    <hire_journeyman>Engager un journalier</hire_journeyman>
+                    <hire_player>Recruter un joueur</hire_player>
+                    <hire_journeyman>Recruter un journalier</hire_journeyman>
                     <fire_player>Renvoyer un joueur</fire_player>
                     <unbuy_player>Annuler l'achat d'un joueur</unbuy_player>
                     <rename_player>Renommer un joueur</rename_player>
@@ -3001,19 +3004,45 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                     </fdescs>
 
                     <desc>
-                        <hire_player>Embaucher un nouveau joueur.&lt;br&gt; Engager un journalier est gratuit, mais seule la position 0-16 est éligible.</hire_player>
-                        <hire_journeyman>Engager un des journaliers en tant que joueur définitif de l'équipe.</hire_journeyman>
-                        <fire_player>Renvoyer un joueur. Remboursement de :</fire_player>
-                        <unbuy_player>Erreur sur le recrutement d'un joueur. Rembourser à 100%.&lt;br&gt; uniquement sur un joueur n'ayant jamais joué de match.</unbuy_player>
-                        <rename_player>Renommer un joueur.</rename_player>
-                        <renumber_player>Renuméroter un joueur.</renumber_player>
-                        <rename_team>Renommer votre équipe.</rename_team>
-                        <buy_goods>Acheter des biens d'équipe.</buy_goods>
-                        <buy_goods_warn>&lt;br&gt;&lt;br&gt;Notez que les relances d'équipes coûtent le &lt;font color='red'&gt;&lt;b&gt;double&lt;/b&gt;&lt;/font&gt;.&lt;br&gt;Si vous souhaitez acheter une relance au prix de base, demandez à l'Administrateur un remboursement de la différence.</buy_goods_warn>
-                        <drop_goods>Se séparer de biens sans remboursement.</drop_goods>
-                        <ready_state>Cet attribut d'équipe indique que l'équipe accepte les matchs ou non.</ready_state>
-                        <retire>Mettre l'équipe en retraite.&lt;br&gt;Une fois à la retraite, l'équipe n'est plus jouable.&lt;br&gt;Seul l'Administrateur peut remettre l'équipe en service actif. La mise à la retraite est immédiate mais n'apparaîtra qu'au prochain &lt;b&gt;rechargement de l'affichage&lt;/b&gt;.</retire>
-                        <delete>Effacer l'équipe.&lt;br&gt;Pour le bien des statistiques, vous ne pouvez plus effacer d'équipe ayant joué un match. L'effacement est immédiat mais n'apparaîtra qu'au prochain &lt;b&gt;rechargement de l'affichage&lt;/b&gt;.</delete>
+                        <hire_player>
+                            <![CDATA[ Recruter un nouveau joueur.<br> Recruter temporairement un journalier est gratuit, mais seuls les joueurs avec une position 0-16 peuvent être engagés en tant que journaliers. ]]>
+                        </hire_player>
+                        <hire_journeyman>
+                            <![CDATA[ Recruter définitivement un journalier pour jouer dans votre équipe. ]]>
+                        </hire_journeyman>
+                        <fire_player>
+						    <![CDATA[ Renvoyer un joueur. Remboursement de : ]]>
+                        </fire_player>
+                        <unbuy_player>
+						    <![CDATA[ Annuler le recrutement d'un joueur. Remboursé à 100%.<br> Possible uniquement si le joueur n'a participé à aucun match. ]]>
+                        </unbuy_player>
+                        <rename_player>
+						    <![CDATA[ Renommer un joueur. ]]>
+                        </rename_player>
+                        <renumber_player>
+						    <![CDATA[ Renuméroter un joueur. ]]>
+                        </renumber_player>
+                        <rename_team>
+						    <![CDATA[ Renommer votre équipe. ]]>
+                        </rename_team>
+                        <buy_goods>
+							<![CDATA[ Acheter des avantages d'équipe. ]]>
+                        </buy_goods>
+                        <buy_goods_warn>
+						    <![CDATA[ <br><br>Veuillez noter que les relances d'équipe coûtent <font color='red'><b>double</b></font>.<br>Si vous souhaitez acheter une relance au prix de base, demandez à un administrateur le remboursement de la différence. ]]>
+                        </buy_goods_warn>
+                        <drop_goods>
+                            <![CDATA[ Se séparer d'avantages d'équipe. Pas de remboursement. ]]>
+                        </drop_goods>
+                        <ready_state>
+                            <![CDATA[ Cet attribut indique si l'équipe accepte ou non les matchs. ]]>
+                        </ready_state>
+                        <retire>
+                            <![CDATA[ Mettre l'équipe en retraite.<br>Une fois à la retraite, l'équipe n'est plus jouable ou gérable.<br>Les administrateurs peuvent remettre l'équipe en activité. La mise à la retraite prend effet immédiatement, mais n'apparaîtra qu'au <b>prochain rechargement de l'affichage</b>. ]]>
+                        </retire>
+                        <delete>
+                            <![CDATA[ Effacer l'équipe.<br>Pour ne pas provoquer d'erreur avec les statistiques, il n'est pas permis d'effacer une équipe ayant joué un match. La suprression de l'équipe est immédiate, mais n'apparaîtra qu'au <b>prochain rechargement de l'affichage</b>. ]]>
+                        </delete>
                     </desc>
                 </box_tm>
 
@@ -3028,21 +3057,33 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                     <dval>Gérer la valeur bonus des joueurs</dval>
                     <extra_skills>Gérer les compétences suppl. des joueurs</extra_skills>
                     <ach_skills>Retirer des compétences de joueurs</ach_skills>
-                    <!-- <ff> -->
-                    <!-- <removeNiggle> -->
+                    <ff>Gérer la popularité</ff>
+                    <removeNiggle>Retirer une blessure persistante</removeNiggle>
 
                     <desc>
-                        <unhire_journeyman>Revenir sur le recrutement permanent d'un journalier en tant que joueur.&lt;br&gt; Ne fonctionne que sur les positions 0-16 de la fiche d'équipe.</unhire_journeyman>
-                        <unsell_player>Revenir sur le licenciement d'un joueur.</unsell_player>
-                        <unbuy_goods>Revenir sur l'achat de biens d'équipe</unbuy_goods>
-                        <bank>Modifier la trésorerie d'équipe.</bank>
+                        <unhire_journeyman><![CDATA[ Revenir sur le recrutement permanent d'un journalier<br> Cela n'est possible que si le joueur a une positionn 0-16 sur votre roster. ]]></unhire_journeyman>
+                        <unsell_player><![CDATA[ Revenir sur le licenciement d'un joueur. ]]></unsell_player>
+                        <unbuy_goods><![CDATA[ Revenir sur l'achat d'avantages d'équipe. ]]></unbuy_goods>
+                        <bank><![CDATA[ Modifier la trésorerie d'équipe. ]]></bank>
                         <!-- <chown> -->
-                        <spp>Gérer l'éxperience bonus d'un joueur.</spp>
-                        <dval>Changer la valeur d'un joueur d'un certain montant.</dval>
-                        <extra_skills>Gérer les compétences supplémentaires d'un joueur.</extra_skills>
-                        <ach_skills>Retirer une compétence selectionnée. Cela permet de choisir une compétence en remplacement.</ach_skills>
-                        <!-- <ff> -->
-                        <!-- <removeNiggle> -->
+                        <spp>
+                            <![CDATA[ Gérer les points d'expérience d'un joueur. ]]>
+                        </spp>
+                        <dval>
+                            <![CDATA[ Changer la valeur d'un joueur d'un certain montant. ]]>
+                        </dval>
+                        <extra_skills>
+						    <![CDATA[ Gérer les compétences supplémentaires d'un joueur. ]]>
+                        </extra_skills>
+                        <ach_skills>
+                            <![CDATA[ Retirer une compétence gagnée. Cela permettra au coach de choisir une nouvelle compétence pour son joueur en remplacement. ]]>
+                        </ach_skills>
+                        <ff>
+                            <![CDATA[ Faire des modifications sur la popularité de l'équipe. ]]>
+                        </ff>
+                        <removeNiggle>
+                            <![CDATA[ Retirer une des blessures persistantes d'un joueur. ]]>
+                        </removeNiggle>
                     </desc>
                 </box_admin>
             </team>
@@ -3050,7 +3091,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
 
         <standings>
             <team>
-                <tblTitle2>Position historique, suite (Position d'équipe)</tblTitle2>
+                <tblTitle2>Stats par équipe, suite (Détails de l'équipe)</tblTitle2>
             </team>
         </standings>
 
@@ -3086,8 +3127,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                     <rnd12>Round 12</rnd12>
                 </roundtypes>
 
-                <matchdelete>Êtes-vous sur(e) de vouloir EFFACER ce match?\n\nATTENTION:\nA part si le match n\'a pas encore été joué, cette action est IRRÉVERSIBLE et affectera tous les matchs suivants pour les deux équipes.\nIl est conseillé de n\'effacer un match que si vous êtes conscient des risques.</matchdelete>
-                <reset_notice>Êtes-vous sur(e) de vouloir RÉINITIALISER ce match?\n\nATTENTION:\nCette action est IRRÉVERSIBLE et affectera tous les matchs suivants pour les deux équipes.</reset_notice>
+                <matchdelete>
+                <![CDATA[Êtes-vous sûr(e) de vouloir effacer ce match ?\n\nVEUILLEZ NOTER :\nSauf si le match n'a pas encore été joué, cette action est irréversible et affectera tous les matchs suivants pour les deux équipes.\nIl est conseillé de ne pas effacer de matchs autres que les matchs test, ou que vous savez ce que vous faites. ]]>
+                </matchdelete>
+                <reset_notice>
+                <![CDATA[Êtes-vous sûr(e) de vouloir réinitialiser ce match ?\n\nVEUILLEZ NOTER :\nRéinitialiser un match supprime toutes les données du match.\nRéinitialiser un match dont l'une des deux équipes, ou les deux, ont joué un match par la suite risque d'affecter les données des matchs suivants, générant de fausses statistiques dans ces derniers. ]]>
+                </reset_notice>
             </tourmatches>
 
             <!-- Subsection: match report(s) -->
@@ -3113,7 +3158,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
                 <usedjourney>Le match ne peut pas être sauvegardé tant que vous ne décidez pas du sort des journaliers utilisés (page du roster de votre équipe)</usedjourney>
 
                 <!-- Match report table header -->
-                <mvp>Jpv</mvp>
+                <mvp>JPV</mvp>
                 <cp>Réu</cp>
                 <bh>Bl L</bh>
                 <si>Bl G</si>
@@ -3130,15 +3175,15 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
 
         <mobile>
             <team>
-                <!-- <miss_next_game> -->
-                <!-- <may_buy_new_skill> -->
-                <!-- <management> -->
-                <!-- <desktop_site> -->
-                <!-- <noteams> -->
+                <miss_next_game>Rate prochain match</miss_next_game>
+                <may_buy_new_skill>Peut sélectionner une nouvelle compétence</may_buy_new_skill>
+                <management>Gestion</management>
+                <desktop_site>Site bureau</desktop_site>
+                <noteams>Vous n'avez pas d'équipe ! Ce site mobile n'est pas prévu pour vous aider : vous allez devoir utiliser le site version bureau</noteams>
             </team>
             <matches>
                 <match>
-                    <!-- <for_me_to> -->
+                    <for_me_to>de moi, à</for_me_to>
                 </match>
             </matches>
         </mobile>
@@ -3156,59 +3201,67 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <schedule>
                 <create_LD>Merci de créer une ligue et une division avant de prévoir des matchs</create_LD>
                 <tour_name>Nom du tournoi</tour_name>
-                <rank_sys>Méthode de Classement</rank_sys>
+                <rank_sys>Système de classement</rank_sys>
                 <sched_type>Calendrier</sched_type>
                 <add_team>Ajouter une équipe</add_team>
                 <teams_selected>Choisir une équipe</teams_selected>
                 <!-- Tour Types (TT) -->
-                <TT_FFA>FFA &lt;i&gt;(Free For All = "Chacun fait ce qu'il veut")&lt;/i&gt;</TT_FFA>
-                <TT_FFA_SINGLE>FFA &lt;i&gt;(Free For All = "Chacun fait ce qu'il veut")&lt;/i&gt; dans un tournois déjà existant</TT_FFA_SINGLE>
-                <TT_RR>Par ronde</TT_RR>
+                <TT_FFA>
+				<![CDATA[Tournoi FFA "Chacun fait ce qu'il veut" &mdash; avec N matchs]]>
+                </TT_FFA>
+                <TT_FFA_SINGLE>
+                <![CDATA[Match FFA "Chacun fait ce qu'il veut &mdash; dans un tournoi FFA déjà existant]]>
+                </TT_FFA_SINGLE>
+                <TT_RR>
+                <![CDATA[Tournoi par rondes &mdash; avec N rondes]]>
+                </TT_RR>
                 <!-- RR -->
-                <rrobin_rnds>&lt;b&gt;Fait l'entre crochet N fois:&lt;/b&gt;</rrobin_rnds>
-                <times>répétition</times>
+                <rrobin_rnds>Jouer chaque équipe adverse</rrobin_rnds>
+                <times>fois</times>
                 <!-- FFA -->
                 <in_tour>Dans le tournoi</in_tour>
-                <new_tour>Ajouter un tournois FFA</new_tour>
+                <new_tour>Ajouter un tournoi FFA</new_tour>
                 <as_type>De type...</as_type>
             </schedule>
 
             <nodes>
                 <errors>
-                    <!-- <league_already_exists> -->
-                    <!-- <settings_file_copy_failed> -->
+                    <league_already_exists>Une ligue de ce nom existe déjà.</league_already_exists>
+                    <settings_file_copy_failed>La ligue a été créée, mais le fichier settings n'a pas été copié correctement.</settings_file_copy_failed>
                 </errors>
             </nodes>
         </admin>
 
         <race>
-            <amazon>Amazone</amazon>
-            <chaoschosen>Chaos Chosen</chaoschosen>
-            <chaosdwarf>Nain du Chaos</chaosdwarf>
-            <darkelf>Elfe noir</darkelf>
-            <dwarf>Nain</dwarf>
-            <elvenunion>Elfe Pro</elvenunion>
-            <goblin>Gobelin</goblin>
-            <halfling>Halfling</halfling>
-            <highelf>Haut Elfe</highelf>
-            <human>Humain</human>
-            <tombkings>Tomb Kings</tombkings>
-            <lizardman>Homme Lézard</lizardman>
-            <necromantichorror>Nécromancien</necromantichorror>
-            <norse>Nordique</norse>
+            <amazon>Amazones</amazon>
+            <chaoschosen>Élus du Chaos</chaoschosen>
+            <chaosdwarf>Nains du Chaos</chaosdwarf>
+            <darkelf>Elfes noirs</darkelf>
+            <dwarf>Nains</dwarf>
+            <elvenunion>Elfes Pro</elvenunion>
+            <goblin>Gobelins</goblin>
+            <halfling>Halflings</halfling>
+            <highelf>Hauts-Elfes</highelf>
+            <human>Humains</human>
+            <tombkings>Roi des Tombes</tombkings>
+            <lizardman>Hommes-Lézards</lizardman>
+            <necromantichorror>Nécromantiques</necromantichorror>
+            <norse>Nordiques</norse>
             <nurgle>Nurgle</nurgle>
-            <ogre>Ogre</ogre>
-            <orc>Orque</orc>
-            <shamblingundead>Mort-vivant</shamblingundead>
-            <vampire>Vampire Blitzer</vampire>
-            <skaven>Skaven</skaven>
-            <woodelf>Elfe Sylvain</woodelf>
+            <ogre>Ogres</ogre>
+            <orc>Orques</orc>
+            <shamblingundead>Morts-vivants</shamblingundead>
+            <vampire>Vampires</vampire>
+            <skaven>Skavens</skaven>
+            <woodelf>Elfes Sylvain</woodelf>
             <chaosrenegades>Pacte du Chaos</chaosrenegades>
-            <underworlddenizens>Bas fond</underworlddenizens>
-            <slann>Slann</slann>
-            <bretonnia>Bretonnien</bretonnia>
+            <underworlddenizens>Bas-fonds</underworlddenizens>
+            <slann>Slanns</slann>
+            <bretonnia>Bretonniens</bretonnia>
             <daemonsofkhorne>Démons de Khorne</daemonsofkhorne>
-            <simyin>Simyin</simyin>
+            <simyin>Simiens</simyin>
+			<oldworldalliance>Alliance du Vieux Monde</oldworldalliance>
+            <snotling>Snotlings</snotling>
         </race>
 
         <position>
@@ -3216,29 +3269,32 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <blitzer>Blitzeur</blitzer>
             <blocker>Bloqueur</blocker>
             <catcher>Receveur</catcher>
-            <lineman>Trois-quart</lineman>
+            <lineman>Trois-quarts</lineman>
             <thrower>Passeur</thrower>
             <runner>Coureur</runner>
             <!-- Amazon -->
-            <triballinewoman>Trois-quart</triballinewoman>
+            <triballinewoman>Trois-quarts</triballinewoman>
+            <eaglewarriorthrower>Lanceuse</eaglewarriorthrower>
+            <piranhawarriorcatcher>Receveuse</piranhawarriorcatcher>
+            <kokakalimblitzer>Blitzeuse</kokakalimblitzer>
             <!-- Chaos Chosen -->
             <beastmanrunner>Homme-bête</beastmanrunner>
-            <chosenblocker>Guerrier du Chaos</chosenblocker>
+            <chosenblocker>Bloqueur du Chaos</chosenblocker>
             <minotaur>Minotaure</minotaur>
             <!-- Chaos Dwarf -->
-            <hobgoblinrunner>Hobgobelin</hobgoblinrunner>
+            <hobgoblinrunner>Coureur Hobgobelin</hobgoblinrunner>
             <chaosdwarfblocker>Bloqueur nain du Chaos</chaosdwarfblocker>
-            <bullcentaurblitzer>Centaure Taureau</bullcentaurblitzer>
-            <!-- <enslavedminotaur> -->
+            <bullcentaurblitzer>Blitzeur centaure taureau</bullcentaurblitzer>
+            <enslavedminotaur>Minotaure</enslavedminotaur>
             <!-- Dark Elf -->
             <assassin>Assassin</assassin>
             <witchelf>Furie</witchelf>
             <!-- Dwarf -->
-            <trollslayer>Tueur de Troll</trollslayer>
+            <trollslayer>Tueur de trolls</trollslayer>
             <deathroller>Roule-mort</deathroller>
             <!-- Goblin -->
             <goblin>Gobelin</goblin>
-            <bomma>Bomma</bomma>
+            <bomma>Bombardier</bomma>
             <pogoer>Bâton à ressort</pogoer>
             <looney>Barjot</looney>
             <fanatic>Fanatique</fanatic>
@@ -3248,30 +3304,37 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <!-- Halfling -->
             <halflinghopeful>Halfling</halflinghopeful>
             <treeman>Homme-arbre</treeman>
-            <halflingcatcher>Halfling Catcher</halflingcatcher>
-            <halflinghefty>Halfling Hefty</halflinghefty>
+            <halflingcatcher>Receveur Halfling</halflingcatcher>
+            <halflinghefty>Mastards</halflinghefty>
             <!-- Human -->
             <ogre>Ogre</ogre>
             <!-- Tomb Kings -->
             <skeletonlineman>Squelette</skeletonlineman>
+            <anointedthrower>Lanceur</anointedthrower>
+            <anointedblitzer>Blitzeur</anointedblitzer>
             <tombguardian>Gardien des tombes</tombguardian>
             <!-- Lizardman -->
-            <skinkrunner>Skink Runner</skinkrunner>
-            <saurusblocker>Saurus Blocker</saurusblocker>
+            <skinkrunner>Skink</skinkrunner>
+            <saurusblocker>Saurus</saurusblocker>
             <kroxigor>Kroxigor</kroxigor>
+            <chameleonskink>Caméléon</chameleonskink>
             <!-- Necromantic Horror -->
             <zombie>Zombie</zombie>
             <ghoul>Goule</ghoul>
+            <ghoulrunner>Goule</ghoulrunner>
             <wight>Revenant</wight>
+            <wightblitzer>Revenant</wightblitzer>
             <fleshgolem>Golem de chair</fleshgolem>
             <werewolf>Loup-Garou</werewolf>
             <necromanticwerewolf>Loup-Garou Nécromantique</necromanticwerewolf>
             <!-- Norse -->
-            <norsewerewolf>Loup-Garou Nordique</norsewerewolf>
-            <yhetee>Troll des neiges</yhetee>
-            <berserker>Berseker</berserker>
+            <norselineman>Trois-quarts</norselineman>
+            <norsethrower>Lanceur</norsethrower>
+            <norserunner>Coureur</norserunner>
+            <norseberserker>Berserker</norseberserker>
             <ulfwerener>Ulfwerener</ulfwerener>
-            <snowtroll>Troll des neiges</snowtroll>
+            <yhetee>Troll des neiges</yhetee>
+            <berserker>Berserker</berserker>
             <!-- Nurgle -->
             <rotter>Pourri</rotter>
             <pestigor>Pestigor</pestigor>
@@ -3279,41 +3342,58 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <rotspawn>Bête de Nurgle</rotspawn>
             <!-- Orge -->
             <gnoblar>Gnoblar</gnoblar>
+            <runtpunter>Botteur d'avortons</runtpunter>
             <!-- Orc -->
-            <blackorcblocker>Bloqueur Orque Noir</blackorcblocker>
+            <blackorcblocker>Bloqueur orque noir</blackorcblocker>
             <!-- Skaven -->
-            <skavenlineman>Trois-quart Skaven</skavenlineman>
-            <skaventhrower>Passeur Skaven</skaventhrower>
-            <skavenblitzer>Blitzeur Skaven</skavenblitzer>
-            <gutterrunner>Coureur d'égout</gutterrunner>
+            <skavenlineman>Trois-quarts</skavenlineman>
+            <skaventhrower>Passeur</skaventhrower>
+            <skavenblitzer>Blitzeur</skavenblitzer>
+            <gutterrunner>Coureur d'égouts</gutterrunner>
             <ratogre>Rat Ogre</ratogre>
             <!-- Shambling Undead -->
+            <skeleton>Squelette</skeleton>
             <mummy>Momie</mummy>
             <!-- Vampire -->
             <thralllineman>Serviteur</thralllineman>
-            <vampireblitzer>Vampire Blitzer</vampireblitzer>
+            <vampireblitzer>Vampire</vampireblitzer>
             <!-- Wood Elf -->
             <wardancer>Danseur de guerre</wardancer>
             <!-- Chaos Renegades -->
             <renegadehumanlineman>Maraudeur</renegadehumanlineman>
-            <renegadegoblin>Renégat Gobelin</renegadegoblin>
-            <renegadeskavenlineman>Renégat Skaven</renegadeskavenlineman>
-            <renegadedarkelflineman>Renégat Elfe Noir</renegadedarkelflineman>
-            <renegadeorclineman>Renégat Orc</renegadeorclineman>
+            <renegadegoblin>Gobelin renégat</renegadegoblin>
+            <renegadeskavenlineman>Skaven renégat</renegadeskavenlineman>
+            <renegadedarkelflineman>Elfe noir renégat</renegadedarkelflineman>
+            <renegadeorclineman>Orque renégat</renegadeorclineman>
             <chaostroll>Troll du Chaos</chaostroll>
             <chaosogre>Ogre du Chaos</chaosogre>
             <!-- Underworld Denizens -->
             <!-- Khorne -->
-            <!-- <pitfighter> -->
-            <!-- <bloodletterdaemon> -->
-            <!-- <khorneherald> -->
-            <!-- <bloodthirster> -->
+            <pitfighter>Gladiateur possédé</pitfighter>
+            <bloodletterdaemon>Démon sanguinaire</bloodletterdaemon>
+            <khorneherald>Héraut de Khorne</khorneherald>
+            <bloodthirster>Buveur de sang</bloodthirster>
             <!-- Simyin -->
-            <!-- <bonobo> -->
-            <!-- <orangutan> -->
-            <!-- <gorilla> -->
-            <!-- <chimpanzee> -->
-            <!-- <silverback> -->
+            <bonobo>Bonobo</bonobo>
+            <orangutan>Orang-outan</orangutan>
+            <gorilla>Gorille</gorilla>
+            <chimpanzee>Chimpanzé</chimpanzee>
+            <silverback>Gorille dos argenté</silverback>
+            <!-- Old World Alliance -->
+            <humanlineman>Trois-quarts humain</humanlineman>
+            <humanthrower>Lanceur humain</humanthrower>
+            <humancatcher>Receveur humain</humancatcher>
+            <humanblitzer>Blitzeur humain</humanblitzer>
+            <dwarfblocker>Bloqueur nain</dwarfblocker>
+            <dwarfrunner>Coureur nain</dwarfrunner>
+            <dwarfblitzer>Blitzeur nain</dwarfblitzer>
+            <dwarftrollslayer>Tueur de trolls nain</dwarftrollslayer>
+            <!-- Snotlings -->
+            <snotling>Snotling</snotling>
+            <fungasflinga>Fungus Flinga</fungasflinga>
+            <funhoppa>Fun-hoppa</funhoppa>
+            <stiltyrunna>Stilty Runna</stiltyrunna>
+            <pumpwagon>Pump Wagon</pumpwagon>
         </position>
 
         <skill>
@@ -3394,6 +3474,7 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <secretweapon>Arme Secrète</secretweapon>
             <stab>Poignard</stab>
             <stakes>Pieux</stakes>
+			<!-- Not in DZ2 -->
             <stunty>Minus</stunty>
             <swoop>Swoop</swoop>
             <takeroot>Prendre Racine</takeroot>
@@ -3402,6 +3483,12 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <titchy>Microbe</titchy>
             <wildanimal>Animal Sauvage</wildanimal>
             <weepingblades>Dague suintante</weepingblades>
+            <!-- Added BB2016 Spike! #8 -->
+            <disposable>Sacrifiable</disposable>
+            <kickteammate>Botter coéquipier</kickteammate>
+            <sportinggiant>Géant sportif</sportinggiant>
+            <!-- Added BB2016 Spike! #8 -->
+            <swarming>Déferlement</swarming>
         </skill>
 
         <starplayer>
@@ -3472,18 +3559,57 @@ For example, english is in <en-GB>, french in <fr-FR>, .......
             <!-- Added BB2016 DZ1 -->
             <gufflepusmaw>Guffle Pusmaw</gufflepusmaw>
             <!-- Added BB2016 DZ2 -->
-            <!-- <glartsmashripsr> -->
-            <!-- <lucienswiftvalenswift> -->
-            <!-- <valenswiftincludedwithlucienswift> -->
-            <!-- <kreekrustgouger> -->
-            <!-- <bogallante> -->
-            <!-- <karlavonkill> -->
-            <!-- <madcapmiggz> -->
-            <!-- <karicoldsteel> -->
+            <glartsmashripsr>Glart Smashrip Sr.</glartsmashripsr>
+            <lucienswiftvalenswift>Lucien Swift (&amp; Valen Swift)</lucienswiftvalenswift>
+            <valenswiftincludedwithlucienswift>Valen Swift (included with Lucien Swift)</valenswiftincludedwithlucienswift>
+            <kreekrustgouger>Kreek Rustgouger</kreekrustgouger>
+            <bogallante>Bo Gallanté</bogallante>
+            <karlavonkill>Karla von Kill</karlavonkill>
+            <madcapmiggz>Madcap Miggz</madcapmiggz>
+            <karicoldsteel>Kari Coldsteel</karicoldsteel>
             <!-- Added BB2016 Spike! #1 -->
             <gobblergrimlich>Gobbler Grimlich</gobblergrimlich>
             <scylaanfingrimm>Scyla Anfingrimm</scylaanfingrimm>
             <withergraspdoubledrool>Withergrasp Doubledrool</withergraspdoubledrool>
+            <!-- Added BB2016 Spike! #2 -->
+            <asperonthorn>Asperon Thorn</asperonthorn>
+            <elijahdoom>Elijah Doom</elijahdoom>
+            <kirothkrakeneye>Kiroth Krakeneye</kirothkrakeneye>
+            <mordrixhex>Mordrix Hex</mordrixhex>
+            <jeremiahkool>Jeremiah Kool</jeremiahkool>
+            <!-- Added BB2016 Spike! #3 -->
+            <bullashardhorn>Bulla Shardhorn</bullashardhorn>
+            <tollyglocklinger>Tolly Glocklinger</tollyglocklinger>
+            <!-- Added BB2016 Spike! #4 -->
+            <gralblodschuker>G'Ral Blodschuker</gralblodschuker>
+            <brycetheslicecambuel>Bryce 'The Slice' Cambuel</brycetheslicecambuel>
+            <ivantheanimaldeathshroud>Ivan 'The Animal' Deathshroud</ivantheanimaldeathshroud>
+            <skrullhalfheight>Skrull Halfheight</skrullhalfheight>
+            <rottenrickbupkeis>'Rotten' Rick Bupkeis</rottenrickbupkeis>
+            <throttlesnottheimplaer>Throttlesnot 'The Implaer'</throttlesnottheimplaer>
+            <gretchenwachterthebloodbowlwidow>Gretchen Wachter 'The Blood Bowl Widow'</gretchenwachterthebloodbowlwidow>
+            <!-- Added BB2016 Spike! #5 -->
+            <neddleyverruca>Neddley Verruca</neddleyverruca>
+            <cindypewhistle>Cindy Pewhistle</cindypewhistle>
+            <rumbelowsheepskin>Rumbelow Sheepskin</rumbelowsheepskin>
+            <bigjobohairyfoot>Big Jobo Hairyfoot</bigjobohairyfoot>
+            <captaincolander>Captain Colander</captaincolander>
+            <!-- Added BB2016 Spike! #6 -->
+            <glorielsummerbloom>Gloriel Summerbloom</glorielsummerbloom>
+            <swiftvineglimmershard>Swiftvine Glimmershard</swiftvineglimmershard>
+            <maplehighgrove>Maple Highgrove</maplehighgrove>
+            <zolcaththezoat>Zolcath the Zoat</zolcaththezoat>
+            <curnothdarkwold>Curnoth Darkwold</curnothdarkwold>
+            <!-- Added BB2016 Spike! #7 -->
+            <anqipanqi>Anqi Panqi</anqipanqi>
+            <drulldribl>Drull (&amp; Dribl)</drulldribl>
+            <driblincludedwithdrull>Dribl (included with Drull)</driblincludedwithdrull>
+            <glotlstop>Glotl Stop</glotlstop>
+            <!-- Added BB2016 Spike! #8 -->
+            <bobbifford>Bob Bifford</bobbifford>
+            <slavegiant>Slave Giant</slavegiant>
+            <!-- Nil Added BB2016 Spike! #9 -->
+            <!-- Added BB2016 Spike! #10 -->
         </starplayer>
 
         <daysofweek>

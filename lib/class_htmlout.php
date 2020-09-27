@@ -959,27 +959,27 @@ class HTMLOUT
 		<!-- Following HTML from ./lib/class_htmlout.php make_menu -->
 		<ul class="css3menu1 topmenu">
 			<li class="topfirst"><a href="index.php?section=main"><?php echo $lng->getTrn('menu/home');?></a>
-			 <ul>
-				<?php 
-				if(Settings::getValueOrDefault('show-regional-menu', false)) { 
-					foreach(League::getLeaguesByLocation() as $locationName => $leagues) {
-						echo '<li><a href="#">' . $locationName . ' ></a><ul>';
+				<ul>
+					<?php 
+					if(Settings::getValueOrDefault('show-regional-menu', false)) { 
+						foreach(League::getLeaguesByLocation() as $locationName => $leagues) {
+							echo '<li><a href="#">' . $locationName . ' ></a><ul>';
 						
-						foreach($leagues as $league) {
-							echo '<li><a href="index.php?SLS_lid=' . $league->lid . '">' . $league->name . '</a></li>';
-						}
+							foreach($leagues as $league) {
+								echo '<li><a href="index.php?SLS_lid=' . $league->lid . '">' . $league->name . '</a></li>';
+							}
 						
 						echo '</ul></li>';
-					}
-					if (isset($_SESSION['logged_in'])) {
-						echo '<li><a href="index.php?section=requestleague">Request a League</a></li>';
-					} 
-					echo '<li><a href="http://www.thenaf.net/leagues/leagues-locator/" >TheNAF.net League Locator</a></li>';
-					echo '<li><a href="index.php?SLS_lid=1" >League Hosting Home</a></li>';
-				} ?>
-				<li><a href="index.php?section=about">About NAFLM</a></li>
-			</ul>
-		</li>
+						}
+						if (isset($_SESSION['logged_in'])) {
+							echo '<li><a href="index.php?section=requestleague">Request a League</a></li>';
+						} 
+						echo '<li><a href="http://www.thenaf.net/leagues/leagues-locator/" >TheNAF.net League Locator</a></li>';
+						echo '<li><a href="index.php?SLS_lid=1" >League Hosting Home</a></li>';
+					} ?>
+					<li><a href="index.php?section=about">About NAFLM</a></li>
+				</ul>
+			</li>
 		<?php
 		if (isset($_SESSION['logged_in'])) {
 		?>
@@ -1059,39 +1059,42 @@ class HTMLOUT
 			
 	<li class="topmenu"><a rel="nofollow" href="#"><?php echo $lng->getTrn('menu/rules');?></a>
 		<ul> 
-			<li class="subfirst"><a rel="nofollow" href="#">Team Rosters ></a>
+			<li class="subfirst"><a rel="nofollow" href="#"><?php echo $lng->getTrn('common/races');?></a>
 				<ul>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=0" style="height:10px;line-height:10px;">Amazon</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=1" style="height:10px;line-height:10px;">Chaos Chosen</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=2" style="height:10px;line-height:10px;">Chaos Dwarf</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=21" style="height:10px;line-height:10px;">Chaos Renegades</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=3" style="height:10px;line-height:10px;">Dark Elf</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=4" style="height:10px;line-height:10px;">Dwarf</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=5" style="height:10px;line-height:10px;">Elven Union</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=6" style="height:10px;line-height:10px;">Goblin</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=7" style="height:10px;line-height:10px;">Halfling</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=8" style="height:10px;line-height:10px;">High Elf</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=9" style="height:10px;line-height:10px;">Human</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=11" style="height:10px;line-height:10px;">Lizardman</a></li>
-			   <li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=13" style="height:10px;line-height:10px;">Necromantic Horror</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=14" style="height:10px;line-height:10px;">Norse</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=15" style="height:10px;line-height:10px;">Nurgle</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=16" style="height:10px;line-height:10px;">Ogre</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=27" style="height:10px;line-height:10px;">Old World Alliance</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=12" style="height:10px;line-height:10px;">Orc</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=19" style="height:10px;line-height:10px;">Skaven</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=17" style="height:10px;line-height:10px;">Shambling Undead</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=28" style="height:10px;line-height:10px;">Snotlings</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=10" style="height:10px;line-height:10px;">Tomb Kings</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=23" style="height:10px;line-height:10px;">Underworld Denizens</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=18" style="height:10px;line-height:10px;">Vampire</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=20" style="height:10px;line-height:10px;">Wood Elf</a></li>
-			</ul></li>
-			<li class="subfirst"><a rel="nofollow" href="#">(Optional) Community Rosters ></a>
-				<ul><li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=24" style="height:10px;line-height:10px;">Bretonnian</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=25" style="height:10px;line-height:10px;">Daemons of Khorne</a></li>
-				<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=26" style="height:10px;line-height:10px;">Simyin</a></li>
-			</ul></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=0" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/amazon');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=1" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/chaoschosen');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=2" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/chaosdwarf');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=21" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/chaosrenegades');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=3" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/darkelf');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=4" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/dwarf');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=5" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/elvenunion');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=6" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/goblin');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=7" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/halfling');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=8" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/highelf');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=9" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/human');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=11" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/lizardman');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=13" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/necromantichorror');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=14" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/norse');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=15" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/nurgle');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=16" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/ogre');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=27" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/oldworldalliance');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=12" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/orc');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=19" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/skaven');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=17" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/shamblingundead');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=28" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/snotling');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=10" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/tombkings');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=23" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/underworlddenizens');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=18" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/vampire');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=20" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/woodelf');?></a></li>
+				</ul>
+			</li>
+			<li class="subfirst"><a rel="nofollow" href="#"><?php echo $lng->getTrn('common/optraces');?></a>
+				<ul>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=24" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/bretonnia');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=25" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/daemonsofkhorne');?></a></li>
+					<li><a href="index.php?section=objhandler&type=1&obj=4&obj_id=26" style="height:10px;line-height:10px;"><?php echo $lng->getTrn('race/simyin');?></a></li>
+				</ul>
+			</li>
 		</ul>
 	</li>
 				
